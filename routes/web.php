@@ -26,3 +26,14 @@ Route::post('/admin/dologin','Admin\LoginController@doLogin');
 Route::get('/admin/ceshi', function () {
     return view('Admin\head');
 });
+
+
+
+
+//后台网站配置信息管理
+Route::resource('/admin/config','Admin\ConfigController');
+
+//后台网站配置电话的ajax
+Route::get('/admin/config/ajaxtel','Admin\ConfigController@ajaxtel');
+
+   
