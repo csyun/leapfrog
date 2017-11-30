@@ -32,16 +32,14 @@ Route::get('/admin/ceshi', function () {
 
 
 
+
+
 //后台首页
 Route::get('/admin/index','Admin\IndexController@index');
 
-
-
 Route::group(['middleware'=>'islogin','prefix'=>'admin','namespace'=>'Admin'],function (){
-
 //后台用户路由组
 Route::resource('users','UsersController');
 //前台用户查询
 Route::get('husers/index','HusersController@index');
-
 });

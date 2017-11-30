@@ -8,7 +8,7 @@
   -->
 
 @section('content')
-
+<script src="{{asset('/layer/layer.js')}}"></script>
         <div class="tpl-content-wrapper">
             <div class="row-content am-cf">
                 <div class="row">
@@ -106,7 +106,7 @@
                                                         <a href="{{url('/admin/users/'.$v->uid.'/edit')}}">
                                                             <i class="am-icon-pencil"></i> 编辑
                                                         </a>
-                                                        <a href="{{url('/admin/users/'.$v->uid)}}"  class="tpl-table-black-operation-del">
+                                                        <a href="javascript:;" onclick="userDel({{$v->uid}})" class="tpl-table-black-operation-del">
                                                             <i class="am-icon-trash"></i> 删除
                                                         </a>
                                                     </div>
@@ -137,6 +137,55 @@
             </div>
         </div>
 
+        <script>
+
+
+
+            function userDel(id) {
+
+                // layer.alert('内容');
+           
+                layer.confirm('您确认删除吗？', {
+                    btn: ['确认','取消'] //按钮
+                }, function(){
+                    //如果用户发出删除请求，应该使用ajax向服务器发送删除请求
+                    //$.get("请求服务器的路径","携带的参数", 获取执行成功后的额返回数据);
+
+                    $.post("{{url('admin/users')}}/"+id,{"_method":"delete","_token":"{{csrf_token()}}"},function(data){
+
+                        //data是json格式的字符串，在js中如何将一个json字符串变成json对象
+
+                        //删除成功
+                        if(data.error == 0){
+                            //console.log("错误号"+res.error);
+                            //console.log("错误信息"+res.msg);
+                            layer.msg(data.msg, {icon: 6});
+                            //location.href = location.href;
+                            var t=setTimeout("location.href = location.href;",2000);
+                        }else{
+                            layer.msg(data.msg, {icon: 5});
+
+                            var t=setTimeout("location.href = location.href;",2000);
+                            //location.href = location.href;
+                        }
+
+
+                    });
+
+
+                }, function(){
+
+                });
+            }
+
+
+
+        </script>
 @stop
+
+
+
+
+
 
 

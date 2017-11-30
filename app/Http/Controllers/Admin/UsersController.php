@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Admin_User;
+use Illuminate\Support\Facades\Hash;
 /**
  *后台用户控制器 增删改查
  * @author [苏波] <386249656@qq.com>
@@ -97,7 +98,7 @@ class UsersController extends Controller
          } 
 
         //密码加密
-        $data['password'] = encrypt($data['password']);
+        $data['password'] = Hash::make($data['password']);
 
         //时间,默认刚注册时就是用户当前最后登录时间
         $time = time();
@@ -114,7 +115,8 @@ class UsersController extends Controller
         //判断
         if($res)
         {
-            return redirect('/admin/users');
+
+            return  redirect('/admin/users');
         }else{
             return back();
         }
@@ -198,17 +200,18 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //根据传过来的id查找用户信息
-        $user = Admin_User::find($id);
-        //删除
-        $res = $user->delete();
-        dd($res);
-        //判断
-        if($res)
-        {           
-            return redirect('/admin/users');
-        }else{            
-            return back();
-        }        
+        $res = Admin_User::find($id)->delete();
+        $data = [];
+        if($res){
+            $data['error'] = 0;
+            $data['msg'] ="删除成功";
+        }else{
+            $data['error'] = 1;
+            $data['msg'] ="删除失败";
+        }
+
+        //return  json_encode($data);
+
+        return $data;
     }
 }
