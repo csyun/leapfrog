@@ -15,45 +15,59 @@
                     <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
                         <div class="widget am-cf">
                             <div class="widget-head am-cf">
-                                <div class="widget-title  am-cf">文章列表</div>
+                                <div class="widget-title  am-cf">前台用户列表</div>
 
 
                             </div>
+
                             <div class="widget-body  am-fr">
 
                                 <div class="am-u-sm-12 am-u-md-6 am-u-lg-6">
                                     <div class="am-form-group">
                                         <div class="am-btn-toolbar">
                                             <div class="am-btn-group am-btn-group-xs">
-                                                <button type="button" class="am-btn am-btn-default am-btn-success"><span class="am-icon-plus"></span> 新增</button>
-                                                <button type="button" class="am-btn am-btn-default am-btn-secondary"><span class="am-icon-save"></span> 保存</button>
-                                                <button type="button" class="am-btn am-btn-default am-btn-warning"><span class="am-icon-archive"></span> 审核</button>
-                                                <button type="button" class="am-btn am-btn-default am-btn-danger"><span class="am-icon-trash-o"></span> 删除</button>
+                                            
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
+                                <form action="{{url('/admin/husers/index')}}" method="get">
+                                {{csrf_field()}}
                                 <div class="am-u-sm-12 am-u-md-6 am-u-lg-3">
                                     <div class="am-form-group tpl-table-list-select">
-                                        <select data-am-selected="{btnSize: 'sm'}">
-              <option value="option1">所有类别</option>
-              <option value="option2">IT业界</option>
-              <option value="option3">数码产品</option>
-              <option value="option3">笔记本电脑</option>
-              <option value="option3">平板电脑</option>
-              <option value="option3">只能手机</option>
-              <option value="option3">超极本</option>
+                                        <select name="auth" data-am-selected="{btnSize: 'sm'}">
+
+              <option
+            @if(!$request->auth)
+            selected
+            @endif
+               value="0">所有用户</option>
+              <option 
+            @if($request->auth == 1)
+            selected
+            @endif
+              value="1">普通用户</option>
+              <option
+            @if($request->auth == 2)
+            selected
+            @endif
+               value="2">塘主</option>
+
             </select>
                                     </div>
                                 </div>
                                 <div class="am-u-sm-12 am-u-md-12 am-u-lg-3">
                                     <div class="am-input-group am-input-group-sm tpl-form-border-form cl-p">
-                                        <input type="text" class="am-form-field ">
+                                        <input type="text" class="am-form-field " name="key" placeholder="用户名关键字" value="{{$request->key}}">
                                         <span class="am-input-group-btn">
-            <button class="am-btn  am-btn-default am-btn-success tpl-table-list-field am-icon-search" type="button"></button>
+            <button class="am-btn  am-btn-default am-btn-success tpl-table-list-field am-icon-search" type="submit"></button>
           </span>
                                     </div>
                                 </div>
+                                </form>
+
+
 
                                 <div class="am-u-sm-12">
                                     <table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black " id="example-r">
@@ -114,20 +128,18 @@
                                         </tbody>
                                     </table>
                                 </div>
+                                
+
                                 <div class="am-u-lg-12 am-cf">
 
                                     <div class="am-fr">
-                                        <ul class="am-pagination tpl-pagination">
-                                            <li class="am-disabled"><a href="#">«</a></li>
-                                            <li class="am-active"><a href="#">1</a></li>
-                                            <li><a href="#">2</a></li>
-                                            <li><a href="#">3</a></li>
-                                            <li><a href="#">4</a></li>
-                                            <li><a href="#">5</a></li>
-                                            <li><a href="#">»</a></li>
-                                        </ul>
+                                         {!! $data->appends($request->all())->render() !!}
                                     </div>
+                                
                                 </div>
+                            
+
+
                             </div>
                         </div>
                     </div>

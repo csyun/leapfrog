@@ -15,8 +15,7 @@
                     <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
                         <div class="widget am-cf">
                             <div class="widget-head am-cf">
-                                <div class="widget-title  am-cf">文章列表</div>
-
+                                <div class="widget-title  am-cf">后台用户列表</div>
 
                             </div>
                             <div class="widget-body  am-fr">
@@ -25,29 +24,49 @@
                                     <div class="am-form-group">
                                         <div class="am-btn-toolbar">
                                             <div class="am-btn-group am-btn-group-xs">
-                                                <a href="{{url('admin/users/add')}}"><button type="button" class="am-btn am-btn-default am-btn-success"><span class="am-icon-plus"></span> 
+                                                <a href="{{url('admin/users/create')}}"><button type="button" class="am-btn am-btn-default am-btn-success"><span class="am-icon-plus"></span> 
                                                 添加后台用户</button></a>
 
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="am-u-sm-12 am-u-md-6 am-u-lg-3">
-                                    <div class="am-form-group tpl-table-list-select">
-                                        <select data-am-selected="{btnSize: 'sm'}">
-                                            <option value="option1">所有类别</option>
 
+                                <!-- 搜索 -->
+                                <form action="{{url('/admin/users')}}" method="get">
+                                {{csrf_field()}}
+                                <div class="am-u-sm-12 am-u-md-6 am-u-lg-3">
+
+                                    <div class="am-form-group tpl-table-list-select">
+                                        <select  name="auth" data-am-selected="{btnSize: 'sm'}" style="display: none;">
+                                            <option
+                                        @if(!$request->auth)
+                                            selected
+                                        @endif
+                                             value="0">全选</option>
+                                            <option 
+                                        @if($request->auth == 1)
+                                            selected
+                                        @endif
+                                            value="1">普通管理员</option>
+                                            <option
+                                        @if($request->auth == 2)
+                                            selected
+                                        @endif
+                                             value="2">高级管理员</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="am-u-sm-12 am-u-md-12 am-u-lg-3">
                                     <div class="am-input-group am-input-group-sm tpl-form-border-form cl-p">
-                                        <input type="text" class="am-form-field ">
+                                        <input type="text" class="am-form-field " name="key" placeholder="请输入用户名关键字" value="{{$request->key}}">
                                         <span class="am-input-group-btn">
-            <button class="am-btn  am-btn-default am-btn-success tpl-table-list-field am-icon-search" type="button"></button>
-          </span>
+                                        <button class="am-btn  am-btn-default am-btn-success tpl-table-list-field am-icon-search" type="submit"></button>
+                                      </span>
                                     </div>
                                 </div>
+                                </from>
+
                                 
                                 <div class="am-u-sm-12">
                                     <table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black " id="example-r">
@@ -84,10 +103,10 @@
 												<td>{{date('Y-m-d H:i:s',$v->last_login_time)}}</td>
 												<td>
                                                     <div class="tpl-table-black-operation">
-                                                        <a href="{{url('/admin/users/edit/'.$v->uid)}}">
+                                                        <a href="{{url('/admin/users/'.$v->uid.'/edit')}}">
                                                             <i class="am-icon-pencil"></i> 编辑
                                                         </a>
-                                                        <a href="{{url('/admin/users/delete/'.$v->uid)}}" class="tpl-table-black-operation-del">
+                                                        <a href="{{url('/admin/users/'.$v->uid)}}"  class="tpl-table-black-operation-del">
                                                             <i class="am-icon-trash"></i> 删除
                                                         </a>
                                                     </div>
@@ -99,20 +118,18 @@
                                         </tbody>
                                     </table>
                                 </div>
+
+                                
+
                                 <div class="am-u-lg-12 am-cf">
 
                                     <div class="am-fr">
-                                        <ul class="am-pagination tpl-pagination">
-                                            <li class="am-disabled"><a href="#">«</a></li>
-                                            <li class="am-active"><a href="#">1</a></li>
-                                            <li><a href="#">2</a></li>
-                                            <li><a href="#">3</a></li>
-                                            <li><a href="#">4</a></li>
-                                            <li><a href="#">5</a></li>
-                                            <li><a href="#">»</a></li>
-                                        </ul>
+                                         {!! $data->appends($request->all())->render() !!}
                                     </div>
                                 </div>
+                                
+
+
                             </div>
                         </div>
                     </div>
@@ -121,3 +138,5 @@
         </div>
 
 @stop
+
+

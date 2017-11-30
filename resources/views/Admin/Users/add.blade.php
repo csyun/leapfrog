@@ -34,9 +34,13 @@
                                     @if (count($errors) > 0)
                                         <div class="alert alert-danger">
                                             <ul>
+                                             @if(is_object($errors))
                                                 @foreach ($errors->all() as $error)
-                                                    <li>{{ $error }}</li>
+                                                    <li style="color:red">{{ $error }}</li>
                                                 @endforeach
+                                            @else
+                                                <li style="color:red">{{ $errors }}</li>
+                                            @endif
                                             </ul>
                                         </div>
                                     @endif
@@ -47,7 +51,7 @@
                             </div>
                             <div class="widget-body am-fr">
 
-                                <form action="{{url('/admin/users/insert')}}" method="post" enctype="multipart/form-data" class="am-form tpl-form-border-form tpl-form-border-br">
+                                <form action="{{url('/admin/users')}}" method="post" enctype="multipart/form-data" class="am-form tpl-form-border-form tpl-form-border-br">
                                     {{csrf_field()}}
                                     <div class="am-form-group">
 
