@@ -1,5 +1,4 @@
-@extends('Admin.head');
-
+@extends('Admin.head')
 @section('content')
     <div class="row" style="margin-left:100px;">
 
@@ -81,4 +80,4 @@
             </div>
         </div>
     </div>
-@endsection
+@stop

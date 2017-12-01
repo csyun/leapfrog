@@ -36,4 +36,8 @@ Route::get('husers/index','HusersController@index');
 Route::get('loginout','LoginController@loginout');
 //文章管理路由
 Route::resource('articles','ArticlesController');
+//商品标签管理路由
+Route::resource('goodtags','GoodTagsController');
+//商品标签类型管理路由
+Route::resource('goodtagtype','GoodTagTypeController');
 });
