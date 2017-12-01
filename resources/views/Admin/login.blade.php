@@ -16,14 +16,14 @@
 
 input{outline: none; position: relative;}
 </style>
-    <script src="{{asset('/Admin/assets/js/theme.js')}}"></script>
+    <script src="{{asset('/Adminui/assets/js/theme.js')}}"></script>
     <div class="am-g tpl-g">
         <!-- 风格切换 -->
         
         <div class="tpl-login">
             <div class="tpl-login-content">
                 <div class="">
-                    <img src="{{asset('/Admin/assets/img/logo-4.png')}}" width="300px" height="300px">
+                    <img src="{{asset('/Adminui/assets/img/logo-4.png')}}" width="300px" height="300px">
                 </div>
 
 

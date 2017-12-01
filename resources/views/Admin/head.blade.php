@@ -4,13 +4,13 @@
 @endsection
 @section('body')
 
-    <script src="{{asset('/Admin/assets/js/theme.js')}}"></script>
+    <script src="{{asset('/Adminui/assets/js/theme.js')}}"></script>
     <div class="am-g tpl-g">
         <!-- 头部 -->
         <header>
             <!-- logo -->
             <div class="am-fl tpl-header-logo">
-                <a href="javascript:;"><img src="{{asset('/Admin/assets/img/logo-5.png')}}" alt=""></a>
+                <a href="javascript:;"><img src="{{asset('/Adminui/assets/img/logo-5.png')}}" alt=""></a>
             </div>
             <!-- 右侧内容 -->
             <div class="tpl-header-fluid">
@@ -46,7 +46,7 @@
                                 <li class="tpl-dropdown-menu-messages">
                                     <a href="javascript:;" class="tpl-dropdown-menu-messages-item am-cf">
                                         <div class="menu-messages-ico">
-                                            <img src="{{asset('/Admin/assets/img/user04.png')}}" alt="">
+                                            <img src="{{asset('/Adminui/assets/img/user04.png')}}" alt="">
                                         </div>
                                         <div class="menu-messages-time">
                                             3小时前
@@ -65,7 +65,7 @@
                                 <li class="tpl-dropdown-menu-messages">
                                     <a href="javascript:;" class="tpl-dropdown-menu-messages-item am-cf">
                                         <div class="menu-messages-ico">
-                                            <img src="{{asset('/Admin/assets/img/user02.png')}}" alt="">
+                                            <img src="{{asset('/Adminui/assets/img/user02.png')}}" alt="">
                                         </div>
                                         <div class="menu-messages-time">
                                             5天前
@@ -172,7 +172,7 @@
                     </a>
                     <ul class="sidebar-nav sidebar-nav-sub">
                         <li class="sidebar-nav-link">
-                            <a href="{{url('/admin/users/index')}}">
+                            <a href="{{url('/admin/users/')}}">
                                 <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 后台用户
                             </a>
                         </li>
