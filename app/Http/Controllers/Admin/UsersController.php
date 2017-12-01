@@ -175,10 +175,18 @@ class UsersController extends Controller
         //去除_token
         $data = $request->except('_token');
         
+        //查看本来数据的uname
+        $name = Admin_User::find($id);
+
         //判断是否有此用户
         $uname = Admin_User::where('uname',$data['uname'])->first();
 
-        if ($uname) {
+
+        // dd($uname->uname);
+        // dd($name->uname);
+        //dd($uname && ($uname->uname != $name->uname));
+        
+        if ($uname && ($uname->uname != $name->uname)) {
              return redirect('admin/users/'.$id.'/edit')->with('errors','用户名已存在');
          } 
         //更改用户信息
