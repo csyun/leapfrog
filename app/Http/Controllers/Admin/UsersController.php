@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Admin_User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 
 /**
  *后台用户控制器 增删改查
@@ -46,7 +47,8 @@ class UsersController extends Controller
   
     	
     	//密码加密
-    	$data['password'] = encrypt($data['password']);
+
+    	$data['password'] = Hash::make($data['password']);
 
         //时间,默认刚注册时就是用户当前最后登录时间
     	$time = time();

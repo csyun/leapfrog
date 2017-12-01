@@ -1,0 +1,84 @@
+@extends('Admin.head');
+
+@section('content')
+    <div class="row" style="margin-left:100px;">
+
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+            <div class="widget am-cf">
+
+                <div class="widget-body am-fr">
+
+                    <form class="am-form tpl-form-border-form tpl-form-border-br">
+                        <div class="am-form-group">
+                            <label for="user-name" class="am-u-sm-3 am-form-label">标题 <span class="tpl-form-line-small-title">Title</span></label>
+                            <div class="am-u-sm-9">
+                                <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入标题文字">
+                                <small>请填写标题文字10-20字左右。</small>
+                            </div>
+                        </div>
+
+                        <div class="am-form-group">
+                            <label for="user-email" class="am-u-sm-3 am-form-label">发布时间 <span class="tpl-form-line-small-title">Time</span></label>
+                            <div class="am-u-sm-9">
+                                <input type="text" class="am-form-field tpl-form-no-bg" placeholder="发布时间" data-am-datepicker="" readonly="">
+                                <small>发布时间为必填</small>
+                            </div>
+                        </div>
+
+                        <div class="am-form-group">
+                            <label for="user-phone" class="am-u-sm-3 am-form-label">作者 <span class="tpl-form-line-small-title">Author</span></label>
+                            <div class="am-u-sm-9">
+                                <input type="text" placeholder="输入作者名称">
+                            </div>
+                        </div>
+
+                        <div class="am-form-group">
+                            <label class="am-u-sm-3 am-form-label">文章序号 <span class="tpl-form-line-small-title">序号</span></label>
+                            <div class="am-u-sm-9">
+                                <input type="text" placeholder="输入列表排序">
+                            </div>
+                        </div>
+
+                        <div class="am-form-group">
+                            <label for="user-weibo" class="am-u-sm-3 am-form-label">封面图 <span class="tpl-form-line-small-title">Images</span></label>
+                            <div class="am-u-sm-9">
+                                <div class="am-form-group am-form-file">
+                                    <div class="tpl-form-file-img">
+                                        <img src="{{asset('/Admin/assets/img/a5.png')}}" alt="">
+                                    </div>
+                                    <button type="button" class="am-btn am-btn-danger am-btn-sm">
+                                        <i class="am-icon-cloud-upload"></i> 添加封面图片</button>
+                                    <input id="doc-form-file" type="file" multiple="">
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="am-form-group">
+                            <label for="user-weibo" class="am-u-sm-3 am-form-label">添加分类 <span class="tpl-form-line-small-title">Type</span></label>
+                            <div class="am-u-sm-9">
+                                <input type="text" id="user-weibo" placeholder="请添加分类用点号隔开">
+                                <div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="am-form-group">
+                            <label for="user-intro" class="am-u-sm-3 am-form-label">文章内容</label>
+                            <div class="am-u-sm-9">
+                                <textarea class="" rows="10" id="user-intro" placeholder="请输入文章内容"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="am-form-group">
+                            <div class="am-u-sm-9 am-u-sm-push-3">
+                                <button type="button" class="am-btn am-btn-primary tpl-btn-bg-color-success ">提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection

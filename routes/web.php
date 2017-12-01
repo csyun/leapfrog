@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('Home\index');
 });
 
 //后台管理员登录页面路由
@@ -22,10 +22,10 @@ Route::get('/admin/login','Admin\LoginController@login');
 Route::get('/getcode','Admin\LoginController@code');
 //后台处理登录逻辑
 Route::post('/admin/dologin','Admin\LoginController@doLogin');
+Route::get('/admin/loginout','Admin\LoginController@loginout');
+//文章管理路由
+Route::resource('/admin/articles','Admin\ArticlesController');
 
-Route::get('/admin/ceshi', function () {
-    return view('Admin\head');
-});
 
 
 

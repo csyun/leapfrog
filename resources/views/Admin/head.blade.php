@@ -32,7 +32,7 @@
                     <ul>
                         <!-- 欢迎语 -->
                         <li class="am-text-sm tpl-header-navbar-welcome">
-                            <a href="javascript:;">欢迎你, <span>Amaze UI</span> </a>
+                            <a href="javascript:;">欢迎你, <span>{{Session::get('user.uname')}}</span> </a>
                         </li>
 
                         <!-- 新邮件 -->
@@ -142,7 +142,7 @@
 
                         <!-- 退出 -->
                         <li class="am-text-sm">
-                            <a href="javascript:;">
+                            <a href="{{url('/admin/loginout')}}">
                                 <span class="am-icon-sign-out"></span> 退出
                             </a>
                         </li>
@@ -161,9 +161,47 @@
             <ul class="sidebar-nav">
                
                 <li class="sidebar-nav-link">
-                    <a href="index.html" class="active">
+                    <a href="{{url('/admin/index')}}" class="active">
                         <i class="am-icon-home sidebar-nav-link-logo"></i> 首页
                     </a>
+                </li>
+                <li class="sidebar-nav-link">
+                    <a href="javascript:;" class="sidebar-nav-sub-title">
+                        <i class="am-icon-table sidebar-nav-link-logo"></i>用户管理
+                        <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
+                    </a>
+                    <ul class="sidebar-nav sidebar-nav-sub">
+                        <li class="sidebar-nav-link">
+                            <a href="{{url('/admin/users/index')}}">
+                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 后台用户
+                            </a>
+                        </li>
+
+                        <li class="sidebar-nav-link">
+                            <a href="{{url('/admin/husers/index')}}">
+                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 前台用户
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sidebar-nav-link">
+                    <a href="javascript:;" class="sidebar-nav-sub-title">
+                        <i class="am-icon-table sidebar-nav-link-logo"></i>文章管理
+                        <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
+                    </a>
+                    <ul class="sidebar-nav sidebar-nav-sub">
+                        <li class="sidebar-nav-link">
+                            <a href="{{url('/admin/articles/create')}}">
+                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 添加文章
+                            </a>
+                        </li>
+
+                        <li class="sidebar-nav-link">
+                            <a href="{{url('/admin/articles')}}">
+                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 文章列表
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="sidebar-nav-link">
                     <a href="tables.html">
