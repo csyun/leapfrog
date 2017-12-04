@@ -242,8 +242,8 @@
                     </ul>
                 </li>
                 <li class="sidebar-nav-link">
-                    <a href="tables.html">
-                        <i class="am-icon-table sidebar-nav-link-logo"></i> 表格
+                    <a href="{{url('/admin/slideshow')}}">
+                        <i class="am-icon-table sidebar-nav-link-logo"></i> 轮播图管理
                     </a>
                 </li>
                 <li class="sidebar-nav-link">

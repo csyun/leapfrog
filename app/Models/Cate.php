@@ -19,7 +19,7 @@ class Cate extends Model
     public function relation()
     {
         $cates = $this->orderBy('order','asc')->get();
-       return $this->getCate($cates,0);
+        return $this->getCate($cates,0);
 
     }
     public function  getCate($cates,$pid)

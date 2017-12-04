@@ -1,5 +1,6 @@
 @extends('Admin.head')
 @section('content')
+
     <div class="row" style="margin-left:100px;">
 
         <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
@@ -7,56 +8,104 @@
 
                 <div class="widget-body am-fr">
 
-                    <form class="am-form tpl-form-border-form tpl-form-border-br">
-                        <div class="am-form-group">
-                            <label for="user-name" class="am-u-sm-3 am-form-label">标题 <span class="tpl-form-line-small-title">Title</span></label>
-                            <div class="am-u-sm-9">
-                                <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入标题文字">
-                                <small>请填写标题文字10-20字左右。</small>
-                            </div>
-                        </div>
+                    <form action="{{url('/admin/articles')}}" id="art_form" class="am-form tpl-form-border-form tpl-form-border-br" method="post" enctype="multipart/form-data">
+                        {{csrf_field()}}
 
                         <div class="am-form-group">
-                            <label for="user-email" class="am-u-sm-3 am-form-label">发布时间 <span class="tpl-form-line-small-title">Time</span></label>
+                            @if (count($errors) > 0)
+                                <div style="margin-left: 300px;">
+                                    <ul>
+                                        @if(is_object($errors))
+                                            @foreach ($errors->all() as $error)
+                                                <li style="color:red">{{ $error }}</li>
+                                            @endforeach
+                                        @else
+                                            <li style="color:red">{{ $errors }}</li>
+                                        @endif
+                                    </ul>
+                                </div>
+                            @endif
+                            <label for="user-name" class="am-u-sm-3 am-form-label">标题 <span class="tpl-form-line-small-title">Title</span></label>
                             <div class="am-u-sm-9">
-                                <input type="text" class="am-form-field tpl-form-no-bg" placeholder="发布时间" data-am-datepicker="" readonly="">
-                                <small>发布时间为必填</small>
+                                <input style="width: 400px;" type="text" class="tpl-form-input" id="user-name" placeholder="请输入标题文字" name="title" value="{{old('title')}}">
+                                <small>请填写标题文字10-20字左右。</small>
                             </div>
                         </div>
 
                         <div class="am-form-group">
                             <label for="user-phone" class="am-u-sm-3 am-form-label">作者 <span class="tpl-form-line-small-title">Author</span></label>
                             <div class="am-u-sm-9">
-                                <input type="text" placeholder="输入作者名称">
+                                <input type="text" name="auth" value="{{old('auth')}}" placeholder="输入作者名称" style="width: 400px;">
                             </div>
                         </div>
 
                         <div class="am-form-group">
                             <label class="am-u-sm-3 am-form-label">文章序号 <span class="tpl-form-line-small-title">序号</span></label>
                             <div class="am-u-sm-9">
-                                <input type="text" placeholder="输入列表排序">
+                                <input type="text" value="{{old('number')}}" name="number" placeholder="输入列表排序" style="width: 400px;">
                             </div>
                         </div>
 
                         <div class="am-form-group">
                             <label for="user-weibo" class="am-u-sm-3 am-form-label">封面图 <span class="tpl-form-line-small-title">Images</span></label>
                             <div class="am-u-sm-9">
-                                <div class="am-form-group am-form-file">
-                                    <div class="tpl-form-file-img">
-                                        <img src="{{asset('/Admin/assets/img/a5.png')}}" alt="">
-                                    </div>
-                                    <button type="button" class="am-btn am-btn-danger am-btn-sm">
-                                        <i class="am-icon-cloud-upload"></i> 添加封面图片</button>
-                                    <input id="doc-form-file" type="file" multiple="">
-                                </div>
+                                <input type="text" size="40" id="art_thumb" name="art_thumb" value="" style="width: 400px;" >
+                                <input id="file_upload" name="file_upload" type="file" multiple="true" style="margin-top: 20px;">
+                                <br>
+                                <img src="" id="img1" alt="" style="width:80px;height:80px">
+                                <script type="text/javascript">
+                                    $(function () {
+                                        $("#file_upload").change(function () {
+                                            $('img1').show();
+                                            uploadImage();
+                                        });
+                                    });
+                                    function uploadImage() {
+                                        // 判断是否有选择上传文件
+                                        var imgPath = $("#file_upload").val();
+                                        if (imgPath == "") {
+                                            alert("请选择上传图片！");
+                                            return;
+                                        }
+                                        //判断上传文件的后缀名
+                                        var strExtension = imgPath.substr(imgPath.lastIndexOf('.') + 1);
+                                        if (strExtension != 'jpg' && strExtension != 'gif'
+                                            && strExtension != 'png' && strExtension != 'bmp') {
+                                            alert("请选择图片文件");
+                                            return;
+                                        }
+                                        var formData = new FormData($('#art_form')[0]);
+                                        {{--var formData = new FormData();--}}
+                                        {{--formData.append('file_upload', $('#file_upload')[0].files[0]);--}}
+                                        {{--formData.append('_token',"{{csrf_token()}}");--}}
+                                        $.ajax({
+                                            type: "POST",
+                                            url: "/admin/upload",
+                                            data: formData,
+                                            async: true,
+                                            cache: false,
+                                            contentType: false,
+                                            processData: false,
+                                            success: function(data) {
+                                          //$('#img1').attr('src','/uploads/'+data);
+                                            $('#img1').attr('src','http://p0a39ed4q.bkt.clouddn.com/uploads/'+data);
+
+                                                $('#art_thumb').val('/uploads/'+data);
+                                            },
+                                            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                                                alert("上传失败，请检查网络后重试");
+                                            }
+                                        });
+                                    }
+                                </script>
 
                             </div>
                         </div>
 
                         <div class="am-form-group">
-                            <label for="user-weibo" class="am-u-sm-3 am-form-label">添加分类 <span class="tpl-form-line-small-title">Type</span></label>
+                            <label for="user-weibo" class="am-u-sm-3 am-form-label">添加标签 <span class="tpl-form-line-small-title">Tag</span></label>
                             <div class="am-u-sm-9">
-                                <input type="text" id="user-weibo" placeholder="请添加分类用点号隔开">
+                                <input type="text" name="tags" value="{{old('tags')}}" id="user-weibo" placeholder="请添加分类用点号隔开" style="width: 400px;">
                                 <div>
 
                                 </div>
@@ -66,18 +115,32 @@
                         <div class="am-form-group">
                             <label for="user-intro" class="am-u-sm-3 am-form-label">文章内容</label>
                             <div class="am-u-sm-9">
-                                <textarea class="" rows="10" id="user-intro" placeholder="请输入文章内容"></textarea>
+                                <script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.config.js"></script>
+                                <script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.all.min.js"> </script>
+                                <script id="editor" type="text/plain" name="content"  style="width:700px;height:300px;">
+                                    {!!old('content')!!}
+                                </script>
                             </div>
                         </div>
 
                         <div class="am-form-group">
                             <div class="am-u-sm-9 am-u-sm-push-3">
-                                <button type="button" class="am-btn am-btn-primary tpl-btn-bg-color-success ">提交</button>
+                                <button type="submit" class="am-btn am-btn-primary tpl-btn-bg-color-success ">提交</button>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-    </div>
+    </div><script type="text/javascript">
+
+        //实例化编辑器
+        //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+        var ue = UE.getEditor('editor');
+
+
+
+
+    </script>
+
 @stop
