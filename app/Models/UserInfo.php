@@ -22,8 +22,13 @@ class UserInfo extends Model
     public $timestamps = false;
 
     // 设置允许批量修改的字段
-    public $fillable = [];
+    // public $fillable = [];
 
     // 不允许批量修改的字段
-   	// public $guarded = [];
+   	public $guarded = [];
+    
+        public function user(){
+     
+        return $this->belongsto('App\Models\Home_User','uid');
+    }
 }

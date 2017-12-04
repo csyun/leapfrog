@@ -11,9 +11,19 @@
 |
 */
 
+//前台首页
 Route::get('/', function () {
     return view('Home\index');
 });
+
+//前台登录页面
+Route::get('/login','Home\LoginController@login');
+Route::post('/dologin','Home\LoginController@dologin');
+//后台注册
+Route::get('/register','Home\RegisterController@register');
+Route::post('/doregister','Home\RegisterController@doregister');
+
+
 
 //后台管理员登录页面路由
 Route::get('/admin/login','Admin\LoginController@login');

@@ -16,8 +16,29 @@
                         <div class="widget am-cf">
                             <div class="widget-head am-cf">
                                 <div class="widget-title  am-cf">后台用户列表</div>
-
+                                @if (count($errors) > 0)
+                                        <div id="lan" >
+                                            <ul>
+                                             @if(is_object($errors))
+                                                @foreach ($errors->all() as $error)
+                                                    <li class="aa" style="display:none">{{ $error }}</li>
+                                                    <script type="text/javascript">
+                                                        var a = $(".aa").html();
+                                                        layer.msg(a, {icon: 6});
+                                                    </script>                                                    
+                                                @endforeach
+                                            @else
+                                                <li class="aa" style="display:none">{{ $errors }}</li>
+                                                <script type="text/javascript">
+                                                    var a = $(".aa").html();
+                                                     layer.msg(a, {icon: 6});   
+                                                </script>                                                
+                                            @endif
+                                            </ul>
+                                        </div>
+                                @endif
                             </div>
+                            
                             <div class="widget-body  am-fr">
 
                                 <div class="am-u-sm-12 am-u-md-6 am-u-lg-6">
@@ -139,7 +160,8 @@
 
         <script>
 
-
+    // setTimeout($('#lan').empty(),2000)
+          
 
             function userDel(id) {
 

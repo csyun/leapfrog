@@ -97,7 +97,7 @@ class UsersController extends Controller
         // dd($uname);
 
         if ($uname) {
-             return redirect('admin/users/create')->with('errors','用户名已存在,请重新添加');
+             return redirect('admin/users/create')->with('errors','添加成功');
          } 
 
         //密码加密
@@ -120,7 +120,7 @@ class UsersController extends Controller
         if($res)
         {
 
-            return  redirect('/admin/users');
+            return  redirect('/admin/users')->with('errors','添加成功');
         }else{
             return back();
         }
@@ -186,6 +186,7 @@ class UsersController extends Controller
         // dd($name->uname);
         //dd($uname && ($uname->uname != $name->uname));
         
+        //当用户存在且不为原来的用户名时返回报错
         if ($uname && ($uname->uname != $name->uname)) {
              return redirect('admin/users/'.$id.'/edit')->with('errors','用户名已存在');
          } 
@@ -197,7 +198,7 @@ class UsersController extends Controller
         //判断
         if($res)
         {
-            return redirect('/admin/users');
+            return redirect('/admin/users')->with('errors','更改成功');
         }else{
             return back();
         }
