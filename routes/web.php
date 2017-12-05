@@ -42,8 +42,14 @@ Route::resource('goodtags','GoodTagsController');
 Route::resource('goodtagtype','GoodTagTypeController');
 //分类管理控制器路由
 Route::resource('cate','CateController');
+//商品控制器
+Route::resource('goods','GoodsController');
 //排序控制器
 Route::post('cate/changeorder','CateController@changeorder');
+
+Route::post('upload','GoodsController@upload');
+
+Route::get('goods/gstatus/{id}','GoodsController@gstatus');
 
 });
 
