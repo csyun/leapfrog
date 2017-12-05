@@ -100,7 +100,7 @@ class GoodsController extends Controller
 
 
             })
-            ->paginate($request->input('num', 2));
+            ->paginate(2);
         //dd($user);
 
 //        dd($good);
