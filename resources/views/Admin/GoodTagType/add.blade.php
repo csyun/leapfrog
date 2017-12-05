@@ -1,19 +1,6 @@
 @extends('Admin.head')
 @section('content')
-    <div class="result_title">
-        @if (count($errors) > 0)
-            <div class="alert alert-danger">
-                <ul>
-                    @if(is_object($errors))
-                        @foreach ($errors->all() as $error)
-                            <li style="color:red">{{ $error }}</li>
-                        @endforeach
-                    @else
-                        <li style="color:red">{{ $errors }}</li>
-                    @endif
-                </ul>
-            </div>
-        @endif
+
         <!-- 内容区域 -->
         <div class="tpl-content-wrapper">
 
@@ -33,6 +20,19 @@
                                 <form class="am-form tpl-form-line-form" action="{{url('admin/goodtagtype')}}" method="post">
                                     {{csrf_field()}}
                                     <div class="am-form-group">
+                                        @if (count($errors) > 0)
+                                            <div class="alert alert-danger">
+                                                <ul>
+                                                    @if(is_object($errors))
+                                                        @foreach ($errors->all() as $error)
+                                                            <li style="color:red">{{ $error }}</li>
+                                                        @endforeach
+                                                    @else
+                                                        <li style="color:red">{{ $errors }}</li>
+                                                    @endif
+                                                </ul>
+                                            </div>
+                                        @endif
                                         <label for="user-phone" class="am-u-sm-3 am-form-label">分类 <span class="tpl-form-line-small-title">Cate</span></label>
                                         <div class="am-u-sm-9">
 

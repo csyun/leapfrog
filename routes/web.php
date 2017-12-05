@@ -47,6 +47,8 @@ Route::group(['middleware'=>'islogin','prefix'=>'admin','namespace'=>'Admin'],fu
     //商品标签类型管理路由
     Route::resource('goodtagtype','GoodTagTypeController');
 
+    //推荐位管理路由
+    Route::resource('recommend','RecommendController');
     //首页轮播图管理
     Route::resource('slideshow','SlideShowController');
     //调整轮播图顺序路由

@@ -247,8 +247,8 @@
                     </a>
                 </li>
                 <li class="sidebar-nav-link">
-                    <a href="calendar.html">
-                        <i class="am-icon-calendar sidebar-nav-link-logo"></i> 日历
+                    <a href="{{url('/admin/recommend')}}">
+                        <i class="am-icon-table sidebar-nav-link-logo"></i> 推荐位管理
                     </a>
                 </li>
                 <li class="sidebar-nav-link">

@@ -85,7 +85,7 @@ class SlideShowController extends Controller
 
         $validator =  Validator::make($input,$rule,$mess);
         if ($validator->fails()) {
-            return redirect('admin/SlideShow/create')
+            return redirect('admin/slideshow/create')
                 ->withErrors($validator)
                 ->withInput();
         }

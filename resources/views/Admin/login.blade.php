@@ -63,15 +63,6 @@ input{outline: none; position: relative;}
                         <span style='position:absolute;left:800px;bottom:122px;font-size:13px;color: #f00;'></span>
 
                     </div>
-                    
-                    <div class="am-form-group tpl-login-remember-me">
-                        <input id="remember-me" type="checkbox" name="remember" value="1">
-                        <label for="remember-me">
-       
-                        记住密码
-                         </label>
-
-                    </div>
 
                     <div class="am-form-group">
 
