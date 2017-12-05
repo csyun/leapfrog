@@ -10,6 +10,14 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Session;
 
+
+/**
+ *前台用户登录控制器
+ * @author [苏波] <386249656@qq.com>
+ * @data 2017-12-3 10:00
+ * 
+ */
+
 class LoginController extends Controller
 {
     public function login()

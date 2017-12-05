@@ -3,6 +3,14 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Session;
+
+/**
+ *前台用户是否登录中间件
+ * @author [苏波] <386249656@qq.com>
+ * @data 2017-12-2 9:00
+ * 
+ */
 
 class HomeLogin
 {

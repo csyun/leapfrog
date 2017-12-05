@@ -12,6 +12,13 @@ use Session;
 use App\Models\Home_User;
 use App\Models\UserInfo;
 
+/**
+ *前台用户注册
+ * @author [苏波] <386249656@qq.com>
+ * @data 2017-12-2 10:00
+ * 
+ */
+
 class RegisterController extends Controller
 {
     public function register()
@@ -26,6 +33,21 @@ class RegisterController extends Controller
         $builder->build(200,40);
         Session::put('phrase',$builder->getPhrase()); //存储验证码
         return response($builder->output())->header('Content-type','image/jpeg');
+    }
+
+    public function ajax(Request $request)
+    {
+        $data = $request->all();
+        $res = Home_User::where('uname',$data['username'])->first();
+        if($res){
+            return 1;
+        }else{
+            return 0;
+        }
+
+     
+
+
     }
 
     public function doregister(Request $request)

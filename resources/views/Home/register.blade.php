@@ -1,3 +1,10 @@
+<!-- /**
+ *前台用户注册页面 
+ * @author [苏波] <386249656@qq.com>
+ * @data 2017-12-3 13:00
+ * 
+ */ -->
+
 <!DOCTYPE html>
 <html>
 
@@ -173,8 +180,22 @@
             $(this).prev().css("color","#008DE8");
         });
         
-        $("[name='uname']").blur(function() {
+        $("#uname").blur(function() {
             var v=$(this).val();
+
+            $.ajax({
+                    type:"post",
+                    url:"{{url('/register/ajax')}}",
+                    data:{"username":v,"_token":"{{csrf_token()}}"},
+                    success:function(data){
+                        if(data){
+                             layer.msg("用户名已存在！", {icon: 6});
+                        }
+                    },
+
+                    dataType: "json",
+
+             });
             if (v=='') {
                 layer.msg("用户名不能为空！", {icon: 6});
             }else if(!v.match(c)){

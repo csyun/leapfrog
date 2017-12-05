@@ -19,20 +19,25 @@ Route::get('/', function () {
 //前台登录页面
 Route::get('/login','Home\LoginController@login');
 Route::post('/dologin','Home\LoginController@dologin');
-//后台注册
+
+//前台注册
 Route::get('/register','Home\RegisterController@register');
 Route::post('/doregister','Home\RegisterController@doregister');
+Route::post('/register/ajax','Home\RegisterController@ajax');
 
+
+Route::group(['middleware'=>'homelogin','namespace'=>'Home'],function (){
+//蛙塘
+Route::resource('/pond','PondController');
+});
 
 
 //后台管理员登录页面路由
 Route::get('/admin/login','Admin\LoginController@login');
-
 //获取验证码路由
 Route::get('/getcode','Admin\LoginController@code');
 //后台处理登录逻辑
 Route::post('/admin/dologin','Admin\LoginController@doLogin');
-
 
 //后台首页
 Route::get('/admin/index','Admin\IndexController@index');
