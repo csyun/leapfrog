@@ -46,9 +46,9 @@ Route::resource('cate','CateController');
 Route::resource('goods','GoodsController');
 //排序控制器
 Route::post('cate/changeorder','CateController@changeorder');
-
+//商品图片控制器
 Route::post('upload','GoodsController@upload');
-
+//商品状态控制器
 Route::get('goods/gstatus/{id}','GoodsController@gstatus');
 
 });
