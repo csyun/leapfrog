@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('Home\index');
-});
+Route::get('/','Home\IndexController@index');
+//前台商品展示页
+Route::get('/home/goods/list','Home\GoodsController@index');
 
 //后台管理员登录页面路由
 Route::get('/admin/login','Admin\LoginController@login');

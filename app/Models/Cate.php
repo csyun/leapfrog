@@ -16,27 +16,20 @@ class Cate extends Model
 
     public $guarded = [];
 
-    public function relation()
+    public function relation($pid=0,$lev=0)
     {
         $cates = $this->orderBy('order','asc')->get();
-       return $this->getCate($cates,0);
+       return $this->getCate($cates,$pid,$lev);
 
     }
-    public function  getCate($cates,$pid)
+    public function  getCate($cates,$pid,$lev)
     {
         $arr = [];
         foreach ($cates as $k=>$v){
-            if($v->pid == $pid)
-            {
-                $v->cnames = $v->cname;
+            if($v->pid==$pid){
+                $v->lev = $lev;
                 $arr[] = $v;
-                foreach ($cates as $m => $n){
-                    if($n->pid == $v->cid)
-                    {
-                        $n->cnames = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$n->cname;
-                        $arr[] = $n;
-                    }
-                }
+                $arr = array_merge($arr,$this->getCate($cates,$v->cid,$lev+1));
             }
         }
         return $arr;

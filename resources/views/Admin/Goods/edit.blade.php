@@ -58,7 +58,7 @@
                                                     @if($v->cid==$good->cid)
                                                     selected
                                                     @endif
-                                                    value="{{$v->cid}}">{{$v->cnames}}</option>
+                                                    value="{{$v->cid}}"><?php echo str_repeat("&nbsp;",4*$v->lev);?> {{$v->cname}}</option>
                                             @endforeach
                                         </select>
 

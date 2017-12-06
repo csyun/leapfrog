@@ -46,46 +46,37 @@
 									
 									<div class="category" style="box-shadow:none ;margin-top: 2px;">
 										<ul class="category-list navTwo" id="js_climit_li">
+											@foreach($cate as $k=>$v)
+												@if($v->pid == 0)
 											<li>
+
 												<div class="category-info">
-													<h3 class="category-name b-category-name"><i><img src="{{asset('/Home/images/cake.png')}}"></i><a class="ml-22" title="点心">点心/蛋糕</a></h3>
+
+													<h3 class="category-name b-category-name"><i><img src="{{asset('/Home/images/cake.png')}}"></i><a class="ml-22" title="点心">{{$v->cname}}</a></h3>
+
 													<em>&gt;</em></div>
 												<div class="menu-item menu-in top">
 													<div class="area-in">
 														<div class="area-bg">
 															<div class="menu-srot">
 																<div class="sort-side">
+																	@foreach($cate as $m=>$n)
+																		@if($n->pid==$v->cid)
 																	<dl class="dl-sort">
-																	<dt><span title="蛋糕">蛋糕</span></dt>
-																		<dd><a title="蒸蛋糕" href="#"><span>蒸蛋糕</span></a></dd>
-																		<dd><a title="脱水蛋糕" href="#"><span>脱水蛋糕</span></a></dd>
-																		<dd><a title="瑞士卷" href="#"><span>瑞士卷</span></a></dd>
-																															
+																		<dt><span ><a class="ml-22" href="{{url('home/goods/list/'.$n->cid)}}">{{$n->cname}}</a></span></dt>
 																	</dl>
-																	<dl class="dl-sort">
-																		<dt><span title="蛋糕">点心</span></dt>
-																		<dd><a title="蒸蛋糕" href="#"><span>蒸蛋糕</span></a></dd>
-																		
-																		
-																		<dd><a title="甜甜圈" href="#"><span>甜甜圈</span></a></dd>
-																		<dd><a title="蒸三明治" href="#"><span>蒸三明治</span></a></dd>
-																		<dd><a title="铜锣烧" href="#"><span>铜锣烧</span></a></dd>
-																	</dl>
+																		@endif
+																	@endforeach
+																</div>
 
-																</div>
-																<div class="brand-side">
-																	<dl class="dl-sort"><dt><span>实力商家</span></dt>
-																		<dd><a rel="nofollow" title="呵官方旗舰店" target="_blank" href="#" rel="nofollow"><span  class="red" >呵官方旗舰店</span></a></dd>
-																		<dd><a rel="nofollow" title="格瑞旗舰店" target="_blank" href="#" rel="nofollow"><span >格瑞旗舰店</span></a></dd>
-																		
-																	</dl>
-																</div>
 															</div>
 														</div>
 													</div>
 												</div>
 											<b class="arrow"></b>	
 											</li>
+													@endif
+											@endforeach
 
 										</ul>
 									</div>
@@ -103,12 +94,14 @@
 									$(".category-content .category-list li.first .menu-in").css("display", "none");
 									$(".category-content .category-list li.first").removeClass("hover");
 									$(this).addClass("hover");
-									$(this).children("div.menu-in").css("display", "block")
+									$(this).children("div.menu-in").css("display", "block");
 								}, function() {
 									$(this).removeClass("hover")
 									$(this).children("div.menu-in").css("display", "none")
 								});
+
 							})
+
 						</script>
 					<!--小导航 -->
 					<div class="am-g am-g-fixed smallnav">

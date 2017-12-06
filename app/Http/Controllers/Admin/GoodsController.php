@@ -86,14 +86,12 @@ class GoodsController extends Controller
      */
     public function index(Request $request)
     {
-//        $good = Admin_Goods::get();
+
         $good = Admin_Goods::orderBy('gid','asc')
             ->where(function($query) use($request){
                 //检测关键字
                 $goodname= $request->input('keywords1');
                 $goodprice =  $request->input('keywords2');
-                //$email = $request->input('keywords2');
-                //如果用户名不为空
                 if(!empty($goodname)) {
                     $query->where('gname','like','%'.$goodname.'%');
                 }
@@ -101,8 +99,6 @@ class GoodsController extends Controller
 
             })
             ->paginate(2);
-        //dd($user);
-
 //        dd($good);
         return view('Admin.Goods.index',compact('good','request'));
     }
