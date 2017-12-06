@@ -4,13 +4,13 @@
 @endsection
 @section('body')
 
-    <script src="{{asset('/Admin/assets/js/theme.js')}}"></script>
+    <script src="{{asset('/Adminui/assets/js/theme.js')}}"></script>
     <div class="am-g tpl-g">
         <!-- 头部 -->
         <header>
             <!-- logo -->
             <div class="am-fl tpl-header-logo">
-                <a href="javascript:;"><img src="{{asset('/Admin/assets/img/logo-5.png')}}" alt=""></a>
+                <a href="javascript:;"><img src="{{asset('/Adminui/assets/img/logo-5.png')}}" alt=""></a>
             </div>
             <!-- 右侧内容 -->
             <div class="tpl-header-fluid">
@@ -32,7 +32,7 @@
                     <ul>
                         <!-- 欢迎语 -->
                         <li class="am-text-sm tpl-header-navbar-welcome">
-                            <a href="javascript:;">欢迎你, <span>Amaze UI</span> </a>
+                            <a href="javascript:;">欢迎你, <span>{{Session::get('user.uname')}}</span> </a>
                         </li>
 
                         <!-- 新邮件 -->
@@ -46,7 +46,7 @@
                                 <li class="tpl-dropdown-menu-messages">
                                     <a href="javascript:;" class="tpl-dropdown-menu-messages-item am-cf">
                                         <div class="menu-messages-ico">
-                                            <img src="{{asset('/Admin/assets/img/user04.png')}}" alt="">
+                                            <img src="{{asset('/Adminui/assets/img/user04.png')}}" alt="">
                                         </div>
                                         <div class="menu-messages-time">
                                             3小时前
@@ -65,7 +65,7 @@
                                 <li class="tpl-dropdown-menu-messages">
                                     <a href="javascript:;" class="tpl-dropdown-menu-messages-item am-cf">
                                         <div class="menu-messages-ico">
-                                            <img src="{{asset('/Admin/assets/img/user02.png')}}" alt="">
+                                            <img src="{{asset('/Adminui/assets/img/user02.png')}}" alt="">
                                         </div>
                                         <div class="menu-messages-time">
                                             5天前
@@ -142,7 +142,7 @@
 
                         <!-- 退出 -->
                         <li class="am-text-sm">
-                            <a href="javascript:;">
+                            <a href="{{url('/admin/loginout')}}">
                                 <span class="am-icon-sign-out"></span> 退出
                             </a>
                         </li>
@@ -161,20 +161,129 @@
             <ul class="sidebar-nav">
                
                 <li class="sidebar-nav-link">
-                    <a href="index.html" class="active">
+                    <a href="{{url('/admin/index')}}" class="active">
                         <i class="am-icon-home sidebar-nav-link-logo"></i> 首页
                     </a>
                 </li>
                 <li class="sidebar-nav-link">
-                    <a href="tables.html">
-                        <i class="am-icon-table sidebar-nav-link-logo"></i> 表格
+                    <a href="javascript:;" class="sidebar-nav-sub-title">
+                        <i class="am-icon-table sidebar-nav-link-logo"></i>用户管理
+                        <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
+                    </a>
+                    <ul class="sidebar-nav sidebar-nav-sub">
+                        <li class="sidebar-nav-link">
+                            <a href="{{url('/admin/users/')}}">
+                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 后台用户
+                            </a>
+                        </li>
+
+                        <li class="sidebar-nav-link">
+                            <a href="{{url('/admin/husers/index')}}">
+                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 前台用户
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sidebar-nav-link">
+                    <a href="javascript:;" class="sidebar-nav-sub-title">
+                        <i class="am-icon-table sidebar-nav-link-logo"></i>分类管理
+                        <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
+                    </a>
+                    <ul class="sidebar-nav sidebar-nav-sub">
+                        <li class="sidebar-nav-link">
+                            <a href="{{url('/admin/cate/create')}}">
+                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 添加分类
+                            </a>
+                        </li>
+
+                        <li class="sidebar-nav-link">
+                            <a href="{{url('/admin/cate/')}}">
+                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 分类列表
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                
+
+                <li class="sidebar-nav-link">
+                    <a href="javascript:;" class="sidebar-nav-sub-title">
+                        <i class="am-icon-table sidebar-nav-link-logo"></i>文章管理
+                        <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
+                    </a>
+                    <ul class="sidebar-nav sidebar-nav-sub">
+                        <li class="sidebar-nav-link">
+                            <a href="{{url('/admin/articles/create')}}">
+                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 添加文章
+                            </a>
+                        </li>
+
+                        <li class="sidebar-nav-link">
+                            <a href="{{url('/admin/articles')}}">
+                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 文章列表
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sidebar-nav-link">
+                    <a href="javascript:;" class="sidebar-nav-sub-title">
+                        <i class="am-icon-table sidebar-nav-link-logo"></i>商品标签管理
+                        <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
+                    </a>
+                    <ul class="sidebar-nav sidebar-nav-sub">
+                        <li class="sidebar-nav-link">
+                            <a href="{{url('/admin/goodtagtype')}}">
+                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 商品标签类型
+                            </a>
+                        </li>
+
+                        <li class="sidebar-nav-link">
+                            <a href="{{url('/admin/goodtags')}}">
+                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 商品标签内容
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="sidebar-nav-link">
+                    <a href="javascript:;" class="sidebar-nav-sub-title">
+                        <i class="am-icon-table sidebar-nav-link-logo"></i>网站配置管理
+                        <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
+                    </a>
+                    <ul class="sidebar-nav sidebar-nav-sub">
+                        <li class="sidebar-nav-link">
+                            <a href="{{url('/admin/config/create')}}">
+                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 添加网站配置
+                            </a>
+                        </li>
+
+                        <li class="sidebar-nav-link">
+                            <a href="{{url('/admin/config')}}">
+                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 网站配置列表
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
+                <li class="sidebar-nav-link">
+                    <a href="{{url('/admin/slideshow')}}">
+                        <i class="am-icon-table sidebar-nav-link-logo"></i> 轮播图管理
                     </a>
                 </li>
                 <li class="sidebar-nav-link">
-                    <a href="calendar.html">
-                        <i class="am-icon-calendar sidebar-nav-link-logo"></i> 日历
+                    <a href="{{url('/admin/recommend')}}">
+                        <i class="am-icon-table sidebar-nav-link-logo"></i> 推荐位管理
                     </a>
                 </li>
+
+                <li class="sidebar-nav-link">
+                    <a href="{{url('/admin/nav')}}">
+                        <i class="am-icon-table sidebar-nav-link-logo"></i> 导航管理
+                    </a>
+                </li>
+
+
                 <li class="sidebar-nav-link">
                     <a href="form.html">
                         <i class="am-icon-wpforms sidebar-nav-link-logo"></i> 表单

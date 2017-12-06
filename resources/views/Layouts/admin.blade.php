@@ -10,31 +10,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp" />
-    <link rel="icon" type="image/png" href="{{asset('/Admin/assets/i/favicon.png')}}">
-    <link rel="apple-touch-icon-precomposed" href="{{asset('/Admin/assets/i/app-icon72x72@2x.png')}}">
+    <link rel="icon" type="image/png" href="{{asset('/Adminui/assets/i/favicon.png')}}">
+    <link rel="apple-touch-icon-precomposed" href="{{asset('/Adminui/assets/i/app-icon72x72@2x.png')}}">
     <meta name="apple-mobile-web-app-title" content="Amaze UI" />
-    <script src="{{asset('/Admin/assets/js/echarts.min.js')}}"></script>
-    <link rel="stylesheet" href="{{asset('/Admin/assets/css/amazeui.min.css')}}" />
-    <link rel="stylesheet" href="{{asset('/Admin/assets/css/amazeui.datatables.min.css')}}" />
-    <link rel="stylesheet" href="{{asset('/Admin/assets/css/app.css')}}">
-    <script src="{{asset('/Admin/assets/js/jquery.min.js')}}"></script>
+    <script src="{{asset('/Adminui/assets/js/echarts.min.js')}}"></script>
+    <script src="{{asset('/Adminui/assets/js/jquery.min.js')}}"></script>
+
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{asset('/Adminui/assets/css/amazeui.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('/Adminui/assets/css/amazeui.datatables.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('/Adminui/assets/css/app.css')}}">
+
 
 </head>
 <body>
 	@section('body')
 	@show
 
-    <script src="{{asset('/Admin/assets/js/amazeui.min.js')}}"></script>
-    <script src="{{asset('/Admin/assets/js/amazeui.datatables.min.js')}}"></script>
-    <script src="{{asset('/Admin/assets/js/dataTables.responsive.min.js')}}"></script>
-    <script src="{{asset('/Admin/assets/js/app.js')}}"></script>
-    <script type="text/javascript">
-    
-    
+
+    <script src="{{asset('/Adminui/assets/js/amazeui.min.js')}}"></script>
+    <script src="{{asset('/Adminui/assets/js/amazeui.datatables.min.js')}}"></script>
+    <script src="{{asset('/Adminui/assets/js/dataTables.responsive.min.js')}}"></script>
+    <script src="{{asset('/Adminui/assets/js/app.js')}}"></script>
+    <script src="{{asset('/layer/layer.js')}}"></script>
 
 
-
-    </script>
 
 </body>
 
