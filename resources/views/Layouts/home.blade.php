@@ -50,7 +50,7 @@
 			<div class="nav white">
 				<div class="logo"><img src="{{asset('/Home/images/logo-home.png')}}" /></div>
 				<div class="logoBig">
-					<li><img src="{{asset('/Home/images/logo-home.png')}}" /></li>
+
 				</div>
 
 				<div class="search-bar pr">
@@ -64,31 +64,50 @@
 
 			<div class="clear"></div>
 		</div>
+	<b class="line"></b>
+	<div class="shopNav">
+		<div class="slideall" style="height: auto;">
+
+			<div class="long-title"><span class="all-goods"><img style="margin-top: -106px;" src="{{asset('/Home/images/logo.png')}}" /></span></div>
+			<div class="nav-cont">
+				<ul>
+					<li class="index"><a href="http://leapfrog.com/">首页</a></li>
+					<li class="qc"><a href="#">闪购</a></li>
+					<li class="qc"><a href="#">限时抢</a></li>
+					<li class="qc"><a href="#">团购</a></li>
+					<li class="qc last"><a href="#">大包装</a></li>
+				</ul>
+				<div class="nav-extra">
+					<i ></i><b style="background-image:url({{asset('/Home/images/logo-s.png')}}); height: 40px;margin-right:10px; "></b>蛙塘社区
+					<i class="am-icon-angle-right" style="padding-left: 10px;"></i>
+
+				</div>
+
+			</div>
 	@section('body')
 	@show
 	<script>
 			window.jQuery || document.write('<script src="{{asset('/Home/basic/js/jquery.min.js')}}"><\/script>');
 		</script>
 		<script type="text/javascript " src="{{asset('/Home/basic/js/quick_links.js')}} "></script>
-		<div class="footer ">
+		<div class="footer " style="text-align: center;">
 						<div class="footer-hd ">
-							<p>
-								<a href="# ">恒望科技</a>
+							<p style="text-align: center;">
+								<a href="# ">曹守云</a>
 								<b>|</b>
-								<a href="# ">商城首页</a>
+								<a href="# ">李瑞宸</a>
 								<b>|</b>
-								<a href="# ">支付宝</a>
+								<a href="# ">苏波</a>
 								<b>|</b>
-								<a href="# ">物流</a>
+								<a href="# ">李丹丹</a>
 							</p>
 						</div>
 						<div class="footer-bd ">
-							<p>
-								<a href="# ">关于恒望</a>
-								<a href="# ">合作伙伴</a>
+							<p style="text-align: center;">
+
 								<a href="# ">联系我们</a>
 								<a href="# ">网站地图</a>
-								<em>© 2015-2025 Hengwang.com 版权所有. 更多模板 <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></em>
+								<em>© 2015-2025 leapfrog.com 版权所有. 侵权必究</em>
 							</p>
 						</div>
 					</div>

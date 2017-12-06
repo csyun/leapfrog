@@ -10,10 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('Home\index');
-});
+//前台首页路由
+Route::get('/', 'Home\IndexController@index');
+//前台回收商品路由
+Route::get('/recyclegoods','Home\RecycleController@index');
 
 //后台管理员登录页面路由
 Route::get('/admin/login','Admin\LoginController@login');
@@ -46,9 +46,15 @@ Route::group(['middleware'=>'islogin','prefix'=>'admin','namespace'=>'Admin'],fu
     Route::resource('goodtags','GoodTagsController');
     //商品标签类型管理路由
     Route::resource('goodtagtype','GoodTagTypeController');
-
+    //回收商品管理路由
+    Route::resource('recyclegoods','RecycleGoodsController');
+    //回收商品订单管理路由
+    Route::resource('recycleorders','RecycleOrdersController');
     //推荐位管理路由
     Route::resource('recommend','RecommendController');
+    //广告位管理路由
+    Route::resource('adver','AdverController');
+    Route::post('adver/changeorder','AdverController@changeorder');
     //首页轮播图管理
     Route::resource('slideshow','SlideShowController');
     //调整轮播图顺序路由

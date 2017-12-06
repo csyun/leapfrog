@@ -224,19 +224,19 @@
                 </li>
                 <li class="sidebar-nav-link">
                     <a href="javascript:;" class="sidebar-nav-sub-title">
-                        <i class="am-icon-table sidebar-nav-link-logo"></i>商品标签管理
+                        <i class="am-icon-table sidebar-nav-link-logo"></i>商品回收管理
                         <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
                     </a>
                     <ul class="sidebar-nav sidebar-nav-sub">
                         <li class="sidebar-nav-link">
-                            <a href="{{url('/admin/goodtagtype')}}">
-                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 商品标签类型
+                            <a href="{{url('/admin/recyclegoods')}}">
+                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 回收商品
                             </a>
                         </li>
 
                         <li class="sidebar-nav-link">
-                            <a href="{{url('/admin/goodtags')}}">
-                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 商品标签内容
+                            <a href="{{url('/admin/recycleorders')}}">
+                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 回收订单
                             </a>
                         </li>
                     </ul>
@@ -249,6 +249,11 @@
                 <li class="sidebar-nav-link">
                     <a href="{{url('/admin/recommend')}}">
                         <i class="am-icon-table sidebar-nav-link-logo"></i> 推荐位管理
+                    </a>
+                </li>
+                <li class="sidebar-nav-link">
+                    <a href="{{url('/admin/adver')}}">
+                        <i class="am-icon-table sidebar-nav-link-logo"></i> 广告位管理
                     </a>
                 </li>
                 <li class="sidebar-nav-link">

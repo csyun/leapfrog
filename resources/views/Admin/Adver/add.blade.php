@@ -8,7 +8,7 @@
 
                 <div class="widget-body am-fr">
 
-                    <form action="{{url('/admin/slideshow')}}" id="art_form" class="am-form tpl-form-border-form tpl-form-border-br" method="post" enctype="multipart/form-data">
+                    <form action="{{url('/admin/adver')}}" id="art_form" class="am-form tpl-form-border-form tpl-form-border-br" method="post" enctype="multipart/form-data">
                         {{csrf_field()}}
 
                         <div class="am-form-group">
@@ -25,32 +25,32 @@
                                     </ul>
                                 </div>
                             @endif
-                            <label for="user-name" class="am-u-sm-3 am-form-label">名称 <span class="tpl-form-line-small-title">Name</span></label>
+                            <label for="user-name" class="am-u-sm-3 am-form-label">广告名称 <span class="tpl-form-line-small-title">Name</span></label>
                             <div class="am-u-sm-9">
-                                <input style="width: 400px;" type="text" class="tpl-form-input" id="user-name" placeholder="请输入名称" name="slidiesname" value="{{old('slidiesname')}}">
+                                <input style="width: 400px;" type="text" class="tpl-form-input" id="user-name" placeholder="请输入名称" name="aname" value="{{old('aname')}}">
                                 <small>请填写标题文字10-20字左右。</small>
                             </div>
                         </div>
                         <div class="am-form-group">
                             <label class="am-u-sm-3 am-form-label">跳转网址 <span class="tpl-form-line-small-title">Http</span></label>
                             <div class="am-u-sm-9">
-                                <input type="text" value="{{old('surl')}}" name="surl" placeholder="输入跳转网址" style="width: 400px;">
+                                <input type="text" value="{{old('aurl')}}" name="aurl" placeholder="输入跳转网址" style="width: 400px;">
                             </div>
                         </div>
                         <div class="am-form-group">
-                            <label class="am-u-sm-3 am-form-label">轮播图序号 <span class="tpl-form-line-small-title">序号</span></label>
+                            <label class="am-u-sm-3 am-form-label">广告图序号 <span class="tpl-form-line-small-title">序号</span></label>
                             <div class="am-u-sm-9">
                                 <input type="text" value="{{old('order')}}" name="order" placeholder="输入列表排序" style="width: 400px;">
                             </div>
                         </div>
 
                         <div class="am-form-group">
-                            <label for="user-weibo" class="am-u-sm-3 am-form-label">轮播图 <span class="tpl-form-line-small-title">Images</span></label>
+                            <label for="user-weibo" class="am-u-sm-3 am-form-label">广告图 <span class="tpl-form-line-small-title">Images</span></label>
                             <div class="am-u-sm-9">
-                                <input type="text" size="40" id="art_thumb" name="art_thumb" value="{{old('art_thumb')}}" style="width: 400px;" >
+                                <input type="text" size="40" id="art_thumb" name="apic" value="{{old('apic')}}" style="width: 400px;" >
                                 <input id="file_upload" name="file_upload" type="file" multiple="true" style="margin-top: 20px;">
                                 <br>
-                                <img src="http://p0a39ed4q.bkt.clouddn.com{{old('art_thumb')}}" id="img1" alt="" style="width:80px;height:80px">
+                                <img src="" id="img1" alt="" style="width:80px;height:80px">
                                 <script type="text/javascript">
                                     $(function () {
                                         $("#file_upload").change(function () {
@@ -98,7 +98,12 @@
                                 </script>
 
                         </div>
-
+                            <div class="am-form-group">
+                                <label for="user-intro" class="am-u-sm-3 am-form-label">简介内容</label>
+                                <div class="am-u-sm-9">
+                                    <textarea class="" rows="10" id="user-intro" name="acontent"  placeholder="请输入广告简介内容">{{old('acontent')}}</textarea>
+                                </div>
+                            </div>
                         <div class="am-form-group">
                             <div class="am-u-sm-9 am-u-sm-push-3">
                                 <button type="submit" class="am-btn am-btn-primary tpl-btn-bg-color-success ">提交</button>
