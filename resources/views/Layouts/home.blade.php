@@ -85,7 +85,7 @@
 					<li class="qc last"><a href="#">大包装</a></li>
 				</ul>
 				<div class="nav-extra">
-					<i ></i><b style="background-image:url({{asset('/Home/images/logo-s.png')}}); height: 40px;margin-right:10px; "></b>蛙塘社区
+					<a style="text-decoration:none;" href="{{url('/pond/')}}"><i ></i><b style="background-image:url({{asset('/Home/images/logo-s.png')}}); height: 40px;margin-right:10px; "></b>蛙塘社区</a>
 					<i class="am-icon-angle-right" style="padding-left: 10px;"></i>
 
 				</div>

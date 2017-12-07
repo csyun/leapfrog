@@ -49,7 +49,7 @@
                                             <input type="text" style="background: #5D6468;width:30px;" value="{{$v->order}}" onchange="changeOrder(this,{{$v->cid}}) ">
                                         </td>
                                         <td>{{$v->cid}}</td>
-                                        <td>{{$v->cnames}}</td>
+                                        <td><?php echo str_repeat("&nbsp;",4*$v->lev);?> {{$v->cname}}</td>
                                         <td>{{$v->pid}}</td>
                                         <td>
                                             <div class="tpl-table-black-operation">

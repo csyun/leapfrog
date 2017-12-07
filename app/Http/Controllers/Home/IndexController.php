@@ -1,17 +1,19 @@
 <?php
 
 namespace App\Http\Controllers\Home;
-
-
 use App\Models\Adver;
 use App\Models\Articles;
 use App\Models\Recommend;
 use App\Models\SlideShow;
+
+use App\Models\Cate;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class IndexController extends Controller
 {
+
     /**
      * 展示前台首页页面
      * @date 2017/12/01 10:00
@@ -25,7 +27,8 @@ class IndexController extends Controller
         $articles = Articles::orderBy('number','asc')->paginate(5);
         $advers = Adver::orderBy('order','asc')->paginate(4);
         $recommends = Recommend::get();
-        return view('Home\index',compact('slideshows','recommend','articles','advers','recommends'));
+         $cate = (new Cate())->relation();
+        return view('Home\index',compact('slideshows','recommend','articles','advers','recommends','cate'));
     }
     /**
      * 展示文章页面
@@ -38,7 +41,8 @@ class IndexController extends Controller
     {
         $articleinfo = Articles::find($id);
         $articles = Articles::paginate(10);
-        return view('Home\Articles\article',compact('articles','articleinfo'));
+        return view('Home\Articles\article', compact('articles', 'articleinfo'));
 
     }
+
 }

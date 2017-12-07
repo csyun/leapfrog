@@ -37,9 +37,12 @@
                                         <div class="am-u-sm-9">
                                             <select data-am-selected="{searchBox: 1}" style="display: none;" name="pid">
   <option value="0">根分类</option>
-  @foreach($cate as $k=>$v)
-  <option value="{{$v->cid}}">{{$v->cname}}</option>"
-   @endforeach
+                                                @foreach($cate as $k=>$v)
+                                                    <option value="{{$v->cid}}">
+
+                                                        <?php echo str_repeat("&nbsp;",4*$v->lev);?> {{$v->cname}}
+                                                    </option>
+                                                @endforeach
 
 </select>
 

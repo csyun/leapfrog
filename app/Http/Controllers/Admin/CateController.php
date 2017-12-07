@@ -52,7 +52,7 @@ class CateController extends Controller
      */
     public function create()
     {
-        $cate = Cate::where("pid","0")->get();
+        $cate = (new Cate())->relation();
         return view('Admin.Cate.add',compact('cate'));
     }
 

@@ -26,19 +26,20 @@
                 <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
                     <div class="widget am-cf">
                         <div class="widget-head am-cf">
-                            <div class="widget-title am-fl">添加商品</div>
+                            <div class="widget-title am-fl">修改商品</div>
                             <div class="widget-function am-fr">
                                 <a href="javascript:;" class="am-icon-cog"></a>
                             </div>
                         </div>
                         <div class="widget-body am-fr">
 
-                            <form class="am-form tpl-form-line-form" id="art_form" action="{{url('admin/goods')}}" method="post" enctype="multipart/form-data">
+                            <form class="am-form tpl-form-line-form" id="art_form" action="{{url('admin/goods/'.$good->gid)}}" method="post" enctype="multipart/form-data">
                                 {{csrf_field()}}
+                                {{method_field('put')}}
                                 <div class="am-form-group">
                                     <label for="user-name" class="am-u-sm-3 am-form-label">商品名称<span class="tpl-form-line-small-title">name</span></label>
                                     <div class="am-u-sm-9">
-                                        <input type="text" name="gname" class="tpl-form-input" id="user-name" placeholder="请输入商品名称">
+                                        <input type="text" name="gname" class="tpl-form-input" id="user-name" placeholder="请输入商品名称" value="{{$good->gname}}">
                                         <small>请输入商品名称。</small>
                                     </div>
                                 </div>
@@ -54,6 +55,9 @@
                                                     @if(in_array($v->cid,$pid))
                                                     disabled
                                                     @endif
+                                                    @if($v->cid==$good->cid)
+                                                    selected
+                                                    @endif
                                                     value="{{$v->cid}}"><?php echo str_repeat("&nbsp;",4*$v->lev);?> {{$v->cname}}</option>
                                             @endforeach
                                         </select>
@@ -65,8 +69,16 @@
                                     <label for="user-phone" class="am-u-sm-3 am-form-label">商品状态 <span class="tpl-form-line-small-title">status</span></label>
                                     <div class="am-u-sm-9">
                                         <select data-am-selected="{searchBox: 1}" style="display: none;" name="status">
-                                                <option value="0">上架</option>
-                                                <option value="1">下架</option>
+                                                <option
+                                                        @if($good->status==0)
+                                                                selected
+                                                        @endif
+                                                        value="0">上架</option>
+                                                <option
+                                                        @if($good->status==1)
+                                                        selected
+                                                        @endif
+                                                        value="1">下架</option>
                                         </select>
 
                                     </div>
@@ -75,7 +87,7 @@
                                 <div class="am-form-group">
                                     <label for="user-name" class="am-u-sm-3 am-form-label">商品价格<span class="tpl-form-line-small-title">price</span></label>
                                     <div class="am-u-sm-9">
-                                        <input type="text" name="gprice" class="tpl-form-input" id="user-name" placeholder="请输入商品价格">
+                                        <input type="text" name="gprice" class="tpl-form-input" id="user-name" placeholder="请输入商品价格"value="{{$good->gprice}}">
                                         <small>请输入商品价格。</small>
                                     </div>
                                 </div>
@@ -85,13 +97,13 @@
                                     <div class="am-u-sm-9">
                                         <div class="am-form-group am-form-file">
                                             <div class="tpl-form-file-img">
-                                                <img src="" alt="" id="img1" style="width:80px;height:80px">
-                                                <input id="gp_url"type="text" name="gpurl" class="tpl-form-input" id="user-name" >
+                                                <img src="{{$good->gpurl}}" alt="" id="img1" style="width:80px;height:80px">
+                                                <input id="gp_url"type="text" name="gpurl" class="tpl-form-input" id="user-name" value="{{$good->gpurl}}">
                                                 <small>图片路径。</small>
                                             </div>
                                             <button type="button" class="am-btn am-btn-danger am-btn-sm">
                                                 <i class="am-icon-cloud-upload"></i> 添加商品图片</button>
-                                            <input id="file_upload"  name="gpname"type="file" multiple="true">
+                                            <input id="file_upload"  type="file" multiple="true" >
                                             <script type="text/javascript">
                                                 $(function(){
                                                     $("#file_upload").change(function () {
@@ -151,7 +163,7 @@
                                         <script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.config.js"></script>
                                         <script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.all.min.js"> </script>
                                         <script type="text/javascript" charset="utf-8" src="/ueditor/lang/zh-cn/zh-cn.js"></script>
-                                        <script id="editor" name="gdesc" type="text/plain" style="width:600;px;height:300px;"></script>
+                                        <script id="editor" name="gdesc" type="text/plain" style="width:600;px;height:300px;">{!!$good->gdesc!!}</script>
                                         <script>
                                             var ue = UE.getEditor('editor');
                                         </script>

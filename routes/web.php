@@ -12,6 +12,7 @@
 */
 
 
+
 //前台首页路由
 Route::get('/', 'Home\IndexController@index');
 //前台文章路由
@@ -36,6 +37,9 @@ Route::resource('/pond','PondController');
 //图片上传
 Route::post('/pond/upload','PondController@upload');
 });
+
+Route::get('/home/goods/list','Home\GoodsController@index');
+
 
 
 //后台管理员登录页面路由
@@ -86,12 +90,17 @@ Route::group(['middleware'=>['islogin'],'prefix'=>'admin','namespace'=>'Admin'],
     //广告位管理路由
     Route::resource('adver', 'AdverController');
     Route::post('adver/changeorder', 'AdverController@changeorder');
+    //分类管理控制器路由
 
-    //商品标签管理路由
-    Route::resource('goodtags', 'GoodTagsController');
-    //商品标签类型管理路由
-    Route::resource('goodtagtype', 'GoodTagTypeController');
-
+    Route::resource('cate','CateController');
+    //商品控制器
+    Route::resource('goods','GoodsController');
+    //排序控制器
+    Route::post('cate/changeorder','CateController@changeorder');
+    //商品图片控制器
+    Route::post('upload','GoodsController@upload');
+    //商品状态控制器
+    Route::get('goods/gstatus/{id}','GoodsController@gstatus');
 
     //首页轮播图管理
     Route::resource('slideshow', 'SlideShowController');
@@ -106,6 +115,11 @@ Route::group(['middleware'=>['islogin'],'prefix'=>'admin','namespace'=>'Admin'],
     //导航位管理路由
     Route::resource('nav', 'NavController');
     Route::post('nav/changeorder', 'NavController@changeorder');
+
+
+
+
+
 });
 
     
