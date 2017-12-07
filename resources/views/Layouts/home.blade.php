@@ -15,7 +15,10 @@
 		<link href="{{asset('/Home/css/hmstyle.css')}}" rel="stylesheet" type="text/css" />
 		<script src="{{asset('/Home/assets/js/jquery.min.js')}}"></script>
 		<script src="{{asset('/Home/assets/js/amazeui.min.js')}}"></script>
+
 		<link href="{{asset('/Home/css/personal.css')}}" rel="stylesheet" type="text/css">
+
+
 
 	</head>
 
@@ -52,6 +55,8 @@
 				<div class="logo"><img src="{{asset('/Home/images/logo-home.png')}}" /></div>
 				<div class="logoBig">
 
+
+
 				</div>
 
 				<div class="search-bar pr">
@@ -65,6 +70,7 @@
 
 			<div class="clear"></div>
 		</div>
+
 	<b class="line"></b>
 	<div class="shopNav">
 		<div class="slideall" style="height: auto;">
@@ -85,12 +91,14 @@
 				</div>
 
 			</div>
+
 	@section('body')
 	@show
 	<script>
 			window.jQuery || document.write('<script src="{{asset('/Home/basic/js/jquery.min.js')}}"><\/script>');
 		</script>
 		<script type="text/javascript " src="{{asset('/Home/basic/js/quick_links.js')}} "></script>
+
 		<div class="footer " style="text-align: center;">
 						<div class="footer-hd ">
 							<p style="text-align: center;">
@@ -109,6 +117,8 @@
 								<a href="# ">联系我们</a>
 								<a href="# ">网站地图</a>
 								<em>© 2015-2025 leapfrog.com 版权所有. 侵权必究</em>
+
+
 							</p>
 						</div>
 					</div>

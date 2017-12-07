@@ -4,9 +4,7 @@
 @endsection
 @section('body')
 
-		
 
-                
 			    <div class="bannerTwo">
                       <!--轮播 -->
 						<div class="am-slider am-slider-default scoll" data-am-flexslider id="demo-slider-0">
@@ -15,6 +13,7 @@
 								<li class="banner1"><a href="{{$v->surl}}"><img style="width: 760px;height: 320px;" src="http://p0a39ed4q.bkt.clouddn.com{{$v->art_thumb}}" /></a></li>
 
 								@endforeach
+
 							</ul>
 						</div>
 						<div class="clear"></div>	
@@ -117,6 +116,7 @@
 
 				<!--各类活动-->
 				<div class="row">
+
 					@foreach($advers as $k=>$v)
 					<li><a href="{{$v->aurl}}">{{$v->aname}}<img style="width: 249px;height: 200px;" src="http://p0a39ed4q.bkt.clouddn.com{{$v->apic}}"/></a></li>
 					@endforeach
@@ -138,6 +138,7 @@
 									<span>[{{$v->tags}}]</span><a href="{{url('/articles/')}}/{{$v->aid}}">{{$v->title}}</a>
 								</a></li>
 								@endforeach
+
 
 						
 							</ul>
@@ -238,6 +239,7 @@
 					<div class="clear "></div>
             <div class="f1">
 					<!--甜点-->
+
 					@foreach($recommends as $k=>$v)
 					<div class="am-container " >
 						<div class="shopTitle ">
@@ -245,19 +247,21 @@
 							<div class="floor-subtitle" ><em class="am-icon-caret-left" style="margin-left: 100px;"></em><h3>{{$v->title}}</h3></div>
 
 
+
 						</div>
 					</div>
 					
 					<div class="am-g am-g-fixed floodSix ">				
 
-						
 						<div class="am-u-sm-7 am-u-md-5 am-u-lg-2 text-two big">
 							
 								<div class="outer-con ">
 									<div class="title ">
 
+
 									</div>
 									<div class="sub-title ">
+
 
 									</div>
 									
@@ -344,6 +348,8 @@
 
 					<div class="clear "></div>
             </div>
+
 	@endforeach
+
 
 @endsection

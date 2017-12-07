@@ -41,7 +41,9 @@ class RecommendController extends Controller
      */
     public function store(Request $request)
     {
+
         $input = $request->except("_token","file_upload");
+
         //进行表单验证
         $rule = [
             'rname'=>'required|regex:/^[\x{4e00}-\x{9fa5}_]+$/u',
@@ -99,7 +101,9 @@ class RecommendController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $input = $request->except("_token",'file_upload');
+
         //进行表单验证
         $rule = [
             'rname'=>'required|regex:/^[\x{4e00}-\x{9fa5}_]+$/u',

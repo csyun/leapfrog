@@ -25,6 +25,7 @@
                                     </ul>
                                 </div>
                             @endif
+<<<<<<< HEAD
                                 <div class="am-form-group">
                                 <label for="user-name" class="am-u-sm-3 am-form-label">推荐位名称 <span class="tpl-form-line-small-title">Name</span></label>
                                 <div class="am-u-sm-9">
@@ -40,11 +41,19 @@
                                     </div>
                                 </div>
                                 <div class="am-form-group">
+=======
+                                <label for="user-name" class="am-u-sm-3 am-form-label">推荐位名称 <span class="tpl-form-line-small-title">Name</span></label>
+                                <div class="am-u-sm-9">
+                                    <input style="width: 400px;" type="text" class="tpl-form-input" id="user-name" placeholder="请输入名称" name="rname" value="{{$recommend->rname}}">
+                                    <small>请填写名称文字10-20字左右。</small>
+                                </div>
+>>>>>>> origin/lidandan
                                 <label for="user-name" class="am-u-sm-3 am-form-label">推荐位状态 <span class="tpl-form-line-small-title">Name</span></label>
                                 <div class="am-u-sm-9">
                                     <input style="width: 50px;" type="radio" class="tpl-form-input" id="user-name"  name="status" value="1" @if($recommend->status==1)  checked  @endif>开启
                                     <input style="width: 50px;" type="radio" class="tpl-form-input" id="user-name"  name="status" value="0" @if($recommend->status==0)  checked  @endif>关闭
                                 </div>
+<<<<<<< HEAD
                                 </div>
                                 <div class="am-form-group">
                                     <label for="user-weibo" class="am-u-sm-3 am-form-label">推荐位图 <span class="tpl-form-line-small-title">Images</span></label>
@@ -101,6 +110,9 @@
 
                                     </div>
                                 </div>
+=======
+
+>>>>>>> origin/lidandan
 
                                 <div class="am-form-group">
                             <div class="am-u-sm-9 am-u-sm-push-3">

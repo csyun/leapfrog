@@ -721,7 +721,11 @@ filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr='#f8c375',endCo
 .advTip img{width:100% ;}  
 
 /*第二套公告*/
+<<<<<<< HEAD
 .marqueenTwo{ position:absolute;top:55px;right:0px;width:245px;height:210px ;border:  1px solid #eee;padding:10px ;background: #f8f8f8;}
+=======
+.marqueenTwo{ position:absolute;top:55px;right:0px;width:245px;height:320px ;border:  1px solid #eee;padding:10px ;background: #f8f8f8;}
+>>>>>>> origin/lidandan
 .marqueenTwo .marqueen-title {display:block;margin: 10px 5px 0px;padding-bottom:10px ;text-align: left;border-bottom:1px solid #eee; ;}
 .marqueenTwo .demo{padding-top:5px ;}
 .marqueenTwo .demo li,.marqueenTwo .demo li.title-first{float: none;width: 100%;padding:0px 5px;border:none ;height: 30px;line-height:30px ;}

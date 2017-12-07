@@ -250,59 +250,60 @@
                     <a href="{{url('/admin/recommend')}}">
                         <i class="am-icon-table sidebar-nav-link-logo"></i> 推荐位管理
                     </a>
-                </li>
-                <li class="sidebar-nav-link">
-                    <a href="{{url('/admin/adver')}}">
-                        <i class="am-icon-table sidebar-nav-link-logo"></i> 广告位管理
-                    </a>
-                </li>
-                <li class="sidebar-nav-link">
-                    <a href="form.html">
-                        <i class="am-icon-wpforms sidebar-nav-link-logo"></i> 表单
-
-                    </a>
-                </li>
-                <li class="sidebar-nav-link">
-                    <a href="chart.html">
-                        <i class="am-icon-bar-chart sidebar-nav-link-logo"></i> 图表
-
-                    </a>
-                </li>
-
-                <li class="sidebar-nav-heading">Page<span class="sidebar-nav-heading-info"> 常用页面</span></li>
-                <li class="sidebar-nav-link">
-                    <a href="javascript:;" class="sidebar-nav-sub-title">
-                        <i class="am-icon-table sidebar-nav-link-logo"></i> 数据列表
-                        <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
-                    </a>
                     <ul class="sidebar-nav sidebar-nav-sub">
                         <li class="sidebar-nav-link">
-                            <a href="table-list.html">
-                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 文字列表
+                            <a href="{{url('/admin/users/')}}">
+                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 后台用户
                             </a>
                         </li>
 
                         <li class="sidebar-nav-link">
-                            <a href="table-list-img.html">
-                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 图文列表
+                            <a href="{{url('/admin/husers/index')}}">
+                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 前台用户
                             </a>
                         </li>
                     </ul>
                 </li>
                 <li class="sidebar-nav-link">
-                    <a href="sign-up.html">
-                        <i class="am-icon-clone sidebar-nav-link-logo"></i> 注册
-                        <span class="am-badge am-badge-secondary sidebar-nav-link-logo-ico am-round am-fr am-margin-right-sm">6</span>
+                    <a href="{{url('/admin/adver')}}">
+                        <i class="am-icon-table sidebar-nav-link-logo"></i> 广告位管理
                     </a>
+                    <ul class="sidebar-nav sidebar-nav-sub">
+                        <li class="sidebar-nav-link">
+                            <a href="{{url('/admin/cate/create')}}">
+                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 添加分类
+                            </a>
+                        </li>
+
+                        <li class="sidebar-nav-link">
+                            <a href="{{url('/admin/cate/')}}">
+                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 分类列表
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="sidebar-nav-link">
-                    <a href="login.html">
-                        <i class="am-icon-key sidebar-nav-link-logo"></i> 登录
+                    <a href="javascript:;" class="sidebar-nav-sub-title">
+                        <i class="am-icon-table sidebar-nav-link-logo"></i>网站配置管理
+                        <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
                     </a>
+                    <ul class="sidebar-nav sidebar-nav-sub">
+                        <li class="sidebar-nav-link">
+                            <a href="{{url('/admin/config/create')}}">
+                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 添加网站配置
+                            </a>
+                        </li>
+
+                        <li class="sidebar-nav-link">
+                            <a href="{{url('/admin/config')}}">
+                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 网站配置列表
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="sidebar-nav-link">
-                    <a href="404.html">
-                        <i class="am-icon-tv sidebar-nav-link-logo"></i> 404错误
+                    <a href="{{url('/admin/nav')}}">
+                        <i class="am-icon-table sidebar-nav-link-logo"></i> 导航管理
                     </a>
                 </li>
 

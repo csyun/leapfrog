@@ -10,12 +10,14 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 //前台首页路由
 Route::get('/', 'Home\IndexController@index');
 //前台文章路由
 Route::get('/articles/{id}', 'Home\IndexController@ArticleShow');
 //前台回收商品路由
 Route::get('/recyclegoods','Home\RecycleController@index');
+
 
 //后台管理员登录页面路由
 Route::get('/admin/login','Admin\LoginController@login');
@@ -44,6 +46,7 @@ Route::group(['middleware'=>'islogin','prefix'=>'admin','namespace'=>'Admin'],fu
     //文章列表排序控制器
     Route::post('articles/changeorder','ArticlesController@changeorder');
 
+
     //回收商品管理路由
     Route::resource('recyclegoods','RecycleGoodsController');
     //回收商品订单管理路由
@@ -53,6 +56,13 @@ Route::group(['middleware'=>'islogin','prefix'=>'admin','namespace'=>'Admin'],fu
     //广告位管理路由
     Route::resource('adver','AdverController');
     Route::post('adver/changeorder','AdverController@changeorder');
+
+    //商品标签管理路由
+    Route::resource('goodtags','GoodTagsController');
+    //商品标签类型管理路由
+    Route::resource('goodtagtype','GoodTagTypeController');
+
+
     //首页轮播图管理
     Route::resource('slideshow','SlideShowController');
     //调整轮播图顺序路由
@@ -61,6 +71,13 @@ Route::group(['middleware'=>'islogin','prefix'=>'admin','namespace'=>'Admin'],fu
     Route::resource('cate','CateController');
     //排序控制器
     Route::post('cate/changeorder','CateController@changeorder');
+
+
+    //导航位管理路由
+    Route::resource('nav','NavController');
+    Route::post('nav/changeorder','NavController@changeorder');
+
+    
 
 });
 

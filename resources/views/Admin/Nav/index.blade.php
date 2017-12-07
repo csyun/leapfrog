@@ -18,7 +18,7 @@
                                 <div class="am-form-group">
                                     <div class="am-btn-toolbar">
                                         <div class="am-btn-group am-btn-group-xs">
-                                            <a href="{{url('admin/recommend/create')}}">  <button type="button" class="am-btn am-btn-default am-btn-success"> <span class="am-icon-plus"></span> 新增</button></a>
+                                            <a href="{{url('admin/nav/create')}}">  <button type="button" class="am-btn am-btn-default am-btn-success"> <span class="am-icon-plus"></span> 新增</button></a>
 
                                         </div>
                                     </div>
@@ -26,50 +26,37 @@
                             </div>
 
 
-
+                     <form action="{{url('admin/articles')}}" method="get">
                             <div class="am-u-sm-12">
-                                <table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black " id="example-r">
+                                <table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black " id="example-r" style=" border-width:0px;">
                                     <thead>
                                     <tr>
 
-                                        <th>推荐Id</th>
-                                        <th>推荐位名称</th>
-<<<<<<< HEAD
-                                        <th>推荐位标题</th>
-                                        <th>推荐位状态</th>
-                                        <th>推荐位图片</th>
-=======
-                                        <th>推荐位状态</th>
+                                        <th>导航Id</th>
+                                        <th>导航名称</th>
+                                        <th>导航链接</th>
+                                        <th>导航排序</th>
 
->>>>>>> origin/lidandan
                                         <th>操作</th>
                                     </tr>
                                     </thead>
-                                    @foreach($recommends as $k=>$v)
+                                    @foreach($nav as $k=>$v)
                                         <tbody>
-<<<<<<< HEAD
-                                        <tr class="gradeX" style="text-align: center;">
+                                        <tr class="gradeX" style=" border-width:0px;">
 
-                                            <td>{{$v->rid}}</td>
-                                            <td>{{$v->rname}}</td>
-                                            <td>{{$v->title}}</td>
-                                            <td>{{$v->status}}</td>
-                                            <td><img style="width: 80px;height: 80px;" src="http://p0a39ed4q.bkt.clouddn.com{{$v->rpic}}"></td>
-=======
-                                        <tr class="gradeX">
-
-                                            <td>{{$v->rid}}</td>
+                                            <td>{{$v->nav_id}}</td>
 
 
-                                            <td>{{$v->rname}}</td>
-                                            <td>{{$v->status}}</td>
->>>>>>> origin/lidandan
+                                            <td>{{$v->nav_name}}</td>
+                                            <td>{{$v->nav_url}}</td>
+                                            <td>
+                                                <input type="text" style="background: #5D6468;width:30px;margin-top: 30px;margin-left: 10px;" name="order" value="{{$v->nav_order}}" onchange="changeOrder(this,{{$v->nav_id}}) "></td>
                                             <td>
                                                 <div class="tpl-table-black-operation">
-                                                    <a href="{{url('admin/recommend/'.$v->rid.'/edit')}}">
+                                                    <a href="{{url('admin/nav/'.$v->nav_id.'/edit')}}">
                                                         <i class="am-icon-pencil"></i> 编辑
                                                     </a>
-                                                    <a href="javascript:;" onclick="cateDel({{$v->rid}})" class="tpl-table-black-operation-del">
+                                                    <a href="javascript:;" onclick="cateDel({{$v->nav_id}})" class="tpl-table-black-operation-del">
                                                         <i class="am-icon-trash"></i> 删除
                                                     </a>
                                                 </div>
@@ -90,17 +77,31 @@
     </div>
     <script src="http://leapfrog.com/layer/layer.js"></script>
     <script>
-        var str = "{{session('msg')}}";
-        if(str!=''){
-            layer.msg(str,{icon: 6});
-        }
+          
+    function changeOrder(obj,nav_id){
+        var nav_order = $(obj).val();
+        $.post("{{url('admin/nav/changeorder')}}",{'_token':"{{csrf_token()}}","nav_id":nav_id,"nav_order":nav_order},function(data){
+
+            if(data.status == 0){
+
+                layer.msg(data.msg,{icon: 6});
+                location.href = location.href;
+            }else{
+                layer.msg(data.msg,{icon: 5});
+                location.href = location.href;
+            }
+        })
+    }
+
+
+
 
         function cateDel(id) {
 
             layer.confirm('您确认要删除吗?',{
                 btn:['确认','取消']
             },function () {
-                $.post("{{url('admin/recommend')}}/"+id,{"_method":"delete","_token":"{{csrf_token()}}"},function(data){
+                $.post("{{url('admin/nav')}}/"+id,{"_method":"delete","_token":"{{csrf_token()}}"},function(data){
 
 //                    删除成功
                     if(data.error == 0){
