@@ -12,6 +12,8 @@
 */
 //前台首页路由
 Route::get('/', 'Home\IndexController@index');
+//前台文章路由
+Route::get('/articles/{id}', 'Home\IndexController@ArticleShow');
 //前台回收商品路由
 Route::get('/recyclegoods','Home\RecycleController@index');
 
@@ -42,10 +44,6 @@ Route::group(['middleware'=>'islogin','prefix'=>'admin','namespace'=>'Admin'],fu
     //文章列表排序控制器
     Route::post('articles/changeorder','ArticlesController@changeorder');
 
-    //商品标签管理路由
-    Route::resource('goodtags','GoodTagsController');
-    //商品标签类型管理路由
-    Route::resource('goodtagtype','GoodTagTypeController');
     //回收商品管理路由
     Route::resource('recyclegoods','RecycleGoodsController');
     //回收商品订单管理路由

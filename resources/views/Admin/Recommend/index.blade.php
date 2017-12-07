@@ -34,20 +34,21 @@
 
                                         <th>推荐Id</th>
                                         <th>推荐位名称</th>
+                                        <th>推荐位标题</th>
                                         <th>推荐位状态</th>
-
+                                        <th>推荐位图片</th>
                                         <th>操作</th>
                                     </tr>
                                     </thead>
                                     @foreach($recommends as $k=>$v)
                                         <tbody>
-                                        <tr class="gradeX">
+                                        <tr class="gradeX" style="text-align: center;">
 
                                             <td>{{$v->rid}}</td>
-
-
                                             <td>{{$v->rname}}</td>
+                                            <td>{{$v->title}}</td>
                                             <td>{{$v->status}}</td>
+                                            <td><img style="width: 80px;height: 80px;" src="http://p0a39ed4q.bkt.clouddn.com{{$v->rpic}}"></td>
                                             <td>
                                                 <div class="tpl-table-black-operation">
                                                     <a href="{{url('admin/recommend/'.$v->rid.'/edit')}}">

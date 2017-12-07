@@ -135,7 +135,7 @@
 								@foreach($articles as $k=>$v)
 								<li class="title-first"><a target="_blank" href="#">
 									<img src="{{asset('/Home/images/TJ2.jpg')}}"></img>
-									<span>[{{$v->tags}}]</span>{{$v->title}}
+									<span>[{{$v->tags}}]</span><a href="{{url('/articles/')}}/{{$v->aid}}">{{$v->title}}</a>
 								</a></li>
 								@endforeach
 
@@ -238,11 +238,11 @@
 					<div class="clear "></div>
             <div class="f1">
 					<!--甜点-->
-					
+					@foreach($recommends as $k=>$v)
 					<div class="am-container " >
 						<div class="shopTitle ">
-							<h4 class="floor-title">甜品</h4>
-							<div class="floor-subtitle"><em class="am-icon-caret-left"></em><h3>每一道甜品都有一个故事</h3></div>
+							<h4 class="floor-title" style="width: 150px;">{{$v->rname}}</h4>
+							<div class="floor-subtitle" ><em class="am-icon-caret-left" style="margin-left: 100px;"></em><h3>{{$v->title}}</h3></div>
 
 
 						</div>
@@ -255,10 +255,10 @@
 							
 								<div class="outer-con ">
 									<div class="title ">
-										雪之恋和风大福
+
 									</div>
 									<div class="sub-title ">
-										¥13.8
+
 									</div>
 									
 								</div>
@@ -344,5 +344,6 @@
 
 					<div class="clear "></div>
             </div>
+	@endforeach
 
 @endsection

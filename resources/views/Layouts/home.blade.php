@@ -15,6 +15,7 @@
 		<link href="{{asset('/Home/css/hmstyle.css')}}" rel="stylesheet" type="text/css" />
 		<script src="{{asset('/Home/assets/js/jquery.min.js')}}"></script>
 		<script src="{{asset('/Home/assets/js/amazeui.min.js')}}"></script>
+		<link href="{{asset('/Home/css/personal.css')}}" rel="stylesheet" type="text/css">
 
 	</head>
 

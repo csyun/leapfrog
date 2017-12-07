@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="{{asset('/Adminui/assets/css/app.css')}}">
 
 
+
 </head>
 <body>
 	@section('body')
