@@ -45,8 +45,8 @@
                                     <div class="am-form-group">
                                         <div class="am-btn-toolbar">
                                             <div class="am-btn-group am-btn-group-xs">
-                                                <a href="{{url('admin/users/create')}}"><button type="button" class="am-btn am-btn-default am-btn-success"><span class="am-icon-plus"></span> 
-                                                添加后台用户</button></a>
+                                                <a href="{{url('admin/permission/create')}}"><button type="button" class="am-btn am-btn-default am-btn-success"><span class="am-icon-plus"></span> 
+                                                添加权限</button></a>
 
                                             </div>
                                         </div>
@@ -54,9 +54,9 @@
                                 </div>
 
                                 <!-- 搜索 -->
-                                <form action="{{url('/admin/users')}}" method="get">
+                                <form action="{{url('/admin/permission/')}}" method="get">
                                 {{csrf_field()}}
-                                
+                            
                                 <div class="am-u-sm-12 am-u-md-12 am-u-lg-3">
                                     <div class="am-input-group am-input-group-sm tpl-form-border-form cl-p">
                                         <input type="text" class="am-form-field " name="key" placeholder="请输入用户名关键字" value="{{$request->key}}">
@@ -72,10 +72,9 @@
                                     <table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black " id="example-r">
                                         <thead>
                                             <tr>
-                                                <th>用户名</th>
+                                                <th>权限名</th>
+                                                <th>描述</th>
                                               
-                                                <th>状态</th>
-                                                <th>最后登陆时间</th>
                                                 <th>操作</th>
                                             </tr>
                                         </thead>
@@ -83,26 +82,17 @@
                                            
                                           @foreach($data as $k=>$v)
 											<tr>
-												<td>{{$v->uname}}</td>
+                                                <td>{{$v->pname}}</td>
+												<td>{{$v->desc}}</td>
+												
 												
 												<td>
-                                                @if($v->status == 0)
-                                                    离线
-                                                    @else
-                                                    在线
-                                                @endif 
-
-                                                </td>
-												<td>{{date('Y-m-d H:i:s',$v->last_login_time)}}</td>
-												<td>
                                                     <div class="tpl-table-black-operation">
-                                                        <a href="{{url('/admin/users/auth/'.$v->uid)}}">
-                                                            <i class="am-icon-pencil"></i> 授权
-                                                        </a>
-                                                        <a href="{{url('/admin/users/'.$v->uid.'/edit')}}">
+                                                        
+                                                        <a href="{{url('/admin/permission/'.$v->pid.'/edit')}}">
                                                             <i class="am-icon-pencil"></i> 编辑
                                                         </a>
-                                                        <a href="javascript:;" onclick="userDel({{$v->uid}})" class="tpl-table-black-operation-del">
+                                                        <a href="javascript:;" onclick="userDel({{$v->pid}})" class="tpl-table-black-operation-del">
                                                             <i class="am-icon-trash"></i> 删除
                                                         </a>
                                                     </div>
@@ -135,7 +125,7 @@
 
         <script>
 
-    // setTimeout($('#lan').empty(),2000)
+    
           
 
             function userDel(id) {
@@ -148,7 +138,7 @@
                     //如果用户发出删除请求，应该使用ajax向服务器发送删除请求
                     //$.get("请求服务器的路径","携带的参数", 获取执行成功后的额返回数据);
 
-                    $.post("{{url('admin/users')}}/"+id,{"_method":"delete","_token":"{{csrf_token()}}"},function(data){
+                    $.post("{{url('admin/permission')}}/"+id,{"_method":"delete","_token":"{{csrf_token()}}"},function(data){
 
                         //data是json格式的字符串，在js中如何将一个json字符串变成json对象
 
@@ -179,10 +169,3 @@
 
         </script>
 @stop
-
-
-
-
-
-
-

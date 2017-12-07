@@ -7,7 +7,7 @@
   -->
 
 @section('content')
-
+<script src="{{asset('/layer/layer.js')}}"></script>
         <!-- 内容区域 -->
         <div class="tpl-content-wrapper">
 
@@ -29,8 +29,8 @@
                                 </div>
                                 <div class="row">
                                 <div class="am-u-sm-12 am-u-md-12 am-u-lg-9">
-                                    <div class="page-header-heading"><span class="am-icon-home page-header-heading-icon"></span> 用户添加: <small>users</small></div>
-                                    <p class="page-header-description">添加后台用户</p>
+                                    <div class="page-header-heading"><span class="am-icon-home page-header-heading-icon"></span> 角色修改: <small>users</small></div>
+                                    <p class="page-header-description">修改角色信息</p>
                                     @if (count($errors) > 0)
                                     <div id="lan" class="alert alert-danger">
                                         <ul>
@@ -65,40 +65,36 @@
                             </div>
                             <div class="widget-body am-fr">
 
-                                <form action="{{url('/admin/users')}}" method="post" enctype="multipart/form-data" class="am-form tpl-form-border-form tpl-form-border-br">
+                                <form action="{{url('/admin/role/'.$data->rid)}}" method="post" enctype="multipart/form-data" class="am-form tpl-form-border-form tpl-form-border-br">
+                                  
                                     {{csrf_field()}}
+                                    {{method_field('put')}}
                                     <div class="am-form-group">
 
-                                        <label for="user-name" class="am-u-sm-3 am-form-label">用户名 : <span  class="tpl-form-line-small-title"></span></label>
+                                        <label for="user-name" class="am-u-sm-3 am-form-label">角色名 : <span  class="tpl-form-line-small-title"></span></label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" name="uname" value="{{ old('uname') }}" class="tpl-form-input" id="user-name" placeholder="请输入用户名">
+                                            <input type="text" name="rname" id="rname" value="{{$data->rname}}"  class="tpl-form-input"  placeholder="请输入角色名">
                                             <small></small>
                                         </div>
                                     </div>
                                     <br>
                                     
                                     <div class="am-form-group">
-                                        <label for="user-name" class="am-u-sm-3 am-form-label">密码 : <span class="tpl-form-line-small-title"></span></label>
+
+                                        <label for="user-name" class="am-u-sm-3 am-form-label">描述 : <span  class="tpl-form-line-small-title"></span></label>
                                         <div class="am-u-sm-9">
-                                            <input type="password" name="password" class="tpl-form-input" id="user-password" placeholder="请输入密码">
+                                            <input type="text" name="desc" value="{{$data->desc}}" class="tpl-form-input" id="desc" placeholder="请输入角色描述">
                                             <small></small>
                                         </div>
                                     </div>
-                                    <br>
+                                    <br>                                 
 
-                                    <div class="am-form-group">
-                                        <label for="user-name" class="am-u-sm-3 am-form-label">确认密码 : <span class="tpl-form-line-small-title"></span></label>
-                                        <div class="am-u-sm-9">
-                                            <input type="password" name="rpassword" class="tpl-form-input" id="user-rpassword" placeholder="请再次输入密码">
-                                            <small></small>
-                                        </div>
-                                    </div>
+                                
 
-                                    <br>
-                                  
+              
                                     <div class="am-form-group">
                                         <div class="am-u-sm-9 am-u-sm-push-3">
-                                            <button type="submit"  class="am-btn am-btn-primary tpl-btn-bg-color-success ">提交</button>
+                                            <button type="submit" id="btn"  class="am-btn am-btn-primary tpl-btn-bg-color-success ">确认更改</button>
                                         </div>
                                     </div>
                                 </form>
@@ -112,6 +108,72 @@
 
             </div>
         </div>
+
+
+    <script type="text/javascript">
+
+    
+       
+        $("#rname").blur(function() {
+
+            var v= $(this).val();
+
+            // $.ajax({
+            //         type:"post",
+            //         url:"{{url('/admin/role/ajax')}}",
+            //         data:{"rname":v,"_token":"{{csrf_token()}}"},
+            //         success:function(data){
+            //             if(data){
+            //                  layer.msg("角色名已存在！", {icon: 6});
+            //             }
+            //         },
+
+            //         dataType: "json",
+
+            //  });
+
+
+            if (v == '') {
+                layer.msg("角色名不能为空！", {icon: 6});
+            }else{
+                $(this).prev().css("color","#0EA74A");
+                $("#rname").next().html("");
+            }
+             
+        });        
+        
+       
+
+        $("#desc").blur(function() {
+            var v=$(this).val();
+            if (v=='') {
+                layer.msg("描述不能为空！", {icon: 6});
+               
+            }else{
+                $(this).prev().css("color","#0EA74A");
+                $("#desc").next().html("");
+            } 
+        });
+
+        
+        $('#btn').click(function(){
+              
+            var rname=$("#rname").val();            
+            var desc=$("#desc").val();
+          
+            if (rname=="") {
+                layer.msg("角色名不能为空！", {icon: 6});
+                return false;
+            }
+           
+            if (desc=='') {
+                layer.msg("描述不能为空！", {icon: 6});
+                return false;
+            }
+                    
+        });
+
+    </script>
 
 @stop
 

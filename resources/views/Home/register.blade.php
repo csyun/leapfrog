@@ -173,7 +173,7 @@
         // var h=/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
         var d=/^\w{6,20}$/;
         // var c = /^[\x{4e00}-\x{9fa5}A-Za-z0-9_]+$/u;
-        var b = /^\w{2,18}$/;
+     
 
         
         $("input").focus(function() {
@@ -198,8 +198,6 @@
              });
             if (v=='') {
                 layer.msg("用户名不能为空！", {icon: 6});
-            }else if(!v.match(c)){
-                layer.msg("用户名为2到18位！", {icon: 6});
             }else{
                 $(this).prev().css("color","#0EA74A");
                 $("[name='uname']").next().html("");

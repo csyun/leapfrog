@@ -15,16 +15,6 @@
     <script src="{{asset('/Home/assets/js/jquery.min.js')}}" type="text/javascript"></script>
     <script src="{{asset('/Home/assets/js/amazeui.js')}}" type="text/javascript"></script>
 
-    <style>
-      select{
-        display: block;
-        padding:5px 0;
-        }
-      .outer{
-        width:50px;
-        margin:20px auto;
-        }
-  </style>
       
   </head>
 
@@ -188,8 +178,6 @@
     </div>
 
   </body>
-<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
-<script src="{{asset('/js/area.js')}}"></script>
-<script src="{{asset('/js/select.js')}}"></script>
+
 </html>
 
