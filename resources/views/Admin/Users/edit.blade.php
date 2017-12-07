@@ -30,8 +30,8 @@
                                 </div>
                                 <div class="row">
                                 <div class="am-u-sm-12 am-u-md-12 am-u-lg-9">
-                                    <div class="page-header-heading"><span class="am-icon-home page-header-heading-icon"></span> 用户添加: <small>users</small></div>
-                                    <p class="page-header-description">添加后台用户</p>
+                                    <div class="page-header-heading"><span class="am-icon-home page-header-heading-icon"></span> 用户编辑: <small>users</small></div>
+                                    <p class="page-header-description">编辑后台用户</p>
                                     @if (count($errors) > 0)
                                         <div class="alert alert-danger">
                                             <ul>
@@ -67,29 +67,7 @@
                                     
                                     
 
-                                    <br>
-                                   <div class="am-form-group">
-                                        <label for="user-phone" class="am-u-sm-3 am-form-label">权限 <span class="tpl-form-line-small-title"></span></label>
-                                        <div class="am-u-sm-9">
-                                            <select  name="auth" data-am-selected="{searchBox: 1}" style="display: none;">
-                                              <option 
-                                            @if($data->auth == 1)
-                                                selected
-                                                else
-
-                                            @endif
-                                              value="1">普通管理员</option>
-                                              <option
-                                            @if($data->auth == 2)
-                                                selected
-                                                else
-                                                
-                                            @endif
-                                               value="2">高级管理员</option>
-                                              
-                                            </select>
-                                        </div>
-                                    </div>
+                                  
 
                                     <br>
                                     <div class="am-form-group">

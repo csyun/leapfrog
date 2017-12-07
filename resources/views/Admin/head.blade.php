@@ -185,6 +185,16 @@
                     </ul>
                 </li>
                 <li class="sidebar-nav-link">
+                    <a href="{{url('/admin/role')}}">
+                        <i class="am-icon-table sidebar-nav-link-logo"></i> 角色管理
+                    </a>
+                </li>
+                <li class="sidebar-nav-link">
+                    <a href="{{url('/admin/permission')}}">
+                        <i class="am-icon-table sidebar-nav-link-logo"></i> 权限管理
+                    </a>
+                </li>
+                <li class="sidebar-nav-link">
                     <a href="javascript:;" class="sidebar-nav-sub-title">
                         <i class="am-icon-table sidebar-nav-link-logo"></i>分类管理
                         <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>

@@ -44,7 +44,7 @@ input{outline: none; position: relative;}
                 <form class="am-form tpl-form-line-form" action="{{url('/admin/dologin')}}" method="post">
                     {{csrf_field()}}
                     <div class="am-form-group">
-                        <input type="text" name="username" value="{{ old('username') }}" class="tpl-form-input" id="user-name" placeholder="请输入账号">
+                        <input type="text"  name="username" value="{{old('username')}}" class="tpl-form-input" id="user-name" placeholder="请输入账号">
                         <span style='position:absolute;left:800px;bottom:272px;font-size:13px;color: #f00;'></span>
 
                     </div>

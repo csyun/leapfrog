@@ -26,4 +26,14 @@ class Admin_User extends Model
 
     // 不允许批量修改的字段
    	public $guarded = [];
+
+    /**
+     * 通过用户模型查找关联的角色模型
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function role()
+    {
+        return $this->belongsToMany('App\Models\Role','data_role_user','uid','rid');
+    }
+
 }

@@ -6,7 +6,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Models\Admin_User;
+use App\Models\Role;
 use Illuminate\Support\Facades\Hash;
+use DB;
+
 
 /**
  *后台用户控制器 增删改查
@@ -17,6 +20,88 @@ use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
+
+     /**
+     * 返回给用户授角色的页面
+     */
+
+    public function auth($id)
+    {
+
+
+        // return  \Route::current()->getActionName();
+
+        //获取当前用户
+        $data = Admin_User::find($id);
+
+        //获取所有的角色名
+
+        $roles = Role::get();
+        // dd($permissions);
+
+        //获取当前用户已经拥有的角色
+
+        $b = DB::table('data_role_user')->where('uid',$id)->first();
+        if (empty($b)){
+            $a = [];
+        }else{
+
+            $own_role = DB::table('data_role_user')->where('uid',$id)->get(  );
+            
+
+            foreach ($own_role as $key => $value) {
+                 $a[] = $value->rid;
+            }
+        }
+        // dd($a);
+
+
+
+        return view('Admin/Users/auth',compact('data','roles','a'));
+    }
+
+     /**
+     * 处理用户授权操作
+     */
+
+    public function doauth(Request $request,$id)
+    {
+        //1 接受用户提交的所有数据
+        $input = $request->except('_token');
+        // dd($input);
+
+
+        DB::beginTransaction();
+
+        try{
+            //删除角色以前拥有的权限
+            DB::table('data_role_user')->where('uid',$id)->delete();
+             //给当前角色重新授权
+
+
+            //2. 将授权数据添加到data_role_permission表中
+            if(isset($input['role'])){
+                foreach ($input['role'] as $k=>$v){
+                    DB::table('data_role_user')->insert(['uid'=>$id,'rid'=>$v]);
+                }
+            }
+
+
+        }catch (Exception $e){
+            DB::rollBack();
+        }
+
+        DB::commit();
+
+        //添加成功后，跳转到列表页
+        return redirect('admin/users');
+
+
+
+
+    }
+
+
     /**
      * Display a listing of the resource.
      *用户列表页
@@ -30,17 +115,7 @@ class UsersController extends Controller
             ->where(function($query) use($request){
                 //检测关键字
                 $uname = $request->input('key');
-                //权限
-                $auth = $request->input('auth');
-
-                //如果权限为1,或2
-                if($auth == 1){
-                    $query->where('auth',1);
-                }elseif($auth == 2)
-                {
-                    $query->where('auth',2);
-                }
-                
+                              
                 //如果用户名不为空
                 if(!empty($uname)) {
                     $query->where('uname','like','%'.$uname.'%');
@@ -97,7 +172,7 @@ class UsersController extends Controller
         // dd($uname);
 
         if ($uname) {
-             return redirect('admin/users/create')->with('errors','用户名已存在,请重新添加');
+             return redirect('admin/users/create')->with('errors','添加成功');
          } 
 
         //密码加密
@@ -120,7 +195,7 @@ class UsersController extends Controller
         if($res)
         {
 
-            return  redirect('/admin/users');
+            return  redirect('/admin/users')->with('errors','添加成功');
         }else{
             return back();
         }
@@ -175,10 +250,19 @@ class UsersController extends Controller
         //去除_token
         $data = $request->except('_token');
         
+        //查看本来数据的uname
+        $name = Admin_User::find($id);
+
         //判断是否有此用户
         $uname = Admin_User::where('uname',$data['uname'])->first();
 
-        if ($uname) {
+
+        // dd($uname->uname);
+        // dd($name->uname);
+        //dd($uname && ($uname->uname != $name->uname));
+        
+        //当用户存在且不为原来的用户名时返回报错
+        if ($uname && ($uname->uname != $name->uname)) {
              return redirect('admin/users/'.$id.'/edit')->with('errors','用户名已存在');
          } 
         //更改用户信息
@@ -189,7 +273,7 @@ class UsersController extends Controller
         //判断
         if($res)
         {
-            return redirect('/admin/users');
+            return redirect('/admin/users')->with('errors','更改成功');
         }else{
             return back();
         }
