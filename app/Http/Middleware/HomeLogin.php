@@ -25,6 +25,7 @@ class HomeLogin
     {
         // 如果用户登录了就放行，如果没有登录就拦住返回到登录页面
         if(Session::get('homeuser')){
+            Session::forget('back');
             return $next($request);
         }else{
             $a = url()->current();
