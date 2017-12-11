@@ -6,6 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cate extends Model
 {
+    /**
+     * 与前台用户表data_cate关联的模型
+     * @author [李瑞宸]
+     * @data 2017-11-28 20:00
+     * @关联了模型Admin_Goods
+     */
     //模型管理表
     public $table = 'data_cate';
 //    定义主键  , 默认值就是id

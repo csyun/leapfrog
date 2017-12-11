@@ -6,6 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Admin_Goods extends Model
 {
+    /**
+     * 与前台用户表data_goods关联的模型
+     * @author [李瑞宸]
+     * @data 2017-11-28 20:00
+     *
+     */
     public $table = 'data_goods';
 //    定义主键  , 默认值就是id
     public $primaryKey = 'gid';

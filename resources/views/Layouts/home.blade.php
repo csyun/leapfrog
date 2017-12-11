@@ -11,7 +11,10 @@
 		<link href="{{asset('/Home/assets/css/admin.css')}}" rel="stylesheet" type="text/css" />
 
 		<link href="{{asset('/Home/basic/css/demo.css')}}" rel="stylesheet" type="text/css" />
+		<link href="{{asset('/Home/css/seastyle.css')}}" rel="stylesheet" type="text/css" />
+		<link href="{{asset('/Home/css/cartstyle.css')}}" rel="stylesheet" type="text/css" />
 
+		<link type="text/css" href="{{asset('/Home/css/optstyle.css')}}" rel="stylesheet" />
 		<link href="{{asset('/Home/css/hmstyle.css')}}" rel="stylesheet" type="text/css" />
 		<script src="{{asset('/Home/assets/js/jquery.min.js')}}"></script>
 		<script src="{{asset('/Home/assets/js/amazeui.min.js')}}"></script>
@@ -42,7 +45,7 @@
 						<div class="menu-hd MyShangcheng"><a href="#" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
 					</div>
 					<div class="topMessage mini-cart">
-						<div class="menu-hd"><a id="mc-menu-hd" href="#" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a></div>
+						<div class="menu-hd"><a id="mc-menu-hd" href="{{url('/home/shopcart/cart/index')}}" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a></div>
 					</div>
 					<div class="topMessage favorite">
 						<div class="menu-hd"><a href="#" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
@@ -61,8 +64,9 @@
 
 				<div class="search-bar pr">
 					<a name="index_none_header_sysc" href="#"></a>
-					<form>
-						<input id="searchInput" name="index_none_header_sysc" type="text" placeholder="搜索" autocomplete="off">
+					<form action="{{url('/home/goods/seach')}}" method="post">
+						{{csrf_field()}}
+						<input id="searchInput" name="gname" type="text" placeholder="搜索" autocomplete="off">
 						<input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="submit">
 					</form>
 				</div>
@@ -131,7 +135,7 @@
 		<div class="navCir">
 			<li class="active"><a href="home2.html"><i class="am-icon-home "></i>首页</a></li>
 			<li><a href="sort.html"><i class="am-icon-list"></i>分类</a></li>
-			<li><a href="shopcart.html"><i class="am-icon-shopping-basket"></i>购物车</a></li>	
+			<li><a href="shopcart.html"><i class="am-icon-shopping-basket"></i>购物车</a></li>
 			<li><a href=""><i class="am-icon-user"></i>我的</a></li>					
 		</div>
 		<!--菜单 -->
@@ -293,6 +297,7 @@
 				</div>
 			</div>
 		</div>
+	<script src="{{asset('/layer/layer.js')}}"></script>
 	</body>
 
 </html>

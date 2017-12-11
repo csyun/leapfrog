@@ -22,6 +22,7 @@ class LoginController extends Controller
 {
     public function login()
 	{
+
 		return view('Home\login');
 	}
 
@@ -74,7 +75,7 @@ class LoginController extends Controller
         	$password = $user0['password'];
 	        if (Hash::check($input['password'], $password)){
 	            Session::put('homeuser',$user0);
-	            return redirect('/');
+                    return redirect('/');
 	        } else{
 	            return redirect('/login')->with('errors','密码不正确');
 	        }
@@ -86,11 +87,14 @@ class LoginController extends Controller
     		
 	        if (Hash::check($input['password'], $password)){
 	            Session::put('homeuser',$pass->uname);
-	            return redirect('/');
+
+                    return redirect('/');
+
 	        } else{
 	            return redirect('/login')->with('errors','密码不正确');
 	        }
 
-    	}    		
+    	}
+
 	}
 }

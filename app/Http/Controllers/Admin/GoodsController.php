@@ -91,7 +91,7 @@ class GoodsController extends Controller
             ->where(function($query) use($request){
                 //检测关键字
                 $goodname= $request->input('keywords1');
-                $goodprice =  $request->input('keywords2');
+
                 if(!empty($goodname)) {
                     $query->where('gname','like','%'.$goodname.'%');
                 }
@@ -132,7 +132,7 @@ class GoodsController extends Controller
         $mess = [
             'gname.required'=>'商品名称名称必须输入',
             'gname.regex'=>'商品名称不合法',
-            'gprcie.required'=>'商品价格必须输入',
+            'gprice.required'=>'商品价格必须输入',
             'gprice.numeric'=>'商品价格不合法',
         ];
         $validator =  Validator::make($input,$rule,$mess);

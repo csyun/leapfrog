@@ -20,6 +20,25 @@ Route::get('/articles/{id}', 'Home\IndexController@ArticleShow');
 //前台回收商品路由
 Route::get('/recyclegoods','Home\RecycleController@index');
 
+//前台展示页
+Route::get('/home/goods/list/{id}','Home\GoodsController@index');
+//前台搜索
+Route::post('/home/goods/seach','Home\GoodsController@seach');
+//商品详情页
+Route::get('/home/goods/details/{id}','Home\GoodsController@details');
+//添加到购物车
+Route::get('/home/shopcart/{id}','Home\shopcartController@tocart');
+
+Route::get('/test','Home\shopcartController@test');
+//购物车列表
+Route::get('/home/shopcart/cart/index','Home\shopcartController@index');
+//支付页
+Route::get('/home/shopcart/cart/pay','Home\shopcartController@pay');
+//购物车删除
+Route::post('/home/shopcart/cart/del/{id}','Home\shopcartController@cartDel');
+//添加订单
+Route::post('/home/order/doadd','Home\OrderController@doadd');
+
 
 //前台登录页面
 Route::get('/login','Home\LoginController@login');
@@ -37,8 +56,7 @@ Route::resource('/pond','PondController');
 //图片上传
 Route::post('/pond/upload','PondController@upload');
 });
-
-Route::get('/home/goods/list','Home\GoodsController@index');
+;
 
 
 

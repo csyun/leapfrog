@@ -8,9 +8,24 @@ use App\Http\Controllers\Controller;
 
 class GoodsController extends Controller
 {
-    public function index($cid)
+    public function index($id)
     {
-        $goods = Admin_Goods::where('cid',$cid)-get();
-        return view('Home.Goods.list');
+        $goods = Admin_Goods::where('cid',$id)->where('status', '0')
+            ->paginate(1);
+        $input=$id;
+        return view('Home.Goods.list',compact('goods','input'));
+    }
+    public function seach(Request $request)
+    {
+        $input = $request->input('gname');
+        $goods = Admin_Goods::where('status', '0')
+            ->where('gname','like','%'.$input.'%')->paginate(2);
+        return view('Home.Goods.list',compact('goods','input'));
+    }
+    public function details($id)
+    {
+        $goods = Admin_Goods::find($id);
+//        dd($goods);
+        return view('home.goods.details',compact('goods'));
     }
 }
