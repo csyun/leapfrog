@@ -6,7 +6,11 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use session;
 use App\Models\Home_User;
+use App\Models\UserInfo;
 use App\Models\MarketInfo;
+use App\Models\MarketUser;
+
+
 
 /**
  *蛙塘控制器
@@ -18,13 +22,167 @@ use App\Models\MarketInfo;
 class PondController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     *我的蛙塘
+     * @return [type] [description]
+     */
+    public function mypond()
+    {
+        //用户ID
+        $user = session('homeuser');
+        $uid = $user->uid;
+        $uname = Home_User::find($uid)->uname;
+        // dd($uname);
+        //查找我的蛙塘
+        $data = MarketInfo::orderBy('status','asc')
+                            ->where('creator',$uname)
+                            ->paginate(10);
+
+
+        return view('Home/Pond/mypond',compact('data')); 
+    }
+
+
+    /**
+     * 我收藏的蛙塘
+     * @return [type] [description]
+     */
+    public function pondcollect()
+    {
+        //用户ID
+        $user = session('homeuser');
+        $uid = $user->uid;
+        //我收藏的蛙塘ID数组
+        $ponds = MarketUser::orderBy('collect_time','desc')
+                           ->where('uid',$uid)
+                           ->get();
+        if(!$ponds){
+            $arr = [];
+        }else{
+            foreach($ponds as $k=>$v){
+                $arr[] = $v->mid;
+            }
+        }
+        //遍历$arr查看蛙塘信息
+        foreach($arr as $k=>$v){
+            $collect[] = MarketInfo::where('mid',$v)->first();
+        }
+        // dd($collect);
+
+        return view('Home/Pond/collectpond',compact('collect'));
+
+    }
+
+
+
+    /**
+     * 收藏蛙塘
+     * @param  Request $request [description]
+     * @return [type]           [description]
+     */
+    public function collectpond(Request $request)
+    {
+        //蛙塘ID
+        $input = $request->all();
+        $mid = $input['mid'];
+        //用户ID
+        $user = session('homeuser');
+        $uid = $user->uid;
+        //我收藏的蛙塘ID数组
+        $ponds = MarketUser::where('uid',$uid)->get();
+        if(!$ponds){
+            $arr = [];
+        }else{
+            foreach($ponds as $k=>$v){
+                $arr[] = $v->mid;
+            }
+        }
+        //如果已经收藏了该蛙塘
+        if(in_array($mid, $arr)){
+            return back()->with('errors','您已收藏该鱼塘');
+        }
+        //当前时间
+        $data['collect_time'] = time();
+        $data['uid'] = $uid;
+        $data['mid'] = $mid;
+        //添加到用户收藏蛙塘表中
+        $res = MarketUser::create($data);
+        if($res){
+
+            return redirect('/pondcollect')->with('errors','收藏成功');
+        }else{
+            return back()->with('errors','收藏失败');
+        }
+    }
+
+    public function decollect(Request $request)
+    {
+        //蛙塘ID
+        $input = $request->all();
+        $mid = $input['mid'];
+        //用户ID
+        $user = session('homeuser');
+        $uid = $user->uid;
+        //取消收藏
+        $res = marketuser::where('mid',$mid)
+                    ->where('uid',$uid)
+                    ->delete();
+        if($res){
+            return back()->with('errors','已取消收藏');
+        }else{
+            return back()->with('errors','取消失败');
+        }
+    }
+    /**
+     * 蛙塘详情表
+     * @return [type] [description]
+     */
+    public function pondlist(Request $request)
+    {
+        $input = $request->all();
+        $mid = $input['mid'];
+        $marketinfo = MarketInfo::where('mid',$mid)->first();
+        $marketuser = MarketUser::where('mid',$mid)->get();
+        // dd($marketuser);
+        // 蛙塘总成员数量
+        $count = count($marketuser);
+        //判断用户是否加入蛙塘
+        $user = session('homeuser');
+        $uid = $user->uid;
+        $isinpond = MarketUser::where('mid',$mid)
+                                ->where('uid',$uid)
+                                ->first();
+        //塘主的商品       
+     return view('Home/Pond/pondlist',compact('marketinfo','count','isinpond'));   
+    }
+
+//=====================================================================================================   
+    /**
+     * 蛙塘列表
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $data = MarketInfo::orderBy('creat_time','desc')
+            ->where('status','=',1)
+            ->paginate(10);
+
+        //用户ID
+        $user = session('homeuser');
+        $uid = $user->uid;
+
+        //我收藏的蛙塘ID数组
+        $ponds = MarketUser::where('uid',$uid)->get();
+
+        if(!$ponds){
+            $arr = [];
+        }else{
+            foreach($ponds as $k=>$v){
+                $arr[] = $v->mid;
+            }
+        }
+        dd($arr);
+        return view('Home/Pond/index',compact('data','arr'));
     }
 
 
@@ -57,8 +215,8 @@ class PondController extends Controller
     {
         $user = session('homeuser');
         $uid = $user->uid;
-        $userinfo = Home_User::where('uid',$uid)->first();   
-        // dd($userinfo);
+        $userinfo = UserInfo::where('uid',$uid)->first();   
+        // dd($userinfo->avatar);
         return view('Home/Pond/create',compact('user','userinfo'));
     }
 
@@ -70,33 +228,33 @@ class PondController extends Controller
      */
     public function store(Request $request)
     {
-        // //表单验证
-        // $this->validate($request,[
-        //     'mname'=>'required|regex:/^[\x{4e00}-\x{9fa5}A-Za-z0-9_]+$/u|between:2,18',
-        //     'art_thumb'=>'required',
-        //     'desc'=>'required|between:5,100',
+        //表单验证
+        $this->validate($request,[
+            'mname'=>'required|regex:/^[\x{4e00}-\x{9fa5}A-Za-z0-9_]+$/u|between:2,18',
+            'art_thumb'=>'required',
+            'desc'=>'required|between:5,100',           
+        ],[
+            'mname.required'=>'用户名不能为空',
+            'mname.regex'=>'用户名必须汉字字母下划线',
+            'mname.between'=>'用户名必须在2到18位之间',           
+            'art_thumb.require'=>'请选择图片文件', 
+            'desc.required'=>'描述不能为空',
+            'desc.between'=>'描述应在5到100字之间',
             
-        // ],[
-        //     'uname.required'=>'用户名不能为空',
-        //     'uname.regex'=>'用户名必须汉字字母下划线',
-        //     'uname.between'=>'用户名必须在2到18位之间',
-        //     'password.required'=>'密码不能为空',
-        //     'password.between'=>'密码必须在6到18位之间',
-        //     'rpassword.same'=>'两次密码不一致',
-        // ]);
+        ]);
 
 
         //获取模板传来的数据
 
         $input = $request->except('_token','btn','file_upload');
-        // dd($data);
+        // dd($input);
         
         //判断是否有此鱼塘名
         $uname = MarketInfo::where('mname',$input['mname'])->first();
         // dd($uname);
 
         if ($uname) {
-             return redirect('admin/users/create')->with('errors','鱼塘名已存在');
+             return redirect('/pond/create')->with('errors','鱼塘名已存在');
          } 
 
 
@@ -124,9 +282,9 @@ class PondController extends Controller
         if($res)
         {
 
-            return  redirect('/pond')->with('errors','创建成果等待审核');
+            return  redirect('/mypond')->with('errors','创建成果等待审核');
         }else{
-            return back();
+            return back()->with('errors','创建失败');
         }        
     }
 

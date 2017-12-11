@@ -330,6 +330,31 @@
                     </a>
                 </li>
 
+                <li class="sidebar-nav-link">
+                    <a href="javascript:;" class="sidebar-nav-sub-title">
+                        <i class="am-icon-table sidebar-nav-link-logo"></i>鱼塘审核
+                        <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
+                    </a>
+                    <ul class="sidebar-nav sidebar-nav-sub">
+                        <li class="sidebar-nav-link">
+                            <a href="{{url('/admin/pond')}}">
+                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 等待审核蛙塘
+                            </a>
+                        </li>
+
+                        <li class="sidebar-nav-link">
+                            <a href="{{url('/admin/pond/passlist')}}">
+                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 通过审核蛙塘
+                            </a>
+                        </li>
+                        <li class="sidebar-nav-link">
+                            <a href="{{url('/admin/pond/notpasslist')}}">
+                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 未通过审核蛙塘
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
             </ul>
         </div>
         @yield('content')

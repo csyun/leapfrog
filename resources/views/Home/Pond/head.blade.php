@@ -9,11 +9,13 @@
 
     <link href="{{asset('/Home/assets/css/admin.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('/Home/assets/css/amazeui.css')}}" rel="stylesheet" type="text/css">
-
+    <script src="{{asset('/layer/layer.js')}}"></script>
     <link href="{{asset('/Home/css/personal.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('/Home/css/infstyle.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('/Home/css/colstyle.css')}}" rel="stylesheet" type="text/css">
     <script src="{{asset('/Home/assets/js/jquery.min.js')}}" type="text/javascript"></script>
     <script src="{{asset('/Home/assets/js/amazeui.js')}}" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
       
   </head>
@@ -136,20 +138,20 @@
       <aside class="menu">
         <ul>
           <li class="person">
-            <a href="index.html">个人中心</a>
+            <a href="index.html">蛙塘中心</a>
           </li>
           <li class="person">
-            <a href="#">个人资料</a>
+            <a href="#">我的蛙塘</a>
             <ul>
-              <li class="active"> <a href="information.html">个人信息</a></li>
-              <li> <a href="safety.html">安全设置</a></li>
-              <li> <a href="address.html">收货地址</a></li>
+              <li class="active"> <a href="{{url('/pond/create')}}">创建蛙塘</a></li>
+              <li> <a href="{{url('/mypond')}}">我的蛙塘</a></li>
+              <li> <a href="{{url('/pondcollect')}}">收藏的蛙塘</a></li>
             </ul>
           </li>
           <li class="person">
-            <a href="#">我的交易</a>
+            <a href="#">蛙塘中心</a>
             <ul>
-              <li><a href="order.html">订单管理</a></li>
+              <li><a href="{{url('/pond')}}">蛙塘列表</a></li>
               <li> <a href="change.html">退款售后</a></li>
             </ul>
           </li>
