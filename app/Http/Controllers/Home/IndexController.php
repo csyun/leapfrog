@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Home;
 use App\Models\Adver;
 use App\Models\Articles;
+use App\Models\Nav;
 use App\Models\Recommend;
 use App\Models\SlideShow;
 
@@ -11,7 +12,7 @@ use App\Models\Cate;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class IndexController extends Controller
+class IndexController extends CommonController
 {
 
     /**
@@ -27,7 +28,8 @@ class IndexController extends Controller
         $articles = Articles::orderBy('number','asc')->paginate(5);
         $advers = Adver::orderBy('order','asc')->paginate(4);
         $recommends = Recommend::get();
-         $cate = (new Cate())->relation();
+
+       $cate = (new Cate())->relation();
         return view('Home\index',compact('slideshows','recommend','articles','advers','recommends','cate'));
     }
     /**
@@ -40,7 +42,7 @@ class IndexController extends Controller
     public function ArticleShow($id=1)
     {
         $articleinfo = Articles::find($id);
-        $articles = Articles::paginate(10);
+        $articles = Articles::orderBy('number','asc')->paginate(10);
         return view('Home\Articles\article', compact('articles', 'articleinfo'));
 
     }

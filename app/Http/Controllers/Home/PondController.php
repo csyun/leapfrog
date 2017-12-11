@@ -173,6 +173,7 @@ class PondController extends Controller
 
         //我收藏的蛙塘ID数组
         $ponds = MarketUser::where('uid',$uid)->get();
+
         if(!$ponds){
             $arr = [];
         }else{
@@ -180,6 +181,7 @@ class PondController extends Controller
                 $arr[] = $v->mid;
             }
         }
+        dd($arr);
         return view('Home/Pond/index',compact('data','arr'));
     }
 

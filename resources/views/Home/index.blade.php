@@ -10,20 +10,20 @@
 						<div class="am-slider am-slider-default scoll" data-am-flexslider id="demo-slider-0">
 							<ul class="am-slides">
 								@foreach($slideshows as $k=>$v)
-								<li class="banner1"><a href="{{$v->surl}}"><img style="width: 760px;height: 320px;" src="http://p0a39ed4q.bkt.clouddn.com{{$v->art_thumb}}" /></a></li>
+								<li class="banner1"><a href="{{$v->surl}}"><img style="width: 760px;height: 320px;" src="http://leapfrog.oss-cn-beijing.aliyuncs.com/{{$v->art_thumb}}" /></a></li>
 
 								@endforeach
 
 							</ul>
 						</div>
-						<div class="clear"></div>	
+						<div class="clear"></div>
 			    </div>
 
 						<!--侧边导航 -->
 						<div id="nav" class="navfull" style="position: static;height: 550px;">
 							<div class="area clearfix">
 								<div class="category-content" id="guide_2">
-									
+
 									<div class="category" style="box-shadow:none ;margin-top: 2px;">
 										<ul class="category-list navTwo" id="js_climit_li">
 											@foreach($cate as $k=>$v)
@@ -53,7 +53,7 @@
 														</div>
 													</div>
 												</div>
-											<b class="arrow"></b>	
+											<b class="arrow"></b>
 											</li>
 													@endif
 											@endforeach
@@ -106,15 +106,14 @@
 							</a>
 						</div>
 					</div>
-
 				<!--各类活动-->
 				<div class="row">
 
 					@foreach($advers as $k=>$v)
-					<li><a href="{{$v->aurl}}">{{$v->aname}}<img style="width: 249px;height: 200px;" src="http://p0a39ed4q.bkt.clouddn.com{{$v->apic}}"/></a></li>
+					<li><a href="{{$v->aurl}}"><img style="width: 249px;height: 200px;" src="http://leapfrog.oss-cn-beijing.aliyuncs.com/{{$v->apic}}"/></a></li>
 					@endforeach
 				</div>
-				<div class="clear"></div>	
+				<div class="clear"></div>
 					<!--走马灯 -->
 					<div class="marqueenTwo" style="height: 100px;">
 						<span><a href=""><img style="width: 105px;height: 100%;margin-top: 1px;" src="{{asset('/Home/images/fabu.png')}}"></a></span>
@@ -133,16 +132,16 @@
 								@endforeach
 
 
-						
+
 							</ul>
-                       
+
 						</div>
 					</div>
 					<div class="clear"></div>
-				
+
 				</div>
 
-							
+
 				<script type="text/javascript">
 					if ($(window).width() < 640) {
 						function autoScroll(obj) {
@@ -166,7 +165,7 @@
 					<!--热门活动 -->
 
 					<div class="am-container">
-					
+
                      <div class="sale-mt">
 		                   <i></i>
 		                   <em class="sale-title">限时秒杀</em>
@@ -177,7 +176,7 @@
 		                   </div>
 	                  </div>
 
-					
+
 					  <div class="am-g am-g-fixed sale">
 						<div class="am-u-sm-3 sale-item">
 							<div class="s-img">
@@ -187,10 +186,10 @@
                            	   <a href="#"><p class="s-title">ZEK 原味海苔</p></a>
                            	   <div class="s-price">￥<b>9.90</b>
                            	   	  <a class="s-buy" href="#">秒杀</a>
-                           	   </div>                          	  
-                           </div>								
+                           	   </div>
+                           </div>
 						</div>
-						
+
 						<div class="am-u-sm-3 sale-item">
 							<div class="s-img">
 								<a href="# "><img src="{{asset('/Home/images/sale2.jpg')}}" /></a>
@@ -199,10 +198,10 @@
                            	   <a href="#"><p class="s-title">ZEK 原味海苔</p></a>
                            	   <div class="s-price">￥<b>9.90</b>
                            	   	  <a class="s-buy" href="#">秒杀</a>
-                           	   </div>                          	  
-                           </div>								
-						</div>					
-						
+                           	   </div>
+                           </div>
+						</div>
+
 						<div class="am-u-sm-3 sale-item">
 							<div class="s-img">
 								<a href="# "><img src="{{asset('/Home/images/sale1.jpg')}}" /></a>
@@ -211,10 +210,10 @@
                            	   <a href="#"><p class="s-title">ZEK 原味海苔</p></a>
                            	   <div class="s-price">￥<b>9.90</b>
                            	   	  <a class="s-buy" href="#">秒杀</a>
-                           	   </div>                          	  
-                           </div>								
+                           	   </div>
+                           </div>
 						</div>
-						
+
 						<div class="am-u-sm-3 sale-item">
 							<div class="s-img">
 								<a href="# "><img src="{{asset('/Home/images/sale2.jpg')}}" /></a>
@@ -223,10 +222,10 @@
                            	   <a href="#"><p class="s-title">ZEK 原味海苔</p></a>
                            	   <div class="s-price">￥<b>9.90</b>
                            	   	  <a class="s-buy" href="#">秒杀</a>
-                           	   </div>                          	  
-                           </div>								
+                           	   </div>
+                           </div>
 						</div>
-						
+
 					  </div>
                    </div>
 					<div class="clear "></div>
@@ -243,11 +242,11 @@
 
 						</div>
 					</div>
-					
-					<div class="am-g am-g-fixed floodSix ">				
+
+					<div class="am-g am-g-fixed floodSix ">
 
 						<div class="am-u-sm-7 am-u-md-5 am-u-lg-2 text-two big">
-							
+
 								<div class="outer-con ">
 									<div class="title ">
 
@@ -257,9 +256,9 @@
 
 
 									</div>
-									
+
 								</div>
-								<a href="# "><img src="{{asset('/Home/images/act1.png')}}" /></a>						
+								<a href="# "><img src="{{asset('/Home/images/act1.png')}}" /></a>
 						</div>
 
 						<li>
@@ -268,11 +267,11 @@
 							<div class="outer-con ">
 								<div class="title ">
 									小优布丁
-								</div>								
+								</div>
 								<div class="sub-title ">
 									¥4.8
 								</div>
-								
+
 							</div>
 							<a href="# "><img src="{{asset('/Home/images/1.jpg')}} " /></a>
 						</div>
@@ -287,7 +286,7 @@
 								<div class="sub-title ">
 									¥4.8
 								</div>
-								
+
 							</div>
 							<a href="# "><img src="{{asset('/Home/images/2.jpg')}} " /></a>
 						</div>
@@ -298,14 +297,14 @@
 							<div class="outer-con ">
 								<div class="title ">
 									小优布丁
-								</div>								
+								</div>
 								<div class="sub-title ">
 									¥4.8
 								</div>
-								
+
 							</div>
 							<a href="# "><img src="{{asset('/Home/images/5.jpg')}}" /></a>
-						</div>	
+						</div>
 						</li>
 						<li>
 						<div class="am-u-sm-4 am-u-md-2 am-u-lg-2 text-six">
@@ -317,10 +316,10 @@
 								<div class="sub-title ">
 									¥4.8
 								</div>
-								
+
 							</div>
 							<a href="# "><img src="{{asset('/Home/images/3.jpg')}}" /></a>
-						</div>	
+						</div>
 						</li>
 						<li>
 						<div class="am-u-sm-4 am-u-md-2 am-u-lg-4 text-six">
@@ -332,11 +331,11 @@
 								<div class="sub-title ">
 									¥4.8
 								</div>
-								
+
 							</div>
 							<a href="# "><img src="{{asset('/Home/images/4.jpg')}}" /></a>
-						</div>	
-						</li>						
+						</div>
+						</li>
 					</div>
 
 					<div class="clear "></div>

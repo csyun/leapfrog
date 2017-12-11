@@ -11,18 +11,21 @@
 		<link href="{{asset('/Home/assets/css/admin.css')}}" rel="stylesheet" type="text/css" />
 
 		<link href="{{asset('/Home/basic/css/demo.css')}}" rel="stylesheet" type="text/css" />
+		<link href="{{asset('/Home/css/seastyle.css')}}" rel="stylesheet" type="text/css" />
+		<link href="{{asset('/Home/css/cartstyle.css')}}" rel="stylesheet" type="text/css" />
 
+		<link type="text/css" href="{{asset('/Home/css/optstyle.css')}}" rel="stylesheet" />
 		<link href="{{asset('/Home/css/hmstyle.css')}}" rel="stylesheet" type="text/css" />
 		<script src="{{asset('/Home/assets/js/jquery.min.js')}}"></script>
 		<script src="{{asset('/Home/assets/js/amazeui.min.js')}}"></script>
-
+		<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 		<link href="{{asset('/Home/css/personal.css')}}" rel="stylesheet" type="text/css">
 
 
 
 	</head>
 
-	<body>
+	<body style="background-color: #ffffff;">
 	<div class="hmtop">
 			<!--顶部导航条 -->
 			<div class="am-container header">
@@ -42,7 +45,7 @@
 						<div class="menu-hd MyShangcheng"><a href="#" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
 					</div>
 					<div class="topMessage mini-cart">
-						<div class="menu-hd"><a id="mc-menu-hd" href="#" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a></div>
+						<div class="menu-hd"><a id="mc-menu-hd" href="{{url('/home/shopcart/cart/index')}}" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a></div>
 					</div>
 					<div class="topMessage favorite">
 						<div class="menu-hd"><a href="#" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
@@ -61,8 +64,9 @@
 
 				<div class="search-bar pr">
 					<a name="index_none_header_sysc" href="#"></a>
-					<form>
-						<input id="searchInput" name="index_none_header_sysc" type="text" placeholder="搜索" autocomplete="off">
+					<form action="{{url('/home/goods/seach')}}" method="post">
+						{{csrf_field()}}
+						<input id="searchInput" name="gname" type="text" placeholder="搜索" autocomplete="off">
 						<input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="submit">
 					</form>
 				</div>
@@ -79,18 +83,18 @@
 			<div class="nav-cont">
 				<ul>
 					<li class="index"><a href="http://leapfrog.com/">首页</a></li>
-					<li class="qc"><a href="#">闪购</a></li>
-					<li class="qc"><a href="#">限时抢</a></li>
-					<li class="qc"><a href="#">团购</a></li>
-					<li class="qc last"><a href="#">大包装</a></li>
+					@foreach($navs as $k=>$v)
+					<li class="qc"><a href="{{url($v->nav_url)}}">{{$v->nav_name}}</a></li>
+					@endforeach
 				</ul>
 				<div class="nav-extra">
-					<a style="text-decoration:none;" href="{{url('/pond/')}}"><i ></i><b style="background-image:url({{asset('/Home/images/logo-s.png')}}); height: 40px;margin-right:10px; "></b>蛙塘社区</a>
+					<a href="{{url('/pond/')}}"><i ></i><b style="background-image:url({{asset('/Home/images/logo-s.png')}}); height: 40px;margin-right:10px; "></b>蛙塘社区</a>
 					<i class="am-icon-angle-right" style="padding-left: 10px;"></i>
 
 				</div>
 
 			</div>
+
 
 	@section('body')
 	@show
@@ -131,7 +135,7 @@
 		<div class="navCir">
 			<li class="active"><a href="home2.html"><i class="am-icon-home "></i>首页</a></li>
 			<li><a href="sort.html"><i class="am-icon-list"></i>分类</a></li>
-			<li><a href="shopcart.html"><i class="am-icon-shopping-basket"></i>购物车</a></li>	
+			<li><a href="shopcart.html"><i class="am-icon-shopping-basket"></i>购物车</a></li>
 			<li><a href=""><i class="am-icon-user"></i>我的</a></li>					
 		</div>
 		<!--菜单 -->
@@ -293,6 +297,7 @@
 				</div>
 			</div>
 		</div>
+	<script src="{{asset('/layer/layer.js')}}"></script>
 	</body>
 
 </html>

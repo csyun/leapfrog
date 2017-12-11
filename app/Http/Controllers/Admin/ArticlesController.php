@@ -37,30 +37,6 @@ class ArticlesController extends Controller
         return $data;
     }
 
-    /**
-     *处理客户端传过来的图片,上传到七牛云
-     */
-    public function upload(Request $request)
-    {
-        // 获取客户端传过来的文件
-        $file = $request->file('file_upload');
-
-
-        if($file->isValid()){
-            // 获取文件上传对象的后缀名
-            $ext = $file->getClientOriginalExtension();
-
-            //生成一个唯一的文件名，保证所有的文件不重名
-            $newfile = time().rand(1000,9999).uniqid().'.'.$ext;
-            //将文件移动到七牛云，并以新文件名命名
-            \Storage::disk('qiniu')->writeStream('uploads/'.$newfile, fopen($file->getRealPath(), 'r'));
-
-            //将上传的图片名称返回到前台，目的是前台显示图片
-            return $newfile;
-
-        }
-
-    }
 
     /**
      * 显示文章列表页面.
@@ -108,7 +84,7 @@ class ArticlesController extends Controller
         $input = $request->except('_token','file_upload');
         //表单验证规则
         $rule = [
-            'title'=>'required|regex:/^[\x{4e00}-\x{9fa5}_]+$/u',
+            'title'=>'required',
             "content"=>'required',
             "auth"=>'required',
             "number"=>'required|numeric',
@@ -116,7 +92,7 @@ class ArticlesController extends Controller
         ];
         $mess = [
             'title.required'=>'标题必须输入',
-            'title.regex'=>'标题必须是汉字',
+
             'number.required'=>'排序必须输入',
             'number.numeric'=>'排序必须是数字',
             'content.required'=>'内容必须输入',

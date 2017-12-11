@@ -52,7 +52,7 @@
                                 <input type="text" size="40" id="art_thumb" name="art_thumb" value="{{$data->art_thumb}}" style="width: 400px;" >
                                 <input id="file_upload" name="file_upload" type="file" multiple="true" style="margin-top: 20px;">
                                 <br>
-                                <img src="http://p0a39ed4q.bkt.clouddn.com/{{$data->art_thumb}}" id="img1" alt="" style="width:80px;height:80px">
+                                <img src="http://leapfrog.oss-cn-beijing.aliyuncs.com/{{$data->art_thumb}}" id="img1" alt="" style="width:80px;height:80px">
                                 <script type="text/javascript">
                                     $(function () {
                                         $("#file_upload").change(function () {
@@ -80,7 +80,7 @@
 
                                         $.ajax({
                                             type: "POST",
-                                            url: "/admin/upload",
+                                            url: "/upload",
                                             data: formData,
                                             async: true,
                                             cache: false,
@@ -88,9 +88,9 @@
                                             processData: false,
                                             success: function(data) {
                                           //$('#img1').attr('src','/uploads/'+data);
-                                            $('#img1').attr('src','http://p0a39ed4q.bkt.clouddn.com/uploads/'+data);
+                                            $('#img1').attr('src','http://leapfrog.oss-cn-beijing.aliyuncs.com/'+data);
 
-                                                $('#art_thumb').val('/uploads/'+data);
+                                                $('#art_thumb').val(data);
                                             },
                                             error: function(XMLHttpRequest, textStatus, errorThrown) {
                                                 alert("上传失败，请检查网络后重试");

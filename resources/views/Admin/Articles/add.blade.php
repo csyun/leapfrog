@@ -49,7 +49,7 @@
                         <div class="am-form-group">
                             <label for="user-weibo" class="am-u-sm-3 am-form-label">封面图 <span class="tpl-form-line-small-title">Images</span></label>
                             <div class="am-u-sm-9">
-                                <input type="text" size="40" id="art_thumb" name="art_thumb" value="" style="width: 400px;" >
+                                <input type="text" size="40" id="art_thumb" name="art_thumb" value="{{old('art_thumb')}}" style="width: 400px;" >
                                 <input id="file_upload" name="file_upload" type="file" multiple="true" style="margin-top: 20px;">
                                 <br>
                                 <img src="" id="img1" alt="" style="width:80px;height:80px">
@@ -80,17 +80,16 @@
                                         {{--formData.append('_token',"{{csrf_token()}}");--}}
                                         $.ajax({
                                             type: "POST",
-                                            url: "/admin/upload",
+                                            url: "/upload",
                                             data: formData,
                                             async: true,
                                             cache: false,
                                             contentType: false,
                                             processData: false,
                                             success: function(data) {
-                                          //$('#img1').attr('src','/uploads/'+data);
-                                            $('#img1').attr('src','http://p0a39ed4q.bkt.clouddn.com/uploads/'+data);
-
-                                                $('#art_thumb').val('/uploads/'+data);
+                                            //$('#img1').attr('src','/uploads/'+data);
+                                            $('#img1').attr('src','http://leapfrog.oss-cn-beijing.aliyuncs.com/'+data);
+                                            $('#art_thumb').val(data);
                                             },
                                             error: function(XMLHttpRequest, textStatus, errorThrown) {
                                                 alert("上传失败，请检查网络后重试");

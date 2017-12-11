@@ -122,14 +122,14 @@
                           var formData = new FormData($('#art_form')[0]);
                           $.ajax({
                               type: "post",
-                              url: "{{asset('/pond/upload')}}",
+                              url: "{{asset('/upload')}}",
                               data: formData,
                               async: true,
                               cache: false,
                               contentType: false,
                               processData: false,
                               success: function(data) {
-                                  $('#img1').attr('src','/'+data);
+                                  $('#img1').attr('src','http://leapfrog.oss-cn-beijing.aliyuncs.com/'+data);
                                   $('#img1').show();
                                   $('#art_thumb').val(data);
                               },
