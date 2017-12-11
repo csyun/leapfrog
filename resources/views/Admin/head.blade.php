@@ -275,19 +275,7 @@
                     <a href="{{url('/admin/recommend')}}">
                         <i class="am-icon-table sidebar-nav-link-logo"></i> 推荐位管理
                     </a>
-                    <ul class="sidebar-nav sidebar-nav-sub">
-                        <li class="sidebar-nav-link">
-                            <a href="{{url('/admin/users/')}}">
-                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 后台用户
-                            </a>
-                        </li>
 
-                        <li class="sidebar-nav-link">
-                            <a href="{{url('/admin/husers/index')}}">
-                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 前台用户
-                            </a>
-                        </li>
-                    </ul>
                 </li>
                 <li class="sidebar-nav-link">
                     <a href="{{url('/admin/adver')}}">

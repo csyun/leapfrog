@@ -101,65 +101,7 @@
 
 
 
-                    <div class="widget am-cf">
-                            <div class="widget-head am-cf">
-                            <div class="widget-title  am-cf"><b>系统基本信息列表</b></div>
-                            </div>
-                            <div class="widget-body  widget-body-lg am-fr">
-                                <table width="100%" class="am-table am-table-compact am-table-bordered tpl-table-black " id="example-r">
-                                    <thead>
-                                        <tr>
-                                            <th>序号</th>
-                                            <th>项目</th>
-                                            <th>内容</th>
-                                            <th>序号</th>
-                                            <th>项目</th>
-                                            <th>内容</th>
-                                            <th>序号</th>
-                                            <th>项目</th>
-                                            <th>内容</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr class="gradeX">
-                                            <td><b>1</b></td>
-                                            <td>操作系统</td>
-                                            <td>WINNT</td>
-                                            <td><b>4</b></td>
-                                            <td>运行环境</td>
-                                            <td>{{$_SERVER['SERVER_SOFTWARE']}}</td>
-                                            <td><b>7</b></td>
-                                            <td>PHP运行环境</td>
-                                            <td>apache2handler</td>
-                                        </tr>
-                            
-                                        <tr class="gradeX">
-                                            <td><b>2</b></td>
-                                            <td>上传附件限制</td>
-                                            <td><?php echo get_cfg_var("upload_max_filesize")?get_cfg_var("upload_max_filesize"):"不允许上传";?></td>
-                                            <td><b>5</b></td>
-                                            <td>北京时间</td>
-                                            <td>{{date('Y-m-d H:i:s')}}</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                        <tr class="even gradeC">
-                                            <td><b>3</b></td>
-                                            <td>Host</td>
-                                            <td>{{$_SERVER['SERVER_ADDR']}}</td>
-                                            <td><b>6</b></td>
-                                            <td>服务器域名/IP</td>
-                                            <td>{{$_SERVER['SERVER_NAME']}} [{{$_SERVER['SERVER_ADDR']}}  ]</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                        <!-- more data -->
-                                    </tbody>
-                                </table>
-                            </div>
-                         </div>
+
             </div>
         </div>
     </div>
