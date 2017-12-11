@@ -331,6 +331,16 @@
                         <i class="am-icon-table sidebar-nav-link-logo"></i> 导航管理
                     </a>
                 </li>
+                <li class="sidebar-nav-link">
+                    <a href="{{url('/admin/idea')}}">
+                        <i class="am-icon-table sidebar-nav-link-logo"></i> 意见反馈管理
+                    </a>
+                </li>
+                <li class="sidebar-nav-link">
+                    <a href="{{url('/admin/link')}}">
+                        <i class="am-icon-table sidebar-nav-link-logo"></i> 友情链接管理
+                    </a>
+                </li>
 
             </ul>
         </div>

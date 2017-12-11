@@ -34,6 +34,8 @@ Route::get('/register','Home\RegisterController@register');
 Route::post('/doregister','Home\RegisterController@doregister');
 Route::post('/register/ajax','Home\RegisterController@ajax');
 
+//前台个人中心
+Route::resource('/myself', 'MyselfController');
 
 Route::group(['middleware'=>'homelogin','namespace'=>'Home'],function (){
 //蛙塘
@@ -127,9 +129,20 @@ Route::group(['middleware'=>['islogin'],'prefix'=>'admin','namespace'=>'Admin'],
     //导航位管理路由
     Route::resource('nav', 'NavController');
     Route::post('nav/changeorder', 'NavController@changeorder');
-
-
-
+    //网站配置路由
+    Route::resource('config','ConfigController');
+    //排序控制路由
+    Route::post('config/changeorder','configController@changeorder');
+    //批量修改网站配置路由
+    Route::post('config/contentchange','configController@contentchange');
+    //同步网站配置表中的内容到webconfig配置文件中
+    Route::get('config/putfile','configController@PutFile');
+    //意见反馈路由
+    Route::post('idea/abc','IdeaController@abc');
+    Route::resource('idea','IdeaController');
+    //友情链接路由
+    Route::resource('link', 'LinkController');
+    Route::post('link/changeorder', 'linkController@changeorder');
 
 
 });
