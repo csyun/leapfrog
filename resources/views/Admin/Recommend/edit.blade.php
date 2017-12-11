@@ -25,7 +25,7 @@
                                     </ul>
                                 </div>
                             @endif
-<<<<<<< HEAD
+
                                 <div class="am-form-group">
                                 <label for="user-name" class="am-u-sm-3 am-form-label">推荐位名称 <span class="tpl-form-line-small-title">Name</span></label>
                                 <div class="am-u-sm-9">
@@ -41,19 +41,13 @@
                                     </div>
                                 </div>
                                 <div class="am-form-group">
-=======
-                                <label for="user-name" class="am-u-sm-3 am-form-label">推荐位名称 <span class="tpl-form-line-small-title">Name</span></label>
-                                <div class="am-u-sm-9">
-                                    <input style="width: 400px;" type="text" class="tpl-form-input" id="user-name" placeholder="请输入名称" name="rname" value="{{$recommend->rname}}">
-                                    <small>请填写名称文字10-20字左右。</small>
-                                </div>
->>>>>>> origin/lidandan
+
                                 <label for="user-name" class="am-u-sm-3 am-form-label">推荐位状态 <span class="tpl-form-line-small-title">Name</span></label>
                                 <div class="am-u-sm-9">
                                     <input style="width: 50px;" type="radio" class="tpl-form-input" id="user-name"  name="status" value="1" @if($recommend->status==1)  checked  @endif>开启
                                     <input style="width: 50px;" type="radio" class="tpl-form-input" id="user-name"  name="status" value="0" @if($recommend->status==0)  checked  @endif>关闭
                                 </div>
-<<<<<<< HEAD
+
                                 </div>
                                 <div class="am-form-group">
                                     <label for="user-weibo" class="am-u-sm-3 am-form-label">推荐位图 <span class="tpl-form-line-small-title">Images</span></label>
@@ -61,7 +55,7 @@
                                         <input type="text" size="40" id="art_thumb" name="rpic" value="{{$recommend->rpic}}" style="width: 400px;" >
                                         <input id="file_upload" name="file_upload" type="file" multiple="true" style="margin-top: 20px;">
                                         <br>
-                                        <img src="http://p0a39ed4q.bkt.clouddn.com{{$recommend->rpic}}" id="img1" alt="" style="width:80px;height:80px">
+                                        <img src="http://leapfrog.oss-cn-beijing.aliyuncs.com/{{$recommend->rpic}}" id="img1" alt="" style="width:80px;height:80px">
                                         <script type="text/javascript">
                                             $(function () {
                                                 $("#file_upload").change(function () {
@@ -89,7 +83,7 @@
                                                 formData.append('_token',"{{csrf_token()}}");
                                                 $.ajax({
                                                     type: "POST",
-                                                    url: "/admin/upload",
+                                                    url: "/upload",
                                                     data: formData,
                                                     async: true,
                                                     cache: false,
@@ -97,9 +91,9 @@
                                                     processData: false,
                                                     success: function(data) {
                                                         //$('#img1').attr('src','/uploads/'+data);
-                                                        $('#img1').attr('src','http://p0a39ed4q.bkt.clouddn.com/uploads/'+data);
+                                                        $('#img1').attr('src','http://leapfrog.oss-cn-beijing.aliyuncs.com/'+data);
 
-                                                        $('#art_thumb').val('/uploads/'+data);
+                                                        $('#art_thumb').val(data);
                                                     },
                                                     error: function(XMLHttpRequest, textStatus, errorThrown) {
                                                         alert("上传失败，请检查网络后重试");
@@ -110,9 +104,6 @@
 
                                     </div>
                                 </div>
-=======
-
->>>>>>> origin/lidandan
 
                                 <div class="am-form-group">
                             <div class="am-u-sm-9 am-u-sm-push-3">

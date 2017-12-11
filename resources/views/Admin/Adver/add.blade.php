@@ -78,7 +78,7 @@
                                         {{--formData.append('_token',"{{csrf_token()}}");--}}
                                         $.ajax({
                                             type: "POST",
-                                            url: "/admin/upload",
+                                            url: "/upload",
                                             data: formData,
                                             async: true,
                                             cache: false,
@@ -86,9 +86,9 @@
                                             processData: false,
                                             success: function(data) {
                                                 //$('#img1').attr('src','/uploads/'+data);
-                                                $('#img1').attr('src','http://p0a39ed4q.bkt.clouddn.com/uploads/'+data);
+                                                $('#img1').attr('src','http://leapfrog.oss-cn-beijing.aliyuncs.com/'+data);
 
-                                                $('#art_thumb').val('/uploads/'+data);
+                                                $('#art_thumb').val(data);
                                             },
                                             error: function(XMLHttpRequest, textStatus, errorThrown) {
                                                 alert("上传失败，请检查网络后重试");

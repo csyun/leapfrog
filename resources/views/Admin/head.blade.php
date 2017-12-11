@@ -244,6 +244,16 @@
                     </a>
                     <ul class="sidebar-nav sidebar-nav-sub">
                         <li class="sidebar-nav-link">
+                            <a href="{{url('/admin/recyclegoodtype')}}">
+                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 回收商品类型
+                            </a>
+                        </li>
+                        <li class="sidebar-nav-link">
+                            <a href="{{url('/admin/recyclegoodattribute')}}">
+                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 回收商品属性
+                            </a>
+                        </li>
+                        <li class="sidebar-nav-link">
                             <a href="{{url('/admin/recyclegoods')}}">
                                 <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 回收商品
                             </a>

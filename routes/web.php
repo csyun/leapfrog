@@ -19,6 +19,10 @@ Route::get('/', 'Home\IndexController@index');
 Route::get('/articles/{id}', 'Home\IndexController@ArticleShow');
 //前台回收商品路由
 Route::get('/recyclegoods','Home\RecycleController@index');
+//前台回收商品估价页面
+Route::get('/recyclegoods/show/{id}','Home\RecycleController@show');
+//回收商品估价
+Route::post('/recyclegoods/count/','Home\RecycleController@count');
 
 
 //前台登录页面
@@ -45,7 +49,10 @@ Route::get('/home/goods/list','Home\GoodsController@index');
 //后台管理员登录页面路由
 Route::get('/admin/login','Admin\LoginController@login');
 //获取验证码路由
-Route::get('/getcode','Admin\LoginController@code');
+Route::get('/getcode','Api\CodeController@code');
+//上传阿里云图片路由
+//上传图片
+Route::post('upload', 'Api\UploadController@upload');
 //后台处理登录逻辑
 Route::post('/admin/dologin','Admin\LoginController@doLogin');
 //没有权限跳转的页面
@@ -75,14 +82,19 @@ Route::group(['middleware'=>['islogin'],'prefix'=>'admin','namespace'=>'Admin'],
     Route::post('permission/ajax', 'PermissionController@ajax');
     //文章管理路由
     Route::resource('articles', 'ArticlesController');
-    //上传图片
-    Route::post('upload', 'ArticlesController@upload');
+
     //文章列表排序控制器
     Route::post('articles/changeorder', 'ArticlesController@changeorder');
 
 
     //回收商品管理路由
     Route::resource('recyclegoods', 'RecycleGoodsController');
+    //回收商品修改类型属性管理路由
+    Route::post('recyclegoods/getTypes', 'RecycleGoodsController@getTypes');
+    //回收商品类型管理路由
+    Route::resource('recyclegoodtype', 'RecycleGoodTypeController');
+    //回收商品属性管理路由
+    Route::resource('recyclegoodattribute', 'RecycleGoodAttributeController');
     //回收商品订单管理路由
     Route::resource('recycleorders', 'RecycleOrdersController');
     //推荐位管理路由

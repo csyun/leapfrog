@@ -47,7 +47,7 @@
                                                 <input type="text" style="background: #5D6468;width:30px;margin-top: 30px;margin-left: 10px;" name="number" value="{{$v->order}}" onchange="changeOrder(this,{{$v->aid}}) "></td>
                                             <td>{{$v->aid}}</td>
                                             <td>
-                                                <img src="http://p0a39ed4q.bkt.clouddn.com{{$v->apic}}" style="width: 80px;height: 80px;" class="tpl-table-line-img" alt="">
+                                                <img src="http://leapfrog.oss-cn-beijing.aliyuncs.com/{{$v->apic}}" style="width: 80px;height: 80px;" class="tpl-table-line-img" alt="">
                                             </td>
 
                                             <td>{{$v->aname}}</td>

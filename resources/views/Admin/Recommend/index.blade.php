@@ -25,45 +25,28 @@
                                 </div>
                             </div>
 
-
-
                             <div class="am-u-sm-12">
                                 <table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black " id="example-r">
                                     <thead>
                                     <tr>
-
                                         <th>推荐Id</th>
                                         <th>推荐位名称</th>
-<<<<<<< HEAD
                                         <th>推荐位标题</th>
                                         <th>推荐位状态</th>
                                         <th>推荐位图片</th>
-=======
-                                        <th>推荐位状态</th>
-
->>>>>>> origin/lidandan
                                         <th>操作</th>
                                     </tr>
                                     </thead>
-                                    @foreach($recommends as $k=>$v)
+
                                         <tbody>
-<<<<<<< HEAD
-                                        <tr class="gradeX" style="text-align: center;">
+                                        @foreach($recommends as $k=>$v)
+                                        <tr class="gradeX">
 
                                             <td>{{$v->rid}}</td>
                                             <td>{{$v->rname}}</td>
                                             <td>{{$v->title}}</td>
                                             <td>{{$v->status}}</td>
-                                            <td><img style="width: 80px;height: 80px;" src="http://p0a39ed4q.bkt.clouddn.com{{$v->rpic}}"></td>
-=======
-                                        <tr class="gradeX">
-
-                                            <td>{{$v->rid}}</td>
-
-
-                                            <td>{{$v->rname}}</td>
-                                            <td>{{$v->status}}</td>
->>>>>>> origin/lidandan
+                                            <td><img style="width: 80px;height: 80px;" src="http://leapfrog.oss-cn-beijing.aliyuncs.com/{{$v->rpic}}"></td>
                                             <td>
                                                 <div class="tpl-table-black-operation">
                                                     <a href="{{url('admin/recommend/'.$v->rid.'/edit')}}">
@@ -75,10 +58,10 @@
                                                 </div>
                                             </td>
                                         </tr>
-
+                                        @endforeach
                                         <!-- more data -->
                                         </tbody>
-                                    @endforeach
+
                                 </table>
                             </div>
 

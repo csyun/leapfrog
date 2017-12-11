@@ -63,7 +63,14 @@ input{outline: none; position: relative;}
                         <span style='position:absolute;left:800px;bottom:122px;font-size:13px;color: #f00;'></span>
 
                     </div>
+                    <div class="am-form-group tpl-login-remember-me">
+                        <input id="remember-me" type="checkbox">
+                        <label for="remember-me">
 
+                            记住密码
+                        </label>
+
+                    </div>
                     <div class="am-form-group">
 
                         <button type="submit" id="btn" class="am-btn am-btn-primary  am-btn-block tpl-btn-bg-color-success  tpl-login-btn">提交</button>

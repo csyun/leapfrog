@@ -15,14 +15,14 @@
 		<link href="{{asset('/Home/css/hmstyle.css')}}" rel="stylesheet" type="text/css" />
 		<script src="{{asset('/Home/assets/js/jquery.min.js')}}"></script>
 		<script src="{{asset('/Home/assets/js/amazeui.min.js')}}"></script>
-
+		<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 		<link href="{{asset('/Home/css/personal.css')}}" rel="stylesheet" type="text/css">
 
 
 
 	</head>
 
-	<body>
+	<body style="background-color: #ffffff;">
 	<div class="hmtop">
 			<!--顶部导航条 -->
 			<div class="am-container header">
@@ -79,18 +79,18 @@
 			<div class="nav-cont">
 				<ul>
 					<li class="index"><a href="http://leapfrog.com/">首页</a></li>
-					<li class="qc"><a href="#">闪购</a></li>
-					<li class="qc"><a href="#">限时抢</a></li>
-					<li class="qc"><a href="#">团购</a></li>
-					<li class="qc last"><a href="#">大包装</a></li>
+					@foreach($navs as $k=>$v)
+					<li class="qc"><a href="{{url($v->nav_url)}}">{{$v->nav_name}}</a></li>
+					@endforeach
 				</ul>
 				<div class="nav-extra">
-					<a style="text-decoration:none;" href="{{url('/pond/')}}"><i ></i><b style="background-image:url({{asset('/Home/images/logo-s.png')}}); height: 40px;margin-right:10px; "></b>蛙塘社区</a>
+					<a href="{{url('/pond/')}}"><i ></i><b style="background-image:url({{asset('/Home/images/logo-s.png')}}); height: 40px;margin-right:10px; "></b>蛙塘社区</a>
 					<i class="am-icon-angle-right" style="padding-left: 10px;"></i>
 
 				</div>
 
 			</div>
+
 
 	@section('body')
 	@show

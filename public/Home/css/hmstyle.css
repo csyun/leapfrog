@@ -408,8 +408,7 @@ top: 11px;text-align: right;}
 .category-content .menu-item .area-in{ position: relative;  z-index: 1;  }
 .category-content .menu-item .area-bg{ padding: 10px 0 10px 40px;}
 .shadow-bg{ display: none; position: relative; width: 100%; height: 0; } 
-.shadow-b,.shadow-bg i{background: url(themes/mall/default/styles/default/images/index_ico.png) no-repeat; }
-.shadow-r,.shadow-l{ background: url(themes/mall/default/styles/default/images/shadow.png) no-repeat; }
+
 .shadow-bg i,.shadow-b{ position: absolute; width: 100%; height: 0; height: 2px\9; background-position: 0 -188px; background-repeat: repeat-x;  }
 .shadow-bg i,.shadow-b{ _height:0; }
 .shadow-l{  position: absolute; left: 0; _left:-42px; top: 0; width: 0; width: 2px\9;  height: 100%; background-position: right 0;  background-repeat: repeat-y;  }
@@ -434,7 +433,7 @@ top: 11px;text-align: right;}
 
 
 .category-content .menu-item.top{top:0px;}
-.category-content .menu-item.bottom{bottom: -2px;*bottom: -6px;_*bottom: -7px;}
+/*.category-content .menu-item.bottom{bottom: -2px;*bottom: -6px;_*bottom: -7px;}*/
 .am-dimmer {background:#fff ;}
 
 
@@ -721,11 +720,10 @@ filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr='#f8c375',endCo
 .advTip img{width:100% ;}  
 
 /*第二套公告*/
-<<<<<<< HEAD
+
 .marqueenTwo{ position:absolute;top:55px;right:0px;width:245px;height:210px ;border:  1px solid #eee;padding:10px ;background: #f8f8f8;}
-=======
-.marqueenTwo{ position:absolute;top:55px;right:0px;width:245px;height:320px ;border:  1px solid #eee;padding:10px ;background: #f8f8f8;}
->>>>>>> origin/lidandan
+
+
 .marqueenTwo .marqueen-title {display:block;margin: 10px 5px 0px;padding-bottom:10px ;text-align: left;border-bottom:1px solid #eee; ;}
 .marqueenTwo .demo{padding-top:5px ;}
 .marqueenTwo .demo li,.marqueenTwo .demo li.title-first{float: none;width: 100%;padding:0px 5px;border:none ;height: 30px;line-height:30px ;}
@@ -791,10 +789,7 @@ filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr='#f8c375',endCo
 .floodThree .text-four.list:hover img,.floodFour .text-one.list:hover img{margin-right:-105px;}
 
 
+	   
 
-}   
-	   
-	   
-	   
 	   
 	   

@@ -21,4 +21,13 @@ class RecycleGoods extends Model
     {
         return $this->belongsTo('App\Models\RecycleGoods');
     }
+    public function type()
+    {
+        return $this->belongsTo('App\Models\RecycleGoodType','type_id');
+    }
+    public function attrvalue()
+    {
+        //return $this->belongsTo('App\Models\RecycleGoodAttribute','type_id');
+        return $this->hasManyThrough('App\Models\RecycleGoodType', 'App\Models\RecycleGoodAttribute','type_id', 'type_id');
+    }
 }

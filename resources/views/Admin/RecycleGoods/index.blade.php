@@ -34,7 +34,9 @@
                                         <th>商品Id</th>
                                         <th>商品名称</th>
                                         <th>商品图</th>
+
                                         <th>商品基价</th>
+                                        <th>类型</th>
                                         <th>操作</th>
                                     </tr>
                                     </thead>
@@ -45,10 +47,10 @@
                                             <td>{{$v->rgid}}</td>
                                             <td>{{$v->rgname}}</td>
                                             <td>
-                                                <img src="http://p0a39ed4q.bkt.clouddn.com{{$v->rgpic}}" style="width: 80px;height: 80px;" class="tpl-table-line-img" alt="">
+                                                <img src="http://leapfrog.oss-cn-beijing.aliyuncs.com/{{$v->rgpic}}" style="width: 80px;height: 80px;" class="tpl-table-line-img" alt="">
                                             </td>
                                             <td>{{$v->rgprice}}</td>
-
+                                            <td>{{$v->type->type_name}}</td>
                                             <td>
                                                 <div class="tpl-table-black-operation">
                                                     <a href="{{url('admin/recyclegoods/'.$v->rgid.'/edit')}}">
@@ -65,6 +67,9 @@
                                         </tbody>
                                     @endforeach
                                 </table>
+                                <div class="am-fr">
+                                    {!! $recyclegoods->render() !!}
+                                </div>
                             </div>
 
                         </div>
