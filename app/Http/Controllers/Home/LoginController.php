@@ -74,6 +74,13 @@ class LoginController extends Controller
         	$password = $user0['password'];
 	        if (Hash::check($input['password'], $password)){
 	            Session::put('homeuser',$user0);
+                 if ($user0['active'] == 0) {
+                    return redirect('/login')->with('errors','账号未激活');
+                }
+                $back = Session::get('back');
+                if($back){
+                    return redirect($back);
+                }
 	            return redirect('/');
 	        } else{
 	            return redirect('/login')->with('errors','密码不正确');
@@ -86,6 +93,9 @@ class LoginController extends Controller
     		
 	        if (Hash::check($input['password'], $password)){
 	            Session::put('homeuser',$pass->uname);
+                if ($user1['active'] == 0) {
+                    return redirect('/login')->with('errors','账号未激活');
+                }
 	            return redirect('/');
 	        } else{
 	            return redirect('/login')->with('errors','密码不正确');

@@ -21,21 +21,62 @@ Route::get('/articles/{id}', 'Home\IndexController@ArticleShow');
 Route::get('/recyclegoods','Home\RecycleController@index');
 
 
+
+
 //前台登录页面
 Route::get('/login','Home\LoginController@login');
 Route::post('/dologin','Home\LoginController@dologin');
 
+
 //前台注册
 Route::get('/register','Home\RegisterController@register');
 Route::post('/doregister','Home\RegisterController@doregister');
+Route::post('/phoneregister','Home\RegisterController@phoneregister');
+//====发送短信
+Route::post('/sendcode','Home\RegisterController@sendCode');
+//====验证邮箱ajax
 Route::post('/register/ajax','Home\RegisterController@ajax');
+//====验证手机ajax
+Route::post('/register/phoneajax','Home\RegisterController@phoneajax');
+//====邮箱验证
+Route::get('/active','Home\RegisterController@active');
+
+
+//忘记密码
+Route::get('/forget','Home\PasswordController@forget');
+//====发送忘记密码邮件
+Route::post('/dopassword','Home\PasswordController@dopassword');
+//====忘记手机
+Route::post('/phonepassword','Home\PasswordController@phonepassword');
+//====验证邮箱ajax
+Route::post('/password/ajax','Home\PasswordController@ajax');
+//====验证手机ajax
+Route::post('/password/phoneajax','Home\PasswordController@phoneajax');
+//====找回密码页面
+Route::get('/reset','Home\PasswordController@reset');
+//====重置密码
+Route::post('/doreset','Home\PasswordController@doreset');
+
+
+
+
 
 
 Route::group(['middleware'=>'homelogin','namespace'=>'Home'],function (){
-//蛙塘
-Route::resource('/pond','PondController');
-//图片上传
-Route::post('/pond/upload','PondController@upload');
+    //蛙塘
+    Route::resource('/pond','PondController');
+    //图片上传
+    Route::post('/pond/upload','PondController@upload');
+    //进入蛙塘
+    Route::get('/pondlist','PondController@pondlist');
+    //收藏蛙塘
+    Route::get('/collectpond','PondController@collectpond');
+    //我收藏的蛙塘
+    Route::get('/pondcollect','PondController@pondcollect');
+    //取消收藏
+    Route::get('/decollect','PondController@decollect');
+    //我的蛙塘
+    Route::get('/mypond','PondController@mypond');
 });
 
 Route::get('/home/goods/list','Home\GoodsController@index');
@@ -116,8 +157,18 @@ Route::group(['middleware'=>['islogin'],'prefix'=>'admin','namespace'=>'Admin'],
     Route::resource('nav', 'NavController');
     Route::post('nav/changeorder', 'NavController@changeorder');
 
-
-
+    //等待审核蛙塘列表
+    Route::get('pond','PondController@index');
+    //通过审核的蛙塘列表
+    Route::get('pond/passlist','PondController@passlist');
+    //未通过审核的蛙塘列表
+    Route::get('pond/notpasslist','PondController@notpasslist');         
+    //蛙塘通过申请的ajax,pass
+    Route::post('pond/pass','PondController@pass');
+    //蛙塘没通过申请的ajax,pass
+    Route::post('pond/notpass','PondController@notpass');
+    //蛙塘等待审查的ajax,wait
+    Route::post('pond/wait','PondController@wait');
 
 
 });

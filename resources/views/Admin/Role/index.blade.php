@@ -17,7 +17,7 @@
                             <div class="widget-head am-cf">
                                 <div class="widget-title  am-cf">角色列表</div>
                                 @if (count($errors) > 0)
-                                        <div id="lan" >
+                                        <div id="lan" style="display:none" >
                                             <ul>
                                              @if(is_object($errors))
                                                 @foreach ($errors->all() as $error)

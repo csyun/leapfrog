@@ -32,7 +32,7 @@
                                     <div class="page-header-heading"><span class="am-icon-home page-header-heading-icon"></span> 角色添加: <small>users</small></div>
                                     <p class="page-header-description">添加角色</p>
                                     @if (count($errors) > 0)
-                                    <div id="lan" class="alert alert-danger">
+                                    <div id="lan" class="alert alert-danger" style="display:none">
                                         <ul>
                                             @if(is_object($errors))
                                                 @foreach ($errors->all() as $error)

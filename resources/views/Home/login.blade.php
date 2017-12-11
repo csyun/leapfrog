@@ -73,7 +73,7 @@
 							   <div class="user-name">
 								    <label for="user"><i class="am-icon-user"></i></label>
 								    <input type="text" name="username" id="user" placeholder="邮箱/手机/用户名">
-                 </div>
+                 				</div>
                  <div class="user-pass">
 								    <label for="password"><i class="am-icon-lock"></i></label>
 								    <input type="password" name="password" id="password" placeholder="请输入密码">
@@ -83,7 +83,7 @@
             
             <div class="login-links">
                 <label for="remember-me"><input id="remember-me" type="checkbox">记住密码</label>
-								<a href="#" class="am-fr">忘记密码</a>
+								<a href="/forget" class="am-fr">忘记密码</a>
 								<a href="{{asset('/register')}}" class="zcnext am-fr am-btn-default">注册</a>
 
 								<br />

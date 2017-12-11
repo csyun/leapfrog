@@ -27,6 +27,8 @@ class HomeLogin
         if(Session::get('homeuser')){
             return $next($request);
         }else{
+            $a = url()->current();
+            Session::put('back',$a);
             return redirect('/login')->with('errors','未登录请先登录');
         }
     }
