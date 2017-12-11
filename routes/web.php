@@ -26,6 +26,25 @@ Route::post('/recyclegoods/count/','Home\RecycleController@count');
 
 
 
+//前台展示页
+Route::get('/home/goods/list/{id}','Home\GoodsController@index');
+//前台搜索
+Route::post('/home/goods/seach','Home\GoodsController@seach');
+//商品详情页
+Route::get('/home/goods/details/{id}','Home\GoodsController@details');
+//添加到购物车
+Route::get('/home/shopcart/{id}','Home\shopcartController@tocart');
+
+Route::get('/test','Home\shopcartController@test');
+//购物车列表
+Route::get('/home/shopcart/cart/index','Home\shopcartController@index');
+//支付页
+Route::get('/home/shopcart/cart/pay','Home\shopcartController@pay');
+//购物车删除
+Route::post('/home/shopcart/cart/del/{id}','Home\shopcartController@cartDel');
+//添加订单
+Route::post('/home/order/doadd','Home\OrderController@doadd');
+
 
 //前台登录页面
 Route::get('/login','Home\LoginController@login');
@@ -84,8 +103,7 @@ Route::group(['middleware'=>'homelogin','namespace'=>'Home'],function (){
     //我的蛙塘
     Route::get('/mypond','PondController@mypond');
 });
-
-Route::get('/home/goods/list','Home\GoodsController@index');
+;
 
 
 
