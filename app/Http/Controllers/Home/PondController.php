@@ -58,6 +58,7 @@ class PondController extends CommonController
         $ponds = MarketUser::orderBy('collect_time','desc')
                            ->where('uid',$uid)
                            ->get();
+        $arr = [];
         if(!$ponds){
             $arr = [];
         }else{
@@ -65,6 +66,7 @@ class PondController extends CommonController
                 $arr[] = $v->mid;
             }
         }
+        $collect = [];
         //遍历$arr查看蛙塘信息
         foreach($arr as $k=>$v){
             $collect[] = MarketInfo::where('mid',$v)->first();
@@ -92,6 +94,7 @@ class PondController extends CommonController
         $uid = $user->uid;
         //我收藏的蛙塘ID数组
         $ponds = MarketUser::where('uid',$uid)->get();
+        $arr = [];
         if(!$ponds){
             $arr = [];
         }else{
@@ -170,6 +173,7 @@ class PondController extends CommonController
         //===查看塘主的商品
         $goods = User_CreateGoods::where('uid',$uid)->get();
         //===将商品id转为数组模式
+        $arr = [];
         if(!$goods){
             $arr = [];
         }else{
@@ -179,6 +183,7 @@ class PondController extends CommonController
         }
         //===========蛙塘塘主的商品数组为$arr
         //商品详细信息的数组
+        $data = [];
         foreach ($arr as $k => $v) {
             $data[] = Admin_Goods::where('gid',$v)->first();
         }
@@ -315,15 +320,16 @@ class PondController extends CommonController
 
         //我收藏的蛙塘ID数组
         $ponds = MarketUser::where('uid',$uid)->get();
-
-        if(!$ponds){
-            $arr = [];
-        }else{
+//        dd($ponds);
+        $arr = [];
+        if($ponds){
             foreach($ponds as $k=>$v){
                 $arr[] = $v->mid;
             }
+        }else{
+            $arr = [];
         }
-        // dd($arr);
+        //dd($arr);
         return view('Home/Pond/index',compact('data','arr'));
     }
 
