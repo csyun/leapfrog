@@ -4,13 +4,17 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Admin_Goods;
 use App\Models\Cate;
+use App\Models\Recommend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
 class GoodsController extends Controller
 {
-
+    /**
+     * 修改商品状态
+     *$id是传过来的商品id
+     */
 
     public function  gstatus($gid)
     {
@@ -33,56 +37,9 @@ class GoodsController extends Controller
 
     }
 
-    public function upload(Request $request)
-    {
-//        获取客户端传过来的文件
-        $file = $request->file('file_upload');
-//        $file = $request->all();
-//        dd($file);
-//        foreach ($file as $k=>$v) {
-            if ($file->isValid()) {
-                //        获取文件上传对象的后缀名
-                $ext = $file->getClientOriginalExtension();
-
-
-                //生成一个唯一的文件名，保证所有的文件不重名
-                $newfile = time() . rand(1000, 9999) . uniqid() . '.' . $ext;
-
-
-                //设置上传文件的目录
-                $dirpath = public_path() . '/uploads/';
-
-
-                //将文件移动到本地服务器的指定的位置，并以新文件名命名
-//            $file->move(移动到的目录, 新文件名);
-                $file->move($dirpath, $newfile);
-
-
-                //将文件移动到七牛云，并以新文件名命名
-                //\Storage::disk('qiniu')->writeStream('uploads/'.$newfile, fopen($file->getRealPath(), 'r'));
-
-
-                //将文件移动到阿里OSS
-//            OSS::upload($newfile,$file->getRealPath());
-
-
-                //将上传的图片名称返回到前台，目的是前台显示图片
-                return $newfile;
-
-
-            }
-//        }
-
-    }
-
-
-
-
-
     /**
-     * Display a listing of the resource.
+     * 商品展示
      *
-     * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
     {
@@ -104,23 +61,21 @@ class GoodsController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * 商品添加页
      *
-     * @return \Illuminate\Http\Response
      */
     public function create()
     {
         $cates = (new Cate())->relation();
         $pid = array_column($cates,'pid');
         $pid = array_unique($pid);
-        return view('Admin.Goods.add',compact('cates','pid'));
+        $recommend = Recommend::get();
+        return view('Admin.Goods.add',compact('cates','pid','recommend'));
     }
 
     /**
-     * Store a newly created resource in storage.
+     * 执行商品添加
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
@@ -169,10 +124,8 @@ class GoodsController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * 商品修改页
+     *$id是传过来的商品id
      */
     public function edit($id)
     {
@@ -181,15 +134,13 @@ class GoodsController extends Controller
        $cates = (new Cate())->relation();
        $pid = array_column($cates,'pid');
        $pid = array_unique($pid);
-       return view('Admin.Goods.edit',compact('good','cates','pid'));
+        $recommend = Recommend::get();
+       return view('Admin.Goods.edit',compact('good','cates','pid','recommend'));
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * 执行商品修改
+     *$id是传过来的商品id
      */
     public function update(Request $request, $id)
     {
@@ -221,10 +172,8 @@ class GoodsController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * 商品删除
+     *$id是ajax传过来的商品id
      */
     public function destroy($id)
     {

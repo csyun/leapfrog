@@ -219,6 +219,11 @@
                     </a>
                 </li>
                 <li class="sidebar-nav-link">
+                    <a href="{{url('/admin/order/index')}}">
+                        <i class="am-icon-table sidebar-nav-link-logo"></i> 订单管理
+                    </a>
+                </li>
+                <li class="sidebar-nav-link">
                     <a href="javascript:;" class="sidebar-nav-sub-title">
                         <i class="am-icon-table sidebar-nav-link-logo"></i>文章管理
                         <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>

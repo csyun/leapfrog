@@ -21,7 +21,7 @@
 							<ul>
 								@if(session('msg'))
 									<script>
-                                        layer.alert('购物车没有东西怎么结算呢,小可爱', {icon: 3});
+                                        layer.alert('购物车没有东西怎么结算呢	,小可爱', {icon: 3});
 									</script>
 								@endif
 							</ul>

@@ -46,6 +46,21 @@ Route::post('/home/shopcart/cart/del/{id}','Home\shopcartController@cartDel');
 //添加订单
 Route::post('/home/order/doadd','Home\OrderController@doadd');
 
+//前台添加商品
+Route::get('/home/goods/add','Home\GoodsController@add');
+//商品执行添加
+Route::post('/home/goods/doadd','Home\GoodsController@doadd');
+//商品浏览
+Route::get('/home/goods/browse','Home\GoodsController@browse');
+//前台编辑商品
+Route::get('/home/goods/edit/{id}','Home\GoodsController@edit');
+//执行修改
+Route::post('home/goods/doedit/{id}','Home\GoodsController@doedit');
+
+
+
+
+
 
 //前台登录页面
 Route::get('/login','Home\LoginController@login');
@@ -193,7 +208,6 @@ Route::group(['middleware'=>['islogin'],'prefix'=>'admin','namespace'=>'Admin'],
     Route::resource('adver', 'AdverController');
     Route::post('adver/changeorder', 'AdverController@changeorder');
     //分类管理控制器路由
-
     Route::resource('cate','CateController');
     //商品控制器
     Route::resource('goods','GoodsController');
@@ -201,8 +215,13 @@ Route::group(['middleware'=>['islogin'],'prefix'=>'admin','namespace'=>'Admin'],
     Route::post('cate/changeorder','CateController@changeorder');
     //商品图片控制器
     Route::post('upload','GoodsController@upload');
+    //商品细节控制器
+    Route::get('goods/detailsimg/{id}','GoodsController@detailsimg');
     //商品状态控制器
     Route::get('goods/gstatus/{id}','GoodsController@gstatus');
+    //订单控制器
+    Route::get('order/index','OrderController@index');
+    Route::get('order/details/{id}','OrderController@details');
 
     //首页轮播图管理
     Route::resource('slideshow', 'SlideShowController');

@@ -844,7 +844,9 @@
             },
             "dist": {
                 "type": "zip",
+
                 "url": "https://files.phpcomposer.com/files/overtrue/flysystem-qiniu/64e0d51065f0ae5101098d4fcf280af2af453d36.zip",
+
                 "reference": "64e0d51065f0ae5101098d4fcf280af2af453d36",
                 "shasum": ""
             },
@@ -887,7 +889,9 @@
             },
             "dist": {
                 "type": "zip",
+
                 "url": "https://files.phpcomposer.com/files/overtrue/laravel-filesystem-qiniu/315dcb03c2afa448eaa4e60721072a183f302408.zip",
+
                 "reference": "315dcb03c2afa448eaa4e60721072a183f302408",
                 "shasum": ""
             },
@@ -1027,7 +1031,9 @@
             },
             "dist": {
                 "type": "zip",
+
                 "url": "https://files.phpcomposer.com/files/bobthecow/psysh/d4c8eab0683dc056f2ca54ca67f5388527c068b1.zip",
+
                 "reference": "d4c8eab0683dc056f2ca54ca67f5388527c068b1",
                 "shasum": ""
             },
@@ -1099,7 +1105,9 @@
             },
             "dist": {
                 "type": "zip",
+
                 "url": "https://files.phpcomposer.com/files/qiniu/php-sdk/79290fd9cb5d72cc2feef779008b3aaeeac49eb9.zip",
+
                 "reference": "79290fd9cb5d72cc2feef779008b3aaeeac49eb9",
                 "shasum": ""
             },
@@ -1355,7 +1363,9 @@
             },
             "dist": {
                 "type": "zip",
+
                 "url": "https://files.phpcomposer.com/files/symfony/css-selector/7134b93e90ea7e7881fcb2da006d21b4c5f31908.zip",
+
                 "reference": "7134b93e90ea7e7881fcb2da006d21b4c5f31908",
                 "shasum": ""
             },
@@ -1408,7 +1418,9 @@
             },
             "dist": {
                 "type": "zip",
+
                 "url": "https://files.phpcomposer.com/files/symfony/debug/fb2001e5d85f95d8b6ab94ae3be5d2672df128fd.zip",
+
                 "reference": "fb2001e5d85f95d8b6ab94ae3be5d2672df128fd",
                 "shasum": ""
             },
@@ -1464,7 +1476,9 @@
             },
             "dist": {
                 "type": "zip",
+
                 "url": "https://files.phpcomposer.com/files/symfony/event-dispatcher/ca20b8f9ef149f40ff656d52965f240d85f7a8e4.zip",
+
                 "reference": "ca20b8f9ef149f40ff656d52965f240d85f7a8e4",
                 "shasum": ""
             },
@@ -1527,7 +1541,9 @@
             },
             "dist": {
                 "type": "zip",
+
                 "url": "https://files.phpcomposer.com/files/symfony/finder/dac8d7db537bac7ad8143eb11360a8c2231f251a.zip",
+
                 "reference": "dac8d7db537bac7ad8143eb11360a8c2231f251a",
                 "shasum": ""
             },
@@ -1576,7 +1592,9 @@
             },
             "dist": {
                 "type": "zip",
+
                 "url": "https://files.phpcomposer.com/files/symfony/http-foundation/d9625c8abb907e0ca2d7506afd7a719a572c766f.zip",
+
                 "reference": "d9625c8abb907e0ca2d7506afd7a719a572c766f",
                 "shasum": ""
             },
@@ -1777,7 +1795,9 @@
             },
             "dist": {
                 "type": "zip",
+
                 "url": "https://files.phpcomposer.com/files/symfony/polyfill-php70/0442b9c0596610bd24ae7b5f0a6cdbbc16d9fcff.zip",
+
                 "reference": "0442b9c0596610bd24ae7b5f0a6cdbbc16d9fcff",
                 "shasum": ""
             },
@@ -1836,7 +1856,9 @@
             },
             "dist": {
                 "type": "zip",
+
                 "url": "https://files.phpcomposer.com/files/symfony/process/db25e810fd5e124085e3777257d0cf4ae533d0ea.zip",
+
                 "reference": "db25e810fd5e124085e3777257d0cf4ae533d0ea",
                 "shasum": ""
             },
@@ -1885,7 +1907,9 @@
             },
             "dist": {
                 "type": "zip",
+
                 "url": "https://files.phpcomposer.com/files/symfony/routing/d768aa5b25d98188bae3fe4ce3eb2924c97aafac.zip",
+
                 "reference": "d768aa5b25d98188bae3fe4ce3eb2924c97aafac",
                 "shasum": ""
             },
@@ -1963,7 +1987,9 @@
             },
             "dist": {
                 "type": "zip",
+
                 "url": "https://files.phpcomposer.com/files/symfony/translation/e05b0a5996ad7a35ba3a19ffad8b72c9daa64dfa.zip",
+
                 "reference": "e05b0a5996ad7a35ba3a19ffad8b72c9daa64dfa",
                 "shasum": ""
             },
@@ -2031,7 +2057,9 @@
             },
             "dist": {
                 "type": "zip",
+
                 "url": "https://files.phpcomposer.com/files/symfony/var-dumper/ec650a975a8e04e0c114d35eab732981243db3a2.zip",
+
                 "reference": "ec650a975a8e04e0c114d35eab732981243db3a2",
                 "shasum": ""
             },

@@ -85,6 +85,22 @@
                                 </div>
 
                                 <div class="am-form-group">
+                                    <label for="user-phone" class="am-u-sm-3 am-form-label">推荐位 <span class="tpl-form-line-small-title">status</span></label>
+                                    <div class="am-u-sm-9">
+                                        <select data-am-selected="{searchBox: 1}" style="display: none;" name="rid">
+                                            @foreach($recommend as $k=>$v)
+                                                <option
+                                                        @if($v->rid==$good->rid)
+                                                                selected
+                                                        @endif
+                                                        value="{{$v->rid}}">{{$v->rname}}</option>
+                                            @endforeach
+                                        </select>
+
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group">
                                     <label for="user-name" class="am-u-sm-3 am-form-label">商品价格<span class="tpl-form-line-small-title">price</span></label>
                                     <div class="am-u-sm-9">
                                         <input type="text" name="gprice" class="tpl-form-input" id="user-name" placeholder="请输入商品价格"value="{{$good->gprice}}">
@@ -129,17 +145,17 @@
                                                     formData.append('_token',"{{csrf_token()}}");
                                                     $.ajax({
                                                         type: "POST",
-                                                        url: "/admin/upload",
+                                                        url: "/upload",
                                                         data: formData,
                                                         async: true,
                                                         cache: false,
                                                         contentType: false,
                                                         processData: false,
                                                         success: function(data) {
-                                                            $('#gp_url').val('/uploads/'+data);
-                                            $('#img1').attr('src','/uploads/'+data);
-//                                            $('#img1').attr('src','http://p09v2gc7p.bkt.clouddn.com/uploads/'+data);
-//                                                            $('#img1').attr('src','http://project193.oss-cn-beijing.aliyuncs.com/'+data);
+                                                            $('#gp_url').val('http://leapfrog.oss-cn-beijing.aliyuncs.com/'+data);
+//
+                                            $('#img1').attr('src','http://p09v2gc7p.bkt.clouddn.com/uploads/'+data);
+//
                                                             $('#img1').show();
                                                         },
                                                         error: function(XMLHttpRequest, textStatus, errorThrown) {

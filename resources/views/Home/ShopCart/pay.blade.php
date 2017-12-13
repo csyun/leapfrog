@@ -4,8 +4,8 @@
 @endsection
 @section('body')
 	<link href="{{asset('/Home/css/jsstyle.css')}}" rel="stylesheet" type="text/css" />
-
 	<script type="text/javascript" src="{{asset('/Home/js/address.js')}}"></script>
+	<script src="{{asset('/layer/layer.js')}}"></script>
 			<div class="concent">
 				<ul>
 					@if(is_object($errors))
@@ -16,6 +16,12 @@
 						<li style="color:red">{{ $errors }}</li>
 					@endif
 				</ul>
+
+				@if(session('msg'))
+					<script>
+                        layer.alert('提交订单失败', {icon: 3});
+					</script>
+				@endif
 					<!--订单 -->
 					<div class="concent">
 						<div id="payTable">
@@ -106,6 +112,7 @@
 										<div tabindex="0" id="holyshit267" class="realPay"><em class="t">总价：</em>
 											<span class="price g_price ">
                                     <span>¥</span> <em class="style-large-bold-red " id="J_ActualFee"><?php echo $sum;?></em>
+												<input type="hidden" name="oprice" value="<?php echo $sum;?>"/>
 											</span>
 										</div>
 

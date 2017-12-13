@@ -116,7 +116,7 @@
 				<div class="clear"></div>
 					<!--走马灯 -->
 					<div class="marqueenTwo" style="height: 100px;">
-						<span><a href=""><img style="width: 105px;height: 100%;margin-top: 1px;" src="{{asset('/Home/images/fabu.png')}}"></a></span>
+						<span><a href="{{url('/home/goods/add')}}"><img style="width: 105px;height: 100%;margin-top: 1px;" src="{{asset('/Home/images/fabu.png')}}"></a></span>
 						<span><a href="{{url('/recyclegoods')}}"><img style="width: 105px;height: 100%;" src="{{asset('/Home/images/huishou.png')}}"></a></span>
 					</div>
 					<div class="marqueenTwo" style="margin-top: 110px;">
