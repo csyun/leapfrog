@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Home;
 
 use App\Models\Home_User;
+use App\Models\RecycleOrders;
 use App\Models\UserInfo;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\RecycleGoodOrder;
 use Session;
 
 class UserInfoController extends CommonController
@@ -50,6 +52,9 @@ class UserInfoController extends CommonController
     //回收订单页面
     public function recycleorder()
     {
+        $recycleorders = RecycleGoodOrder::orderby('creat_time','desc')->get();
+        dd($recycleorders);
+
         return view('Home\UserInfo\recycleorder');
     }
 }
