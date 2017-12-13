@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Validator;
 
 class CateController extends Controller
 {
+    /**
+     * 分类排序
+     *
+     */
     public function changeorder(Request $request)
     {
         $cid = $request->input('cid');
@@ -33,9 +37,8 @@ class CateController extends Controller
 
 
     /**
-     * Display a listing of the resource.
+     * 分类浏览
      *
-     * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -46,9 +49,8 @@ class CateController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * 分类添加引入列表
      *
-     * @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -57,10 +59,8 @@ class CateController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * 执行添加分类
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
@@ -108,10 +108,8 @@ class CateController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * 引入修改分类列表
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
@@ -120,11 +118,8 @@ class CateController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * 执行修改
+     *$id 是分类的cid
      */
     public function update(Request $request, $id)
     {
@@ -139,10 +134,8 @@ class CateController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * 删除分类
+     *$id是ajax传过来的分类id
      */
     public function destroy($id)
     {

@@ -145,17 +145,17 @@
                                                     formData.append('_token',"{{csrf_token()}}");
                                                     $.ajax({
                                                         type: "POST",
-                                                        url: "/admin/upload",
+                                                        url: "/upload",
                                                         data: formData,
                                                         async: true,
                                                         cache: false,
                                                         contentType: false,
                                                         processData: false,
                                                         success: function(data) {
-                                                            $('#gp_url').val('/uploads/'+data);
-                                            $('#img1').attr('src','/uploads/'+data);
-//                                            $('#img1').attr('src','http://p09v2gc7p.bkt.clouddn.com/uploads/'+data);
-//                                                            $('#img1').attr('src','http://project193.oss-cn-beijing.aliyuncs.com/'+data);
+                                                            $('#gp_url').val('http://leapfrog.oss-cn-beijing.aliyuncs.com/'+data);
+//
+                                            $('#img1').attr('src','http://p09v2gc7p.bkt.clouddn.com/uploads/'+data);
+//
                                                             $('#img1').show();
                                                         },
                                                         error: function(XMLHttpRequest, textStatus, errorThrown) {

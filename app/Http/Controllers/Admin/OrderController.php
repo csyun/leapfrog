@@ -10,6 +10,10 @@ use DB;
 
 class OrderController extends Controller
 {
+    /**
+     * 订单浏览
+     *
+     */
     public function index()
     {
         $orders = DB::table('data_order')
@@ -17,10 +21,12 @@ class OrderController extends Controller
             ->get();
        return view('Admin.Order.list',compact('orders'));
     }
+    /**
+     * 订单详情
+     *$id是传过来的订单oid
+     */
     public function details($id)
     {
-//        $orders = DB::table('data_order_details')->where('oid',$id)->get();
-
         $orders = DB::table('data_goods')
             ->join('data_order_details', function ($join)use($id) {
                 $join->on('data_goods.gid', '=', 'data_order_details.gid')

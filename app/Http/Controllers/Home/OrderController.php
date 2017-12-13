@@ -15,6 +15,11 @@ class OrderController extends CommonController
     public $oid;
     public $input;
     public $gid;
+
+    /**
+     * 执行添加
+     *
+     */
     public function doadd(Request $request)
     {
         $this->oid = time().rand(1000,9999);
@@ -27,7 +32,10 @@ class OrderController extends CommonController
     }
 
 
-    //处理结算,添加订单
+    /**
+     * 添加到订单表
+     *
+     */
     public function writeOrder()
     {
         $rule = [
@@ -64,6 +72,10 @@ class OrderController extends CommonController
 
 
     }
+    /**
+     * 添加到订单详情表
+     *
+     */
     public function writeDetail()
     {
         $goods = session('goods');
@@ -77,6 +89,10 @@ class OrderController extends CommonController
             }
         }
     }
+    /**
+     * 清空购物车
+     *
+     */
     public function clearCart()
     {
         $user = session('homeuser');
@@ -84,9 +100,5 @@ class OrderController extends CommonController
         session()->pull('goods');
     }
 
-    public function myorder()
-    {
-
-    }
 
 }

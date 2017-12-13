@@ -10,37 +10,21 @@ use Illuminate\Support\Facades\Session;
 
 class ShopcartController extends CommonController
 {
-//    public function test()
-//    {
-////        $n = 0;
-////        $cprice = 0;
-//        $user = Session('homeuser');
-////        if ($user) {
-//        $arr = ShopCart::where('uid', $user['uid'])->get();
-//        foreach ($arr as $k => $v) {
-//            Session::push('goods', Admin_Goods::find($v->gid));
-////            $cprice += Admin_Goods::find($v->gid)->gprice;
-////            $n++;
-////            }
-//
-////        }
-//        }
-//        dd(session('goods'));
-//    }
-
     /**
      * 添加商品到购物车
-     *
+     *$id是传过来的商品id
      */
     public function tocart($id)
     {
         $user = Session('homeuser');
+        //判断是否登录
         if ($user) {
             $goods = ShopCart::where('uid', $user['uid'])->get();
             $gid[] = '';
             foreach ($goods as $k => $v) {
                 $gid[] = $v->gid;
             }
+            //判断是否重复添加
             if (in_array($id, $gid)) {
                 $data['error'] = 2;
                 $data['msg'] = "请勿重复添加";
@@ -60,6 +44,7 @@ class ShopcartController extends CommonController
         } else {
             $goods = session('goods');
             $gid[] = '';
+            //判断购物车有没有商品
             if($goods){
                     foreach ($goods as $k => $v) {
                         $gid[] = $v->gid;
@@ -102,10 +87,14 @@ class ShopcartController extends CommonController
         }
         return $data;
     }
-
+    /**
+     * 购物车商品浏览
+     *
+     */
     public function index()
     {
         $user = Session('homeuser');
+        //判断是否登录
         if ($user) {
             $arr = ShopCart::where('uid', $user['uid'])->get();
 
@@ -127,6 +116,10 @@ class ShopcartController extends CommonController
             return view('Home.ShopCart.list', compact('goods','n'));
         }
     }
+    /**
+     * 删除购物车商品
+     *$id是ajax传来的的商品id
+     */
     public function cartDel(Request $request,$id)
     {
         $user = Session('homeuser');
@@ -154,6 +147,10 @@ class ShopcartController extends CommonController
         }
         return $data;
     }
+    /**
+     * 支付页
+     *
+     */
     public function pay()
     {
         $goods = session('goods');

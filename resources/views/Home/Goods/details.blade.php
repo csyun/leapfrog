@@ -129,23 +129,7 @@
 				<div class="tb-booth tb-pic tb-s310">
 					<a href=""><img src="{{$goods->gpurl}}" alt="细节展示放大镜特效" rel="{{$goods->gpurl}}" class="jqzoom" /></a>
 				</div>
-				<ul class="tb-thumb" id="thumblist">
-					<li class="tb-selected">
-						<div class="tb-pic tb-s40">
-							<a href="#"><img src="../images/01_small.jpg" mid="../images/01_mid.jpg" big="../images/01.jpg"></a>
-						</div>
-					</li>
-					<li>
-						<div class="tb-pic tb-s40">
-							<a href="#"><img src="../images/02_small.jpg" mid="../images/02_mid.jpg" big="../images/02.jpg"></a>
-						</div>
-					</li>
-					<li>
-						<div class="tb-pic tb-s40">
-							<a href="#"><img src="../images/03_small.jpg" mid="../images/03_mid.jpg" big="../images/03.jpg"></a>
-						</div>
-					</li>
-				</ul>
+
 			</div>
 
 			<div class="clear"></div>
@@ -214,9 +198,9 @@
 <!--活动	-->
 <div class="shopPromotion gold">
 	<div class="hot">
-		<dt class="tb-metatit">商品描述</dt>
+
 		<div class="gold-list">
-			<p>{!!$goods->gdesc!!}</p>
+
 		</div>
 	</div>
 	<div class="clear"></div>
@@ -272,63 +256,7 @@
 <div class="introduce">
 	<div class="browse">
 		<div class="mc">
-			<ul>
-				<div class="mt">
-					<h2>看了又看</h2>
-				</div>
 
-				<li class="first">
-					<div class="p-img">
-						<a  href="#"> <img class="" src="../images/browse1.jpg"> </a>
-					</div>
-					<div class="p-name"><a href="#">
-							【三只松鼠_开口松子】零食坚果特产炒货东北红松子原味
-						</a>
-					</div>
-					<div class="p-price"><strong>￥35.90</strong></div>
-				</li>
-				<li>
-					<div class="p-img">
-						<a  href="#"> <img class="" src="../images/browse1.jpg"> </a>
-					</div>
-					<div class="p-name"><a href="#">
-							【三只松鼠_开口松子】零食坚果特产炒货东北红松子原味
-						</a>
-					</div>
-					<div class="p-price"><strong>￥35.90</strong></div>
-				</li>
-				<li>
-					<div class="p-img">
-						<a  href="#"> <img class="" src="../images/browse1.jpg"> </a>
-					</div>
-					<div class="p-name"><a href="#">
-							【三只松鼠_开口松子】零食坚果特产炒货东北红松子原味
-						</a>
-					</div>
-					<div class="p-price"><strong>￥35.90</strong></div>
-				</li>
-				<li>
-					<div class="p-img">
-						<a  href="#"> <img class="" src="../images/browse1.jpg"> </a>
-					</div>
-					<div class="p-name"><a href="#">
-							【三只松鼠_开口松子】零食坚果特产炒货东北红松子原味
-						</a>
-					</div>
-					<div class="p-price"><strong>￥35.90</strong></div>
-				</li>
-				<li>
-					<div class="p-img">
-						<a  href="#"> <img class="" src="../images/browse1.jpg"> </a>
-					</div>
-					<div class="p-name"><a href="#">
-							【三只松鼠_开口松子218g】零食坚果特产炒货东北红松子原味
-						</a>
-					</div>
-					<div class="p-price"><strong>￥35.90</strong></div>
-				</li>
-
-			</ul>
 		</div>
 	</div>
 	<div class="introduceMain">
@@ -355,7 +283,7 @@
 							<h4>商品细节</h4>
 						</div>
 						<div class="twlistNews">
-
+						{!!  $goods->gdesc!!}
 						</div>
 					</div>
 					<div class="clear"></div>
