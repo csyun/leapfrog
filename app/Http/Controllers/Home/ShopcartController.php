@@ -133,7 +133,7 @@ class ShopcartController extends CommonController
         $k = $request->input('k');
         if ($user) {
             $res = ShopCart::where('gid', $id)->delete();
-            $row = session()->pull('goods', $k);
+            $row = session()->pull('goods.'.$k);
             if ($res && $row) {
                 $data['error'] = 0;
                 $data['msg'] = "删除成功";
@@ -157,6 +157,11 @@ class ShopcartController extends CommonController
     public function pay()
     {
         $goods = session('goods');
-        return view('Home.ShopCart.pay',compact('goods'));
+        if($goods)
+        {
+            return view('Home.ShopCart.pay', compact('goods'));
+        }else {
+            return redirect('/home/shopcart/cart/index')->with('msg','您的购物车没有东西呢');
+        }
     }
 }

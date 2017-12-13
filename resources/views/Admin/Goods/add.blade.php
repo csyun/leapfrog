@@ -71,6 +71,17 @@
 
                                     </div>
                                 </div>
+                                <div class="am-form-group">
+                                    <label for="user-phone" class="am-u-sm-3 am-form-label">推荐位 <span class="tpl-form-line-small-title">status</span></label>
+                                    <div class="am-u-sm-9">
+                                        <select data-am-selected="{searchBox: 1}" style="display: none;" name="rid">
+                                            @foreach($recommend as $k=>$v)
+                                            <option value="{{$v->rid}}">{{$v->rname}}</option>
+                                            @endforeach
+                                        </select>
+
+                                    </div>
+                                </div>
 
                                 <div class="am-form-group">
                                     <label for="user-name" class="am-u-sm-3 am-form-label">商品价格<span class="tpl-form-line-small-title">price</span></label>
@@ -81,7 +92,7 @@
                                 </div>
 
                                 <div class="am-form-group">
-                                    <label for="user-weibo" class="am-u-sm-3 am-form-label">商品图片 <span class="tpl-form-line-small-title">Images</span></label>
+                                    <label for="user-weibo" class="am-u-sm-3 am-form-label">商品封面 <span class="tpl-form-line-small-title">Images</span></label>
                                     <div class="am-u-sm-9">
                                         <div class="am-form-group am-form-file">
                                             <div class="tpl-form-file-img">
@@ -90,7 +101,7 @@
                                                 <small>图片路径。</small>
                                             </div>
                                             <button type="button" class="am-btn am-btn-danger am-btn-sm">
-                                                <i class="am-icon-cloud-upload"></i> 添加商品图片</button>
+                                                <i class="am-icon-cloud-upload"></i> 添加商品封面</button>
                                             <input id="file_upload"  name="gpname"type="file" multiple="true">
                                             <script type="text/javascript">
                                                 $(function(){

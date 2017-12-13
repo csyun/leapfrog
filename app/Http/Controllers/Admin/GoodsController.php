@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Admin_Goods;
 use App\Models\Cate;
+use App\Models\Recommend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -76,7 +77,10 @@ class GoodsController extends Controller
     }
 
 
-
+    public function detailsimg($id)
+    {
+        return view('Admin.Goods.detailsimg');
+    }
 
 
     /**
@@ -113,7 +117,8 @@ class GoodsController extends Controller
         $cates = (new Cate())->relation();
         $pid = array_column($cates,'pid');
         $pid = array_unique($pid);
-        return view('Admin.Goods.add',compact('cates','pid'));
+        $recommend = Recommend::get();
+        return view('Admin.Goods.add',compact('cates','pid','recommend'));
     }
 
     /**
@@ -181,7 +186,8 @@ class GoodsController extends Controller
        $cates = (new Cate())->relation();
        $pid = array_column($cates,'pid');
        $pid = array_unique($pid);
-       return view('Admin.Goods.edit',compact('good','cates','pid'));
+        $recommend = Recommend::get();
+       return view('Admin.Goods.edit',compact('good','cates','pid','recommend'));
     }
 
     /**
