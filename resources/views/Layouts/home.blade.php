@@ -35,7 +35,7 @@
 						<div class="menu-hd">
 							@if(Session::get('homeuser.uname'))
 							<a href="{{url('/userinfo')}}" target="_top" class="h">你好,{{Session::get('homeuser.uname')}}</a>
-							<a href="{{url('/register')}}" target="_top">退出</a>
+							<a href="{{url(''/loginout')}}" target="_top">退出</a>
 								@else
 								<a href="{{url('/login')}}" target="_top" class="h">亲，请登录</a>
 								<a href="{{url('/register')}}" target="_top">免费注册</a>

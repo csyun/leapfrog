@@ -76,12 +76,11 @@
                                                 <th>用户名</th>
                                                 <th>昵称</th>
                                                 <th>权限</th>
-                                                <th>状态</th>
                                                 <th>手机</th>
                                                 <th>邮箱</th>
                                                 <th>头像</th>
                                                 <th>最后登陆时间</th>
-                                                <th>操作</th>
+
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -98,29 +97,13 @@
                                                 @endif
 
                                                 </td>
-												<td>
-                                                @if($v->status == 0)
-                                                    离线
-                                                    @else
-                                                    在线
-                                                @endif 
-
-                                                </td>
+												
                                                 <td>{{$v->userinfo->telphone}}</td>
                                                 <td>{{$v->userinfo->email}}</td>
                                                 <td><img src="{{$v->userinfo->avatar}}"></td>
 
 												<td>{{date('Y-m-d H:i:s',$v->last_login_time)}}</td>
-												<td>
-                                                    <div class="tpl-table-black-operation">
-                                                        <a href="{{url('/admin/users/edit/'.$v->uid)}}">
-                                                            <i class="am-icon-pencil"></i> 编辑
-                                                        </a>
-                                                        <a href="{{url('/admin/users/delete/'.$v->uid)}}" class="tpl-table-black-operation-del">
-                                                            <i class="am-icon-trash"></i> 删除
-                                                        </a>
-                                                    </div>
-                                                </td>
+												
 											</tr>
                                           @endforeach
 

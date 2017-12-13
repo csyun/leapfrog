@@ -36,5 +36,8 @@ class Home_User extends Model
         return $this->hasOne('App\Models\UserInfo','uid','uid');
     }
 
-
+    public function comment()
+    {
+        return $this->hasMany('App\Models\MarketComment');
+    }
 }

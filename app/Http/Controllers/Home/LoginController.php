@@ -80,6 +80,8 @@ class LoginController extends Controller
                     return redirect('/login')->with('errors','账号未激活');
                 }
                 $back = Session::get('back');
+                $time = time();
+                $res = Home_User::where('uid',$user0->uid)->update(['last_login_time'=>$time]);
                 if($back){
                     return redirect($back);
                 }
@@ -100,6 +102,12 @@ class LoginController extends Controller
                 if ($user1['active'] == 0) {
                     return redirect('/login')->with('errors','账号未激活');
                 }
+                $back = Session::get('back');
+                $time = time();
+                $res = Home_User::where('uid',$user1->uid)->update(['last_login_time'=>$time]);
+                if($back){
+                    return redirect($back);
+                }
 	            return redirect('/');
 
 	        } else{
@@ -109,4 +117,20 @@ class LoginController extends Controller
     	}
 
 	}
+
+
+    /**
+     * 退出登录
+     * @auth:caoshouyun
+     * @date:2017/11/30
+     * @return 登录视图
+     */
+    public function loginout()
+    {
+        //清空session
+        session()->flush();
+
+        return redirect('/');
+    }
+
 }

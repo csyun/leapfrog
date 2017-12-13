@@ -14,12 +14,12 @@
 								
 									
 							@foreach($data as $k=>$v)
-								<div class="s-item-wrap">
+								<div class="s-item-wrap" style="width:190px">
 									<div class="s-item">
 
 										<div class="s-pic"  >
 											<a href="#" class="s-pic-link">
-												<img style="height: 190px" src="{{$v->avatar}}" alt="" title="" class="s-pic-img s-guess-item-img">
+												<img style="height: 190px;" src="{{$v->avatar}}" alt="" title="" class="s-pic-img s-guess-item-img">
 											</a>
 										</div>
 										<div class="s-info">

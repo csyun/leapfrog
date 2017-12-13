@@ -51,7 +51,7 @@
 					
 
 						
-								<div class="s-item-wrap">
+								<div class="s-item-wrap" style="width:190px">
 									<div class="s-item">
 
 										<div class="s-pic"  >

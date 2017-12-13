@@ -8,7 +8,7 @@
 						</div>
 						<hr/>
 						@if (count($errors) > 0)
-		                <div id="lan" class="alert alert-danger">
+		                <div id="lan" class="alert alert-danger" style="display: none">
 		                    <ul>
 		                        @if(is_object($errors))
 		                        @foreach ($errors->all() as $error)

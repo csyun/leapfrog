@@ -170,7 +170,7 @@
 
 <script type="text/javascript">
 
-    var d=/^\w{6,20}$/;
+    
         
     $("input").focus(function() {
         $(this).prev().css("color","#008DE8");

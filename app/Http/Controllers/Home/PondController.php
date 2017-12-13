@@ -9,6 +9,9 @@ use App\Models\Home_User;
 use App\Models\UserInfo;
 use App\Models\MarketInfo;
 use App\Models\MarketUser;
+use App\Models\User_CreateGoods;
+use App\Models\Admin_Goods;
+use App\Models\MarketComment;
 
 
 
@@ -19,7 +22,7 @@ use App\Models\MarketUser;
  * 
  */
 
-class PondController extends Controller
+class PondController extends CommonController
 {
     /**
      *我的蛙塘
@@ -113,7 +116,11 @@ class PondController extends Controller
             return back()->with('errors','收藏失败');
         }
     }
-
+    /**
+     * 取消收藏
+     * @param  Request $request [description]
+     * @return [type]           [description]
+     */
     public function decollect(Request $request)
     {
         //蛙塘ID
@@ -137,10 +144,13 @@ class PondController extends Controller
      * @return [type] [description]
      */
     public function pondlist(Request $request)
-    {
+    {   
+        //蛙塘id
         $input = $request->all();
         $mid = $input['mid'];
+        //蛙塘详细信息
         $marketinfo = MarketInfo::where('mid',$mid)->first();
+        //蛙塘收藏的人
         $marketuser = MarketUser::where('mid',$mid)->get();
         // dd($marketuser);
         // 蛙塘总成员数量
@@ -151,9 +161,141 @@ class PondController extends Controller
         $isinpond = MarketUser::where('mid',$mid)
                                 ->where('uid',$uid)
                                 ->first();
-        //塘主的商品       
-     return view('Home/Pond/pondlist',compact('marketinfo','count','isinpond'));   
+        //塘主的商品
+        //===蛙塘创建者id
+        $creator = $marketinfo->creator;
+        $user = Home_User::where('uname',$creator)->first();
+        $uid = $user->uid;
+        
+        //===查看塘主的商品
+        $goods = User_CreateGoods::where('uid',$uid)->get();
+        //===将商品id转为数组模式
+        if(!$goods){
+            $arr = [];
+        }else{
+            foreach($goods as $k=>$v){
+                $arr[] = $v->gid;
+            }
+        }
+        //===========蛙塘塘主的商品数组为$arr
+        //商品详细信息的数组
+        foreach ($arr as $k => $v) {
+            $data[] = Admin_Goods::where('gid',$v)->first();
+        }
+        
+
+        return view('Home/Pond/pondlist',compact('marketinfo','count','isinpond','data'));   
     }
+
+    /**
+     * 评论列表
+     * @param  Request $request [description]
+     * @return [type]           [description]
+     */
+    public function comment(Request $request)
+    {
+
+        // return 111;
+        //蛙塘Id
+        $input = $request->all();
+        // dd($input);
+        $mid = $input['mid'];
+         //蛙塘详细信息
+        $marketinfo = MarketInfo::where('mid',$mid)->first();
+        //蛙塘收藏的人
+        $marketuser = MarketUser::where('mid',$mid)->get();
+        // dd($marketuser);
+        // 蛙塘总成员数量
+        $count = count($marketuser);
+        //判断用户是否加入蛙塘
+        $user = session('homeuser');
+        $uid = $user->uid;
+        $isinpond = MarketUser::where('mid',$mid)
+                                ->where('uid',$uid)
+                                ->first();
+      
+
+        //蛙塘评论详细信息
+        $data = MarketComment::with('user')->where('mid',$mid)->get();
+    
+
+        //用户信息
+
+        // dd($data);
+        return view('Home/Pond/comment',compact('data','marketinfo','isinpond','count','userinfo'));
+    }
+
+    /**
+     * 发表评论页面
+     * @return [type] [description]
+     */
+    public function commentlist(Request $request)
+    {
+        //蛙塘Id
+        $input = $request->all();
+        // dd($input);
+        $mid = $input['mid'];
+         //蛙塘详细信息
+        $marketinfo = MarketInfo::where('mid',$mid)->first();
+        //蛙塘收藏的人
+        $marketuser = MarketUser::where('mid',$mid)->get();
+        // dd($marketuser);
+        // 蛙塘总成员数量
+        $count = count($marketuser);
+        //用户ID
+        $user = session('homeuser');
+        $uid = $user->uid;
+
+
+        return view('Home/Pond/commentlist',compact('marketinfo','count','uid'));
+    }
+    /**
+     * 提交评论
+     * @param  Request $request [description]
+     * @return [type]           [description]
+     */
+    public function commentstore(Request $request)
+    {
+
+        $this->validate($request,[
+            'title'=>'required|regex:/^[\x{4e00}-\x{9fa5}A-Za-z0-9_]+$/u|between:2,18',          
+            'content'=>'required',           
+        ],[
+            'title.required'=>'标题不能为空',
+            'title.regex'=>'标题必须汉字字母下划线',
+            'title.between'=>'标题必须在2到18位之间',                        
+            'content.required'=>'描述不能为空',            
+        ]);
+
+        //获取模板传来的数据
+        $input = $request->except('_token','btn','file_upload');
+        // dd($input);
+        
+        //时间,默认刚注册时就是用户当前最后登录时间
+        $time = time();
+        $input['create_time'] = $time;
+
+
+        // dd($data);
+
+        //Admin_User与后台用户表data_admin_user关联的模型
+        //数据上传给数据库
+        
+        $res = MarketComment::create($input);
+        // dd($res);
+
+        //判断
+        if($res)
+        {
+
+            return  redirect('/comment?mid='.$input['mid'])->with('errors','评论成功');
+        }else{
+            return back()->with('errors','评论失败');
+        }        
+
+    }
+
+
 
 //=====================================================================================================   
     /**
@@ -181,7 +323,7 @@ class PondController extends Controller
                 $arr[] = $v->mid;
             }
         }
-        dd($arr);
+        // dd($arr);
         return view('Home/Pond/index',compact('data','arr'));
     }
 
@@ -263,7 +405,7 @@ class PondController extends Controller
         //时间,默认刚注册时就是用户当前最后登录时间
         $time = time();
         $data['creat_time'] = $time;
-        $data['avatar'] = $input['art_thumb'];
+        $data['avatar'] ="http://leapfrog.oss-cn-beijing.aliyuncs.com/".$input['art_thumb'];
         $data['mname'] = $input['mname'];
         $data['desc'] = $input['desc'];
         $data['addres'] = $input['a'].$input['b'].$input['c'];
