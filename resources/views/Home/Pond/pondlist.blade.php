@@ -10,41 +10,79 @@
 						</div>
 						<hr/>
 
-						<!--头像 -->
-						<div class="user-infoPic">
+						<!--个人信息 -->
+								<div class="m-bg"></div>
+								<div class="m-userinfo">
+									<div class="m-baseinfo">
+										<a href="information.html">
+											<img src="{{$marketinfo->avatar}}">
+										</a>
+										<em class="s-name">塘主:{{$marketinfo->creator}}<span class="vip1"></em>
+										<div class="s-prestige am-btn am-round">
+											</span>蛙塘收藏人数:{{$count}}</div>
+									</div>
+									<div class="m-right">
+										@if($isinpond)
+										<div class="m-new">
+											<a href="javascript:;">
+											<div  class="am-btn am-btn-secondary">已收藏</div>
+											</a>
+										</div>
+										@else
+										<div class="m-new">
+											<a href="{{asset('/collectpond?mid='.$marketinfo->mid)}}">
+											<div  class="am-btn am-btn-secondary">收藏蛙塘</div>
+											</a>
+										</div>
+										@endif
 
-							<div class="filePic">
-								<input type="file" class="inputPic" allowexts="gif,jpeg,jpg,png,bmp" accept="image/*">
-								<img style="height:100px" class="am-circle am-img-thumbnail" src="{{$marketinfo->avatar}}" alt=""/>
-							</div>
-
-							<p class="am-form-help"></p>
-
-							<div class="info-m">
-								<div><b>塘主：<i>{{$marketinfo->creator}}</i></b></div>
-
-								<div class="u-safety">
-									<a href="safety.html">
-									 蛙塘成员:
-									<span class="u-profile"><i class="bc_ee0000" style="width: 60px;" width="0">{{$count}}</i></span>
-									</a>
+										<a href="{{url('/comment?mid='.$marketinfo->mid)}}">
+											<div  class="am-btn am-btn-secondary">蛙塘评价</div>
+										</a>
+									</div>
 								</div>
-								@if($isinpond)
-								
-									<div disabled class="am-btn am-btn-secondary">已加入</div>
-								
-								@else
-								<a href="">
-									<div  class="am-btn am-btn-secondary">加入蛙塘</div>
-								</a>
-								@endif
-							</div>
-						</div>
-					
-								
+						
+						@foreach($data as $k=>$v)		
+						<div class="goods">
+							<div class="goods-box first-box">
+								<div class="goods-pic">
+									<div class="goods-pic-box">
+										<a class="goods-pic-link" target="_blank" href="#" title="">
+											<img src="{{$v->gpurl}}" class="goods-img"></a>
+									</div>
+									@if($v->status == 1)
+									<div class="goods-status goods-status-show"><span class="desc">宝贝已下架</span></div>
+									@else
+									<div class="goods-status goods-status-show"><span class="desc">宝贝在售</span></div>
+									@endif
 									
+								</div>
 
+								<div class="goods-attr">
+									<div class="good-title">
+										<a class="title" href="#" target="_blank">{{$v->gname}}</a>
+									</div>
+									<div class="goods-price">
+										<span class="g_price">                                    
+                                        <span>¥</span><strong>{{$v->gprice}}</strong>
+										</span>
+										<span class="g_price g_price-original">                                    
+                                        <span>¥</span><strong>{{$v->gprice+99}}</strong>
+										</span>
+									</div>
+									<div class="clear"></div>
+									<div class="goods-num">
+										<div class="match-recom">
+											<a href="#" class="match-recom-item">立即购买</a>
+											<a href="{{url('/home/shopcart/'.$v->gid)}}" class="match-recom-item">加入购物车</a>
+											<i><em></em><span></span></i>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>		
 
+						@endforeach
 
 
 

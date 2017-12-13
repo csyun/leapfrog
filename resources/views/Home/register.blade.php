@@ -219,19 +219,21 @@
               
         $("#email").blur(function() {
             var v=$(this).val();
-            $.ajax({
-                    type:"post",
-                    url:"{{url('/register/ajax')}}",
-                    data:{"email":v,"_token":"{{csrf_token()}}"},
-                    success:function(data){
-                        if(data){
-                             layer.msg("邮箱已注册！", {icon: 6});
-                        }
-                    },
+            if(v){
+                $.ajax({
+                        type:"post",
+                        url:"{{url('/register/ajax')}}",
+                        data:{"email":v,"_token":"{{csrf_token()}}"},
+                        success:function(data){
+                            if(data){
+                                 layer.msg("邮箱已注册！", {icon: 6});
+                            }
+                        },
 
-                    dataType: "json",
+                        dataType: "json",
 
-             });
+                });
+             }
                  
             if (v=='') {
                 layer.msg("邮箱不能为空！", {icon: 6});
@@ -343,19 +345,21 @@
               
         $("#telphone").blur(function() {
             var v=$(this).val();
-            $.ajax({
-                    type:"post",
-                    url:"{{url('/register/phoneajax')}}",
-                    data:{"telphone":v,"_token":"{{csrf_token()}}"},
-                    success:function(data){
-                        if(data){
-                             layer.msg("手机已注册！", {icon: 6});
-                        }
-                    },
+            if(v != ''){
+                $.ajax({
+                        type:"post",
+                        url:"{{url('/register/phoneajax')}}",
+                        data:{"telphone":v,"_token":"{{csrf_token()}}"},
+                        success:function(data){
+                            if(data){
+                                 layer.msg("手机已注册！", {icon: 6});
+                            }
+                        },
 
-                    dataType: "json",
+                        dataType: "json",
 
-             });
+                 });
+             }
                  
             if (v=='') {
                 layer.msg("手机号不能为空！", {icon: 6});

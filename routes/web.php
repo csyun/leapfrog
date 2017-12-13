@@ -88,11 +88,15 @@ Route::post('/doreset','Home\PasswordController@doreset');
 Route::resource('/myself', 'MyselfController');
 
 Route::group(['middleware'=>'homelogin','namespace'=>'Home'],function (){
+    //前台退出登录
+    Route::get('/loginout','LoginController@loginout');
+
+
     //蛙塘
     Route::resource('/pond','PondController');
     //图片上传
     //Route::post('/pond/upload','PondController@upload');
-    //进入蛙塘
+    //进入蛙塘详情
     Route::get('/pondlist','PondController@pondlist');
     //收藏蛙塘
     Route::get('/collectpond','PondController@collectpond');
@@ -102,8 +106,16 @@ Route::group(['middleware'=>'homelogin','namespace'=>'Home'],function (){
     Route::get('/decollect','PondController@decollect');
     //我的蛙塘
     Route::get('/mypond','PondController@mypond');
+    //蛙塘评论
+    Route::get('/comment','PondController@comment'); 
+    //发表评论
+    Route::get('/commentlist','PondController@commentlist');
+    //提交评论
+    Route::post('/commentstore','PondController@commentstore');
+
+       
 });
-;
+
 
 
 
