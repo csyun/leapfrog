@@ -80,9 +80,9 @@
                                                         <a href="{{url('admin/goods/'.$v->gid.'/edit')}}">
                                                             <i class="am-icon-pencil"></i> 编辑
                                                         </a>
-                                                        <a href="{{url('admin/goods/detailsimg/')}}">
-                                                            <i class="am-icon-pencil"></i> 添加商品细节
-                                                        </a>
+                                                        {{--<a href="{{url('admin/goods/detailsimg/')}}">--}}
+                                                            {{--<i class="am-icon-pencil"></i> 添加商品细节--}}
+                                                        {{--</a>--}}
                                                         <a href="javascript:;" onclick="goodsDel({{$v->gid}})"class="tpl-table-black-operation-del">
                                                             <i class="am-icon-trash"></i> 删除
                                                         </a>
