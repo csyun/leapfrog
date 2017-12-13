@@ -253,4 +253,5 @@ class RecycleGoodsController extends Controller
 
         return $data;
     }
+
 }

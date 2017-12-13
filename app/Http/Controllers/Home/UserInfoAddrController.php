@@ -1,15 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Home;
 
-use App\Models\RecycleGoodAttribute;
-use App\Models\RecycleGoodOrder;
-use App\Models\RecycleGoods;
-use App\Models\RecycleGoodsAttrValue;
+use App\Models\Addr;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Session;
 
-class RecycleOrdersController extends Controller
+class UserInfoAddrController extends CommonController
 {
     /**
      * Display a listing of the resource.
@@ -18,9 +16,9 @@ class RecycleOrdersController extends Controller
      */
     public function index()
     {
-        $recycleorders = RecycleGoodOrder::orderby('creat_time','desc')->paginate(10);
-
-        return view('Admin\RecycleOrder\index',compact('recycleorders'));
+        $addrs = Addr::where('uid',Session::get('homeuser.uid'))->get();
+       //dd($addrs);
+        return view('Home\UserInfo\addr',compact('addrs'));
     }
 
     /**
@@ -41,7 +39,15 @@ class RecycleOrdersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->except('_token');
+        $input['uid'] = Session::get('homeuser.uid');
+        //dd($input);
+        $res = Addr::create($input);
+        if ($res){
+            return redirect('/userinfo/addr');
+        } else{
+            return back();
+        }
     }
 
     /**
@@ -52,16 +58,7 @@ class RecycleOrdersController extends Controller
      */
     public function show($id)
     {
-        $recycleorder = RecycleGoodOrder::where('roid',$id)->first();
-        //dd($recycleorder);
-        $goodname = RecycleGoods::find($recycleorder->rgid)->rgname;
-        $attr_id = explode(',',$recycleorder->info);
-        $attr_value = RecycleGoodsAttrValue::whereIn('goods_attr_id',$attr_id)->get();
-        foreach ($attr_value as $k=>$v){
-            $attr_value[$k]['attr_type'] = RecycleGoodAttribute::find($v->attr_id)->attr_name;
-        }
-        //dd($attr_value);
-        return view('Admin\RecycleOrder\info',compact('attr_value','recycleorder','goodname'));
+        //
     }
 
     /**
@@ -72,7 +69,9 @@ class RecycleOrdersController extends Controller
      */
     public function edit($id)
     {
-        //
+       $addr = Addr::find($id);
+       //dd($addr);
+        return view('Home\UserInfo\editaddr',compact('addr'));
     }
 
     /**
@@ -84,18 +83,14 @@ class RecycleOrdersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //dd($id);
         $input = $request->except('_token','_method');
-
-        $input['update_time'] = time();
-        //dd($input);
-        $res = RecycleGoodOrder::where('roid',$id)->update($input);
-        if($res)
-        {
-            return redirect('/admin/recycleorders')->with('msg','修改成功');;
-        }else{
-            return back()->with('msg','修改失败');;
-        }
+        $res= Addr::find($id)->update($input);
+       if ($res)
+       {
+           return redirect('/userinfo/addr');
+       } else{
+           return back();
+       }
     }
 
     /**
@@ -106,6 +101,18 @@ class RecycleOrdersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $res = Addr::find($id)->delete();
+        $data = [];
+        if($res){
+            $data['error'] = 0;
+            $data['msg'] ="删除成功";
+        }else{
+            $data['error'] = 1;
+            $data['msg'] ="删除失败";
+        }
+
+        //return  json_encode($data);
+
+        return $data;
     }
 }

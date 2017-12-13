@@ -43,7 +43,7 @@
                     @endforeach
                 </ul>
                 </div>
-                <div class="am-fr" style="text-align: center;width: 900px;height: 30px;margin-top: -25px;">
+                <div class="am-fr" style="text-align: center;width: 525px;height: 30px;margin-top: -25px;">
                     {!! $recyclegoods->render() !!}
                 </div>
 

@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Home;
 
 use App\Models\RecycleGoodAttribute;
+use App\Models\RecycleGoodOrder;
 use App\Models\RecycleGoodsAttrValue;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\RecycleGoods;
+use Session;
 
 class RecycleController extends CommonController
 {
@@ -18,7 +21,7 @@ class RecycleController extends CommonController
      */
     public function index()
     {
-        $recyclegoods = RecycleGoods::paginate(2);
+        $recyclegoods = RecycleGoods::paginate(4);
         return view('Home\Recycle\list',compact('recyclegoods'));
     }
     /**
@@ -61,8 +64,51 @@ class RecycleController extends CommonController
     }
     public function count(Request $request)
     {
-        $input = $request->except('_token');
-        dd($input);
+        $recyclegood = $request->except('_token');
+
+        $attr = $request->goods_attr_id;
+        $attrarr = RecycleGoodsAttrValue::whereIn('goods_attr_id',$attr)->get();
+        //dd($attrarr);
+
+        $sum = 0;
+        foreach ($attrarr as $k=>$v){
+            $sum +=$v->attr_price;
+        }
+        $count = $request->rgprice - $sum;
+        $recyclegood['rprice'] = $count;
+        Session::put('recyclegood',$recyclegood);
+        return view('Home\Recycle\count',compact('count','attrarr','recyclegood'));
+    }
+    public function recycleorder(Request $request)
+    {
+        $recyclegood = Session::get('recyclegood');
+
+        return view('Home\Recycle\order',compact('recyclegood'));
+    }
+    public function recyclecommit(Request $request)
+    {
+        $recyclegood = Session::get('recyclegood');
+        //dd($recyclegood);
+        $info = implode(',',$recyclegood['goods_attr_id']);
+
+        $recycleinfo =  $request->except('_token');
+        $orderinfo['roid'] = time().rand(1000,9999);
+        $orderinfo['uid'] = Session::get('homeuser')->uid;
+        $orderinfo['creat_time'] = time();
+        $orderinfo['rpice'] = $recyclegood['rprice'];
+        $orderinfo['rgid'] = $recyclegood['rgid'];
+        $orderinfo['addr'] = $recycleinfo['addr'];
+        $orderinfo['rcname'] = $recycleinfo['rcname'];
+        $orderinfo['rctel'] = $recycleinfo['rctel'];
+        $orderinfo['status'] = 0;
+        $orderinfo['info'] = $info;
+        $res = RecycleGoodOrder::create($orderinfo);
+        if ($res){
+            return view('Home\Recycle\success',compact('recycleinfo'));
+        } else {
+            return back()->with('msg','添加失败');
+        }
+
     }
 
 

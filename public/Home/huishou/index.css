@@ -531,11 +531,11 @@
 #group-property .select-property li {
 	position: relative;
 	float: left;
-	width: 408px;
-	height: 16px;
-	line-height: 16px;
+	width: 300px;
+	height: 30px;
+	line-height: 30px;
 	margin: 20px 20px 0 0;
-	padding: 16px 0;
+	padding: 0px 0;
 	border: 1px solid #e2e2e2;
 	text-align: center;
 	cursor: pointer;
@@ -549,7 +549,7 @@
 
 #group-property .select-property li .tips {
 	position: absolute;
-	top: 15px;
+	top: 7px;
 	right: 10px;
 	background: url(images/icon-inquiry.png) -91px -10px no-repeat;
 	width: 20px;

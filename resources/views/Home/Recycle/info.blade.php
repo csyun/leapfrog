@@ -16,7 +16,7 @@
 
                 <div style="border: 1px solid #f1f4f5;">
                     <div style="text-align: center;">
-                        <img style="height: 200px;width: 200px;margin-top: 20px;" src="http://leapfrog.oss-cn-beijing.aliyuncs.com//{{$recyclegood->rgpic}}" /></a>
+                        <img style="height: 200px;width: 200px;margin-top: 20px;" src="http://leapfrog.oss-cn-beijing.aliyuncs.com//{{$recyclegood->rgpic}}" />
                     </div>
                     <div style="height: 30px;text-align: center;line-height: 30px;">{{$recyclegood->rgname}}</div>
                     <div style="height: 30px;text-align: center;line-height: 30px;">已有38人回收</div>
@@ -49,7 +49,7 @@
                         <dd>
                             <ul data-ppn-name="" class="clearfix">
                                 @foreach($v->goodattrvalue as $k3=>$v3)
-                                <li class="property-value hasIllus" data-id="{{$v->attr_id}}[]" >
+                                <li class="property-value hasIllus" data-id="{{$v3['goods_attr_id']}}" >
                                     <div class="value-text">{{$v3['attr_value']}}</div>
                                     <div class="tips"></div>
                                 </li>
@@ -62,11 +62,18 @@
                     @endforeach
 
                 </div>
-
+                <form id="attrform" action="{{url('/recyclegoods/count/')}}" method="post">
+                    {{csrf_field()}}
+                    <input type="hidden" name="rgname" value="{{$recyclegood->rgname}}">
+                    <input type="hidden" name="rgid" value="{{$recyclegood->rgid}}">
+                    <input type="hidden" name="rgprice" value="{{$recyclegood->rgprice}}">
+                    <input type="hidden" name="rgpic" value="{{$recyclegood->rgpic}}">
                 <div class="footer clearfix">
-                    <a class="disabled ahs-track-click" data-track-category="PC-Productdetail" data-track-action="inquirybtn-click" data-track-name="inquirybtn-click" id="submit" href="http://www.aihuishou.com/userinquiry/create.html" data-pid="15145" data-mid="">免费询价</a>
+                    <div style="background-color: #FF5400;height: 40px;line-height:40px;width: 100px;text-align: center;margin-left:600px;">
+                    <button type="submit" style="font-size: 20px;color: #ffffff">免费询价</button>
+                    </div>
                 </div>
-
+                </form>
 
 
             </div>
@@ -79,31 +86,3 @@
 
 
 @endsection
-
-{{--<div style="background-color: #ffffff;width: 800px;height: 500px;float: left;margin-left: 20px;border: 1px solid #f1f4f5;">--}}
-    {{--<h2>基本信息</h2>--}}
-    {{--<div id="attr-content">--}}
-
-        {{--<form action="{{url('/recyclegoods/count/')}}" method="post">--}}
-            {{--{{csrf_field()}}--}}
-            {{--@foreach($recycleattr as $k=>$v)--}}
-                {{--<div class="">--}}
-                    {{--<div style="margin-top: 20px;margin-left: 20px;">{{$v->attr_name}}</div>--}}
-                    {{--@if ($v->goodattrvalue)--}}
-                        {{--@foreach($v->goodattrvalue as $k3=>$v3)--}}
-                            {{--<div style="margin-left: 10px;">--}}
-                                {{--<input type="radio"   name="{{$v->attr_id}}[]"  value="{{$v3['goods_attr_id']}}" style="width: 20px;">{{$v3['attr_value']}}--}}
-
-                            {{--</div>--}}
-                        {{--@endforeach--}}
-                    {{--@endif--}}
-
-
-                {{--</div>--}}
-            {{--@endforeach--}}
-            {{--<div>--}}
-                {{--<button type="submit">提交</button>--}}
-            {{--</div>--}}
-        {{--</form>--}}
-    {{--</div>--}}
-{{--</div>--}}

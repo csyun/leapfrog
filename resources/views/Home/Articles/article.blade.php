@@ -23,10 +23,7 @@
 
 
             <hr class="am-article-divider blog-hr">
-            <ul class="am-pagination blog-pagination">
-                <li class="am-pagination-prev"><a href="">&laquo; 上一页</a></li>
-                <li class="am-pagination-next"><a href="">下一页 &raquo;</a></li>
-            </ul>
+
         </div>
 
         <div class="am-u-md-3 blog-sidebar">
@@ -36,7 +33,7 @@
                     <div class="am-panel-hd">头条资讯</div>
                     <ul class="am-list blog-list">
                         @foreach($articles as $k=>$v)
-                        <li><a href="#"><p>[{{$v->tags}}]{{$v->title}}</p></a></li>
+                        <li><a href="{{url('/articles/')}}/{{$v->aid}}"><p>[{{$v->tags}}]{{$v->title}}</p></a></li>
 
                         @endforeach
                     </ul>

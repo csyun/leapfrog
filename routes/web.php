@@ -26,6 +26,7 @@ Route::post('/recyclegoods/count/','Home\RecycleController@count');
 
 
 
+
 //前台展示页
 Route::get('/home/goods/list/{id}','Home\GoodsController@index');
 //前台搜索
@@ -85,13 +86,13 @@ Route::post('/doreset','Home\PasswordController@doreset');
 
 
 //前台个人中心
-Route::resource('/myself', 'MyselfController');
+//Route::resource('/myself', 'MyselfController');
 
 Route::group(['middleware'=>'homelogin','namespace'=>'Home'],function (){
     //蛙塘
     Route::resource('/pond','PondController');
     //图片上传
-    //Route::post('/pond/upload','PondController@upload');
+    Route::post('/pond/upload','PondController@upload');
     //进入蛙塘
     Route::get('/pondlist','PondController@pondlist');
     //收藏蛙塘
@@ -102,8 +103,21 @@ Route::group(['middleware'=>'homelogin','namespace'=>'Home'],function (){
     Route::get('/decollect','PondController@decollect');
     //我的蛙塘
     Route::get('/mypond','PondController@mypond');
+    //估价路由
+    Route::get('/recyclegoods/order/','RecycleController@recycleorder');
+    Route::post('/recyclegoods/recyclecommit/','RecycleController@recyclecommit');
+    //前台个人中心首页
+    Route::get('/userinfo','UserInfoController@index');
+    //前台个人中心首页
+    Route::get('/userinfo/information','UserInfoController@information');
+    //修改个人信息
+    Route::post('/userinfo/addinformation','UserInfoController@infoadd');
+    //个人中心地址管理
+    Route::resource('/userinfo/addr','UserInfoAddrController');
+    //前台个人中心回收订单
+    Route::get('/userinfo/recycleorder','UserInfoController@recycleorder');
 });
-;
+
 
 
 
@@ -113,7 +127,7 @@ Route::get('/admin/login','Admin\LoginController@login');
 Route::get('/getcode','Api\CodeController@code');
 //上传阿里云图片路由
 //上传图片
-Route::post('upload', 'Api\UploadController@upload');
+Route::post('/upload', 'Api\UploadController@upload');
 //后台处理登录逻辑
 Route::post('/admin/dologin','Admin\LoginController@doLogin');
 //没有权限跳转的页面

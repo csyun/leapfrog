@@ -164,70 +164,7 @@
 
 					<!--热门活动 -->
 
-					<div class="am-container">
 
-                     <div class="sale-mt">
-		                   <i></i>
-		                   <em class="sale-title">限时秒杀</em>
-		                   <div class="s-time" id="countdown">
-			                    <span class="hh">01</span>
-			                    <span class="mm">20</span>
-			                    <span class="ss">59</span>
-		                   </div>
-	                  </div>
-
-
-					  <div class="am-g am-g-fixed sale">
-						<div class="am-u-sm-3 sale-item">
-							<div class="s-img">
-								<a href="# "><img src="{{asset('/Home/images/sale3.jpg')}}" /></a>
-							</div>
-                           <div class="s-info">
-                           	   <a href="#"><p class="s-title">ZEK 原味海苔</p></a>
-                           	   <div class="s-price">￥<b>9.90</b>
-                           	   	  <a class="s-buy" href="#">秒杀</a>
-                           	   </div>
-                           </div>
-						</div>
-
-						<div class="am-u-sm-3 sale-item">
-							<div class="s-img">
-								<a href="# "><img src="{{asset('/Home/images/sale2.jpg')}}" /></a>
-							</div>
-                           <div class="s-info">
-                           	   <a href="#"><p class="s-title">ZEK 原味海苔</p></a>
-                           	   <div class="s-price">￥<b>9.90</b>
-                           	   	  <a class="s-buy" href="#">秒杀</a>
-                           	   </div>
-                           </div>
-						</div>
-
-						<div class="am-u-sm-3 sale-item">
-							<div class="s-img">
-								<a href="# "><img src="{{asset('/Home/images/sale1.jpg')}}" /></a>
-							</div>
-                           <div class="s-info">
-                           	   <a href="#"><p class="s-title">ZEK 原味海苔</p></a>
-                           	   <div class="s-price">￥<b>9.90</b>
-                           	   	  <a class="s-buy" href="#">秒杀</a>
-                           	   </div>
-                           </div>
-						</div>
-
-						<div class="am-u-sm-3 sale-item">
-							<div class="s-img">
-								<a href="# "><img src="{{asset('/Home/images/sale2.jpg')}}" /></a>
-							</div>
-                           <div class="s-info">
-                           	   <a href="#"><p class="s-title">ZEK 原味海苔</p></a>
-                           	   <div class="s-price">￥<b>9.90</b>
-                           	   	  <a class="s-buy" href="#">秒杀</a>
-                           	   </div>
-                           </div>
-						</div>
-
-					  </div>
-                   </div>
 					<div class="clear "></div>
             <div class="f1">
 					<!--甜点-->
@@ -237,9 +174,6 @@
 						<div class="shopTitle ">
 							<h4 class="floor-title" style="width: 150px;">{{$v->rname}}</h4>
 							<div class="floor-subtitle" ><em class="am-icon-caret-left" style="margin-left: 100px;"></em><h3>{{$v->title}}</h3></div>
-
-
-
 						</div>
 					</div>
 
@@ -258,7 +192,7 @@
 									</div>
 
 								</div>
-								<a href="# "><img src="{{asset('/Home/images/act1.png')}}" /></a>
+								<a href="# "><img src="http://leapfrog.oss-cn-beijing.aliyuncs.com/{{$v->rpic}}" /></a>
 						</div>
 
 						<li>

@@ -9,7 +9,8 @@
 
 		<link href="{{asset('/Home/assets/css/amazeui.css')}}" rel="stylesheet" type="text/css" />
 		<link href="{{asset('/Home/assets/css/admin.css')}}" rel="stylesheet" type="text/css" />
-
+		<link href="{{asset('/Home/css/personal.css')}}" rel="stylesheet" type="text/css">
+		<link href="{{asset('/Home/css/vipstyle.css')}}" rel="stylesheet" type="text/css">
 		<link href="{{asset('/Home/basic/css/demo.css')}}" rel="stylesheet" type="text/css" />
 		<link href="{{asset('/Home/css/seastyle.css')}}" rel="stylesheet" type="text/css" />
 		<link href="{{asset('/Home/css/cartstyle.css')}}" rel="stylesheet" type="text/css" />
@@ -32,17 +33,22 @@
 				<ul class="message-l">
 					<div class="topMessage">
 						<div class="menu-hd">
-							<a href="{{url('/login')}}" target="_top" class="h">亲，请登录</a>
-							<a href="{{url('/register')}}" target="_top">免费注册</a>
+							@if(Session::get('homeuser.uname'))
+							<a href="{{url('/userinfo')}}" target="_top" class="h">你好,{{Session::get('homeuser.uname')}}</a>
+							<a href="{{url('/register')}}" target="_top">退出</a>
+								@else
+								<a href="{{url('/login')}}" target="_top" class="h">亲，请登录</a>
+								<a href="{{url('/register')}}" target="_top">免费注册</a>
+								@endif
 						</div>
 					</div>
 				</ul>
 				<ul class="message-r">
 					<div class="topMessage home">
-						<div class="menu-hd"><a href="#" target="_top" class="h">商城首页</a></div>
+						<div class="menu-hd"><a href="{{url('/')}}" target="_top" class="h">商城首页</a></div>
 					</div>
 					<div class="topMessage my-shangcheng">
-						<div class="menu-hd MyShangcheng"><a href="#" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
+						<div class="menu-hd MyShangcheng"><a href="{{url('/userinfo')}}" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
 					</div>
 					<div class="topMessage mini-cart">
 						<div class="menu-hd"><a id="mc-menu-hd" href="{{url('/home/shopcart/cart/index')}}" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a></div>
@@ -106,13 +112,10 @@
 		<div class="footer " style="text-align: center;">
 						<div class="footer-hd ">
 							<p style="text-align: center;">
-								<a href="# ">曹守云</a>
+								@foreach($links as $k=>$v)
+								<a href="{{url($v->url)}}">{{$v->lname}}</a>
 								<b>|</b>
-								<a href="# ">李瑞宸</a>
-								<b>|</b>
-								<a href="# ">苏波</a>
-								<b>|</b>
-								<a href="# ">李丹丹</a>
+								@endforeach
 							</p>
 						</div>
 						<div class="footer-bd ">
