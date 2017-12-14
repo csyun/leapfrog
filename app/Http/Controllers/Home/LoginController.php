@@ -18,7 +18,7 @@ use Session;
  * 
  */
 
-class LoginController extends Controller
+class LoginController extends CommonController
 {
     public function login()
 	{

@@ -62,9 +62,9 @@
 
 								
 
-						<div class="am-tabs am-tabs-d2 am-margin" data-am-tabs>
+						<!-- <div class="am-tabs am-tabs-d2 am-margin" data-am-tabs>
 
-							
+								
 
 
 							@foreach($data as $k=>$v)
@@ -125,11 +125,52 @@
 
 
 
-						</div>
+						</div> -->
+
+						@foreach($data as $k=>$v)
+						<div class="module-income ng-scope" >
+								<div class="income-slider ">
+									<div class="block-income block  fn-left">
+										
+
+										<div ng-class="shoppingChart" class="catatory-details  fn-hide shopping">
+											<div class="catatory-chart fn-left fn-hide">
+												<div class="title">标题</div>
+												<ul>
+													{{$v->title}}
+
+												</ul>
+											</div>
+											<div class="catatory-detail fn-left">
+												<div class="title ng-binding">
+													内容
+												</div>
+												<ul>
+												
+													{!!$v->content!!}
+
+												</ul>
+											</div>
+										</div>
+									</div>
+									<div class="block-expense block  fn-left" style="height:190px">
+									<br>
+									<br>
+									<br>
+										<p>评论人:<br>{{$v->user->uname}}<br>评论时间:<br>{{date('Y-m-d H:i:s',$v->create_time)}}</p>
+									</div>
+									
+
+								
+											
+									
+								</div>
 
 
 
-						
+							</div>
+							<hr>
+							@endforeach
 
 
 
