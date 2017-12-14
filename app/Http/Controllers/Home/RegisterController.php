@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Mail;
  * 
  */
 
-class RegisterController extends Controller
+class RegisterController extends CommonController
 {
     /**
      * 注册页面

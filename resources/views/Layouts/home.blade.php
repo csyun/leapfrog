@@ -89,7 +89,7 @@
 			<div class="long-title"><span class="all-goods"><img style="margin-top: -106px;" src="{{asset('/Home/images/logo.png')}}" /></span></div>
 			<div class="nav-cont">
 				<ul>
-					<li class="index"><a href="http://leapfrog.com/">首页</a></li>
+					<li class="index"><a href="{{asset('/')}}">首页</a></li>
 					@foreach($navs as $k=>$v)
 					<li class="qc"><a href="{{url($v->nav_url)}}">{{$v->nav_name}}</a></li>
 					@endforeach

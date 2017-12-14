@@ -22,7 +22,7 @@ class Role extends Model
 
     public function admin_users()
     {
-        return $this->belongsToMany('App\M<odels\Admin_User','data_role_user','rid','uid');
+        return $this->belongsToMany('App\Models\Admin_User','data_role_user','rid','uid');
     }
 
 

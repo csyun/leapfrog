@@ -52,8 +52,10 @@
 									</div>
 									@if($v->status == 1)
 									<div class="goods-status goods-status-show"><span class="desc">宝贝已下架</span></div>
-									@else
+									@elseif($v->status == 0)
 									<div class="goods-status goods-status-show"><span class="desc">宝贝在售</span></div>
+									@else
+									<div class="goods-status goods-status-show"><span class="desc">宝贝已售出</span></div>
 									@endif
 									
 								</div>
@@ -73,9 +75,11 @@
 									<div class="clear"></div>
 									<div class="goods-num">
 										<div class="match-recom">
-											<a href="#" class="match-recom-item">立即购买</a>
-											<a href="{{url('/home/shopcart/'.$v->gid)}}" class="match-recom-item">加入购物车</a>
+											@if($v->status == 0)
+											<a href="{{url('/home/shopcart/cart/buy/'.$v->gid)}}" class="match-recom-item">立即购买</a>
+											<a href="#" onclick="cart({{$v->gid}})" class="match-recom-item">加入购物车</a>
 											<i><em></em><span></span></i>
+											@endif
 										</div>
 									</div>
 								</div>
@@ -96,5 +100,27 @@
 					</div>
 					
 
+<script type="text/javascript">
+ 
+ 			function cart(id) {
 
+   
+                    $.get("{{url('/home/shopcart')}}/" + id, function (data) {
+					//添加成功
+                        if (data.error == 0) {
+                            layer.msg(data.msg, {icon: 6});
+					//var t = setTimeout("location.href = location.href;", 2000);
+                        } else if (data.error == 1) {
+                            layer.msg(data.msg, {icon: 5});
+					//var t = setTimeout("location.href = location.href;", 2000);
+                        }else{
+                            layer.msg(data.msg, {icon: 2});
+					//var t = setTimeout("location.href = location.href;", 2000);
+                        }
+                    });              
+
+                
+            }
+
+</script>
 @stop
