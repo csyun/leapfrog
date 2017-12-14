@@ -108,7 +108,7 @@
                         <li> <a href="{{url('userinfo/myaddgoods')}}">已发布商品</a></li>
                     </ul>
                 </li>
-                
+
             </ul>
 
         </aside>

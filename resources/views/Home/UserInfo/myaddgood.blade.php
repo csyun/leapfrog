@@ -53,7 +53,7 @@
                             </a>
                         @endif
 
-                            <a href="{{url('goods/gstatus/'.$v->gid)}}"> 编辑  </a><a href="javascript:;" onclick="goodsDel({{$v->gid}})">  删除</a>
+                            <a href="{{url('/home/goods/edit/'.$v->gid)}}"> 编辑  </a><a href="javascript:;" onclick="goodsDel({{$v->gid}})">  删除</a>
 
                     </div>
                 </li>
