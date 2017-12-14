@@ -45,6 +45,8 @@ class IdeaController extends Controller
 
 
         $input = $request->except("_token");
+        $input['create_time'] = date('Y-m-d H:i:s');
+       // dd($input);
         $res = idea::create($input);
         //判断
         if($res)
@@ -56,7 +58,7 @@ class IdeaController extends Controller
        
     }
 
-    /**
+    /**2 
      * Display the specified resource.
      *
      * @param  int  $id
@@ -75,7 +77,9 @@ class IdeaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $Idea = Idea::find($did);
+        return view ('Admin/Idea/edit',compact('Idea'));
+        
     }
 
     /**
@@ -122,11 +126,12 @@ class IdeaController extends Controller
     }
 
 
-    public function abc(Request $request,$id){
-        // $input = $request->all();
-        // dd($input);
-        $input = $request->except("_token");
-        $res = idea::find($id)->update($input);
+    public function abc(Request $request){
+        $input = $request->all();
+        // dd();
+        // $input = $request->except("_token");
+        $input['huifu_time'] = date('Y-m-d H:i:s');
+        $res = idea::find($input['did'])->update(['huifu'=>$input['huifu'],'huifu_time'=>$input['huifu_time']]);
         //判断
         if($res)
         {

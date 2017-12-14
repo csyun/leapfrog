@@ -334,7 +334,11 @@
                         <i class="am-icon-table sidebar-nav-link-logo"></i> 友情链接管理
                     </a>
                 </li>
-
+                <li class="sidebar-nav-link">
+                    <a href="{{url('/admin/active')}}">
+                        <i class="am-icon-table sidebar-nav-link-logo"></i> 秒杀活动管理
+                    </a>
+                </li>
                 <li class="sidebar-nav-link">
                     <a href="javascript:;" class="sidebar-nav-sub-title">
                         <i class="am-icon-table sidebar-nav-link-logo"></i>鱼塘审核

@@ -2,6 +2,7 @@
 
 
 @section('content')
+<link rel="stylesheet" href="{{asset('//res.layui.com/layui/dist/css/layui.css')}}"  media="all">
 <script src="{{asset('/layer/layer.js')}}"></script>
         <div class="tpl-content-wrapper">
             <div class="row-content am-cf">
@@ -21,7 +22,7 @@
                                                         layer.msg(a, {icon: 6});
                                                     </script>                                                    
                                                 @endforeach
-                                            @else
+                                             @else
                                                 <li class="aa" style="display:none">{{ $errors }}</li>
                                                 <script type="text/javascript">
                                                     var a = $(".aa").html();
@@ -50,18 +51,23 @@
                                 <!-- 搜索 -->
                                 <form action="{{url('/admin/idea/')}}" method="get">
                                 {{csrf_field()}}
-                            
-                                <div class="am-u-sm-12 am-u-md-12 am-u-lg-3">
+
+                              <!--   <div class="am-u-sm-12 am-u-md-12 am-u-lg-3">
                                     <div class="am-input-group am-input-group-sm tpl-form-border-form cl-p">
-                                        <input type="text" class="am-form-field " name="key" placeholder="请输入反馈时间" value="">
+                                        <input type="text" id="time" class="am-form-field " name="key" placeholder="请输入反馈时间" value="">
                                         <span class="am-input-group-btn">
                                         <button class="am-btn  am-btn-default am-btn-success tpl-table-list-field am-icon-search" type="submit"></button>
                                       </span>
                                     </div>
-                                </div>
-                                </from>
+                                </div> -->
+                                    <div class="layui-inline">
+                                          <label class="layui-form-label">日 期 范 围</label>
+                                          <div class="layui-input-inline">
+                                            <input type="text" class="layui-input" id="test6" placeholder=" - ">
+                                          </div>
+                                        </div>
 
-                                
+                                </from>
                                 <div class="am-u-sm-12">
                                     <table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black " id="example-r">
                                         <thead>
@@ -70,16 +76,21 @@
                                                 <th>反馈标题</th>
                                                 <th>内容</th>
                                                 <th>反馈时间</th>
+                                                <th>回复内容</th>
+                                                <th>回复时间</th>
+                                                <th>操作</th>
                                             </tr>
                                         </thead>
-                                         @foreach($idea as $k=>$v)
+                                        @foreach($idea as $k=>$v)
                                         <tbody>                                        
 											<tr>
                                                 <td>{{$v->did}}</td>
 												<td>{{$v->title}}</td>
 												<td>{{$v->content}}</td>
 												<td>{{$v->create_time}}</td>
-												<td>
+                                                <td>{{$v->huifu}}</td>
+                                                <td>{{$v->huifu_time}}</td>
+												<td> 
                                                     <div class="tpl-table-black-operation">
                                                         <a href="javascript:;" onclick="ideahuifu({{$v->did}})">
                                                             <i class="am-icon-pencil"></i> 回复
@@ -112,9 +123,21 @@
                 </div>
             </div>
         </div>
-
-
 <script src="http://leapfrog.com/layer/layer.js"></script>
+
+<!-- //日期插件
+ -->
+ <script src="{{asset('/layui/layui.js')}}"></script>
+<script>
+ 
+  //执行一个laydate实例
+  laydate.render({
+    elem: '#test6'
+    ,range: true
+  });
+
+</script>
+
 <script>
 
             function ideaDel(id) {
@@ -142,17 +165,16 @@
 
         function ideahuifu(id) {
          var id = id;
-         console.log(id);
+         //console.log(id);
          var name = $('#hidden').attr('name');
-         console.log(name);
+         //console.log(name);
            layer.open({
               type: 1,
               skin: 'layui-layer-demo', //样式类名
               closeBtn: 1, //显示关闭按钮
               anim: 2,
               shadeClose: true, //开启遮罩关闭
-                                      // <form action="{{url('/admin/idea/')}}" method="get">
-              content: '<div id="ids"><form action="{{url('/admin/idea/abc')}}" method="post">{{csrf_field()}}<input type="hidden" id="hidden" name= "did" value="id"><textarea name="huifu" required lay-verify="required" placeholder="请输入" class="layui-textarea"></textarea><hr><button class="layui-btn layui-btn-normal">提交</button></form></div>'
+              content: '<div id="ids"><form action="{{url('/admin/idea/abc')}}" method="post">{{csrf_field()}}<input type="hidden" id="hidden" name= "did" value="'+id+'"><textarea name="huifu" required lay-verify="required" placeholder="请输入" class="layui-textarea"></textarea><hr><button class="layui-btn layui-btn-normal">提交</button></form></div>'
             });
           
         }

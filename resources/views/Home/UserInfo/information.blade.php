@@ -13,7 +13,6 @@
             </div>
 
             <p class="am-form-help">头像</p>
-
             <div class="info-m">
                 <div><b>用户名：<i>{{$username}}</i></b></div>
 
@@ -55,7 +54,6 @@
                 <label for="user-phone" class="am-form-label">电话</label>
                 <div class="am-form-content">
                     <input id="user-phone" placeholder="telephonenumber" type="text" value="{{$userinfo->telphone}}" name="telphone">
-
                 </div>
             </div>
             <div class="">
@@ -63,7 +61,6 @@
                 <div class="am-form-content">
                     <td>
                         <input type="text" name="avatar" id="art_thumb"  value="" >
-
                         <input type="file" name="file_upload" id="file_upload" value="">
                         <a> <img src="" alt="" id="img1" style="width:80px" hidden></a>
                         <script type="text/javascript">

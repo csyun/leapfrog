@@ -101,7 +101,7 @@ Route::post('/doreset','Home\PasswordController@doreset');
 
 
 //前台个人中心
-//Route::resource('/myself', 'MyselfController');
+// Route::resource('home/lddmyself', 'Home\LddmyselfController');
 
 Route::group(['middleware'=>'homelogin','namespace'=>'Home'],function (){
     //前台退出登录
@@ -251,7 +251,9 @@ Route::group(['middleware'=>['islogin'],'prefix'=>'admin','namespace'=>'Admin'],
     //友情链接路由
     Route::resource('link', 'LinkController');
     Route::post('link/changeorder', 'linkController@changeorder');
-
+    //活动管理路由
+    Route::resource('active', 'ActiveController');
+    Route::post('active/changeorder', 'activeController@changeorder');
 
     //等待审核蛙塘列表
     Route::get('pond','PondController@index');
