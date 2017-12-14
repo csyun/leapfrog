@@ -161,4 +161,15 @@ class ShopcartController extends CommonController
             return redirect('/home/shopcart/cart/index')->with('msg','您的购物车没有东西呢');
         }
     }
+    public  function buy($id)
+    {
+        $res = $goods = Admin_Goods::where('gid',$id)->get();
+        if($res)
+        {
+            return view('Home.ShopCart.pay',compact('goods'));
+        }else{
+            return redirect('/home/goods/details/'.$id);
+        }
+
+    }
 }

@@ -1,6 +1,6 @@
 @extends('Layouts.home')
 @section('title')
-    <title>跳蛙--回收估价</title>
+    <title>跳蛙--商品添加</title>
 @endsection
 @section('body')
     <link href="{{asset('/Home/huishou/common_new.css')}}" rel="Stylesheet" type="text/css">

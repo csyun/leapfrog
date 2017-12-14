@@ -12,17 +12,22 @@
 									@foreach($goods as $k=>$v)
 									<li>
 										<div class="i-pic limit">
-											<a href="{{url('/home/goods/details/'.$v->gid)}}"><img src="{{$v->gpurl}}" /></a>
-											<p class="title fl"><a href="{{url('/home/goods/details/'.$v->gid)}}">{{$v->gname}}</a></p>
-											<p class="price fl">
 
-												<strong>{{$v->gprice}}</strong>
-												<b>元</b>
+											<a href="{{url('/home/goods/details/'.$v->gid)}}"><img style="width:250px;height:200px;" src="{{$v->gpurl}}" /></a>
+											<b>商品:</b>
+											<strong>{{$v->gname}}</strong>
 											</p>
+											<b>价格:</b>
+												<strong style="font-size:30px;">{{$v->gprice}}</strong>
+												<b style="color:red;">元</b>
+											</p>
+
 											<p class="number fl">
 											</p>
 										</div>
+
 									</li>
+
 										@endforeach
 
 
@@ -30,6 +35,7 @@
 
 								</ul>
 							</div>
+
 							<div class="search-side">
 							</div>
 							<div class="clear"></div>
