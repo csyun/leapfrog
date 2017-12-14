@@ -79,6 +79,11 @@
                                                         selected
                                                         @endif
                                                         value="1">下架</option>
+                                            <option
+                                                    @if($good->status==2)
+                                                    selected
+                                                    @endif
+                                                    value="2">已售出</option>
                                         </select>
 
                                     </div>

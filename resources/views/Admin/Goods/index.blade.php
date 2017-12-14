@@ -67,6 +67,11 @@
                                                 <td class="am-text-middle">{{$v->gname}}</td>
                                                 <td class="am-text-middle">{{$v->gprice}}</td>
                                                 <td class="am-text-middle">{!!$v->gdesc!!}</td>
+                                                @if($v->status == 2)
+                                                    <td class="am-text-middle"><button  class="am-icon-pencil">
+                                                            已售出
+                                                        </button></td>
+                                                @else
                                                 <td class="am-text-middle"><button  class="am-icon-pencil" onclick="gstatus({{$v->gid}},{{$v->status}})">
                                                         @if($v->status == 0)
                                                             下架
@@ -74,6 +79,7 @@
                                                             上架
                                                             @endif
                                                     </button></td>
+                                                @endif
 
                                                 <td class="am-text-middle">
                                                     <div class="tpl-table-black-operation">

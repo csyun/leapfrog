@@ -106,9 +106,9 @@
 							</div>
 							<!--优惠券 -->
 							<div class="buy-agio">
-								<li class="td td-coupon">
+								<li class="td td-coupon" style="solid-color: black;">
 									<div class="pay-confirm clearfix">
-									<div class="box">
+									<div class="box" style="color: black">
 										<div tabindex="0" id="holyshit267" class="realPay"><em class="t">总价：</em>
 											<span class="price g_price ">
                                     <span>¥</span> <em class="style-large-bold-red " id="J_ActualFee"><?php echo $sum;?></em>

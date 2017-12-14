@@ -39,8 +39,6 @@ Route::get('/home/shopcart/{id}','Home\shopcartController@tocart');
 Route::get('/test','Home\shopcartController@test');
 //购物车列表
 Route::get('/home/shopcart/cart/index','Home\shopcartController@index');
-//支付页
-Route::get('/home/shopcart/cart/pay','Home\shopcartController@pay');
 //购物车删除
 Route::post('/home/shopcart/cart/del/{id}','Home\shopcartController@cartDel');
 //添加订单
@@ -56,6 +54,8 @@ Route::get('/home/goods/browse','Home\GoodsController@browse');
 Route::get('/home/goods/edit/{id}','Home\GoodsController@edit');
 //执行修改
 Route::post('home/goods/doedit/{id}','Home\GoodsController@doedit');
+//收货
+Route::get('home/order/status/{id}','Home\OrderController@upStatus');
 
 
 
@@ -152,6 +152,10 @@ Route::group(['middleware'=>'homelogin','namespace'=>'Home'],function (){
     Route::get('/commentlist','PondController@commentlist');
     //提交评论
     Route::post('/commentstore','PondController@commentstore');
+    //支付页面
+    Route::get('/home/shopcart/cart/pay','shopcartController@pay');
+
+    Route::get('/home/shopcart/cart/buy/{id}','shopcartController@buy');
 
 });
 
@@ -228,7 +232,12 @@ Route::group(['middleware'=>['islogin'],'prefix'=>'admin','namespace'=>'Admin'],
     Route::get('goods/gstatus/{id}','GoodsController@gstatus');
     //订单控制器
     Route::get('order/index','OrderController@index');
+    //订单详情
     Route::get('order/details/{id}','OrderController@details');
+    //订单修改
+    Route::get('order/edit/{id}','OrderController@edit');
+    //执行订单修改
+    Route::post('order/update/{id}','OrderController@update');
 
     //首页轮播图管理
     Route::resource('slideshow', 'SlideShowController');

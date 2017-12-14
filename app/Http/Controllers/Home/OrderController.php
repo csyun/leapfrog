@@ -22,13 +22,20 @@ class OrderController extends CommonController
      */
     public function doadd(Request $request)
     {
+
         $this->oid = time().rand(1000,9999);
         $this->input = $request->except('_token');
         $orders=$this->input;
-        $this->writeOrder();
-        $this->writeDetail();
-        $this->clearCart();
-        return view('home.order.firstorder',compact('orders'));
+        DB::beginTransaction();;
+        if($this->writeOrder()&&$this->writeDetail()){
+            DB::commit();
+            $this->clearCart();
+            return view('home.order.firstorder',compact('orders'));
+        }else{
+            DB::rollback();
+            return redirect('/home/shopcart/cart/pay');
+        }
+
     }
 
 
@@ -69,8 +76,7 @@ class OrderController extends CommonController
                     $order->creata_time = time();
                     $order->updata_time = time();
                     $order->save();
-
-
+                    return true;
     }
     /**
      * 添加到订单详情表
@@ -85,9 +91,10 @@ class OrderController extends CommonController
                 $order_details->gid = $v->gid;
                 $order_details->oid = $this->oid;
                 $order_details->save();
-                Admin_Goods::where('gid', $v->gid)->update(['status' => 1]);
+                Admin_Goods::where('gid', $v->gid)->update(['status' => 2]);
             }
         }
+        return true;
     }
     /**
      * 清空购物车
@@ -99,6 +106,24 @@ class OrderController extends CommonController
         ShopCart::where('uid', $user['uid'])->delete();
         session()->pull('goods');
     }
+    //确认收货
+    public function upStatus($id)
+    {
+        $res= Order::where('oid',$id)->update('status',2);
+        if($res){
+            $data =[
+                'gg'=> 0,
+                'msg'=>'收货成功'
+            ];
+        }else{
+            $data =[
+                'gg'=> 1,
+                'msg'=>'收货失败'
+            ];
+        }
 
+        return $data;
+
+    }
 
 }
