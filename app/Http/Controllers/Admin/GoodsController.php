@@ -32,7 +32,7 @@ class GoodsController extends Controller
                 'msg'=>'修改失败'
             ];
         }
-
+        dd($data);
         return $data;
 
     }

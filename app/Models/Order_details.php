@@ -22,4 +22,13 @@ class Order_details extends Model
 
     public $guarded = [];
 
+    public function goods()
+    {
+        return $this->belongsTo('App\Models\Admin_Goods','gid');
+    }
+    public function order()
+    {
+        return $this->belongsTo('App\Models\Order','oid');
+    }
+
 }

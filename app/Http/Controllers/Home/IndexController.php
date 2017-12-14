@@ -27,8 +27,8 @@ class IndexController extends CommonController
         $recommend = Recommend::where('status', 1)->get();
         $articles = Articles::orderBy('number','asc')->paginate(5);
         $advers = Adver::orderBy('order','asc')->paginate(4);
-        $recommends = Recommend::get();
-
+        $recommends = Recommend::with('goods')->get();
+        //dd($recommends);
        $cate = (new Cate())->relation();
         return view('Home\index',compact('slideshows','recommend','articles','advers','recommends','cate'));
     }

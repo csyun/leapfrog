@@ -105,7 +105,7 @@
                     <ul>
                         <li><a href="{{url('/userinfo')}}">购买订单管理</a></li>
                         <li> <a href="{{url('/userinfo/recycleorder')}}">回收订单管理</a></li>
-                        <li> <a href="comment.html">已发布商品</a></li>
+                        <li> <a href="{{url('userinfo/myaddgoods')}}">已发布商品</a></li>
                     </ul>
                 </li>
                 <li class="person">

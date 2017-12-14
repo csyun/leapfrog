@@ -107,6 +107,9 @@ Route::group(['middleware'=>'homelogin','namespace'=>'Home'],function (){
     //前台退出登录
     Route::get('/loginout','LoginController@loginout');
 
+    Route::get('/home/goods/gstatus/{id}','UserInfoController@gstatus');
+    Route::get('/home/goods/goodsdel/{id}','UserInfoController@goodsDel');
+
 
     //蛙塘
     Route::resource('/pond','PondController');
@@ -130,8 +133,12 @@ Route::group(['middleware'=>'homelogin','namespace'=>'Home'],function (){
     Route::post('/recyclegoods/recyclecommit/','RecycleController@recyclecommit');
     //前台个人中心首页
     Route::get('/userinfo','UserInfoController@index');
+    //前台个人中心订单详情
+    Route::get('/userinfo/orderdeta/{id}','UserInfoController@orderdeta');
     //前台个人中心首页
     Route::get('/userinfo/information','UserInfoController@information');
+    //前台个人中心我的发布商品
+    Route::get('/userinfo/myaddgoods/','UserInfoController@myaddgood');
     //修改个人信息
     Route::post('/userinfo/addinformation','UserInfoController@infoadd');
     //个人中心地址管理

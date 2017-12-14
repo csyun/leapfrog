@@ -6,10 +6,12 @@ use App\Models\RecycleGoodAttribute;
 use App\Models\RecycleGoodOrder;
 use App\Models\RecycleGoodsAttrValue;
 
+use App\Models\RecycleOrders;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\RecycleGoods;
 use Session;
+use DB;
 
 class RecycleController extends CommonController
 {
@@ -22,7 +24,30 @@ class RecycleController extends CommonController
     public function index()
     {
         $recyclegoods = RecycleGoods::paginate(4);
-        return view('Home\Recycle\list',compact('recyclegoods'));
+        //dd($recyclegoods);
+        //查出回收数量最多的2个商品
+        $hotrecyclegoods = DB::select('select rgid, AVG(rpice) as rpice, count(*) as sales  from `data_recycle_orders` group by `rgid` order by sales DESC limit 2;');
+        //dd($hotrecyclegoods);
+        $gid = [];
+        $price = [];
+        //遍历数组取出商品id数组和平均价格数据
+        foreach ($hotrecyclegoods as $k=>$v){
+            $gid[] = $v->rgid;
+            $price[] = $v->rpice;
+            //$sale[] = $v->sale;
+         }
+        //根据查出的2个id查询出商品信息
+        $goods = RecycleGoods::whereIn('rgid',$gid)->orderBy('sale','desc')->get();
+        //dd($goods);
+        foreach ($goods as $k=>$k)
+        {
+            //遍历价格数组,把平均价格放到里面
+            foreach ($price as $kk=>$vv){
+                $goods[$k]['avgprice'] = $vv;
+            }
+        }
+        //dd($goods);
+        return view('Home\Recycle\list',compact('recyclegoods','goods'));
     }
     /**
      * 展示前台回收商品列表
@@ -85,6 +110,9 @@ class RecycleController extends CommonController
 
         return view('Home\Recycle\order',compact('recyclegood'));
     }
+    /**
+     * 订单提交存到数据库中
+    */
     public function recyclecommit(Request $request)
     {
         $recyclegood = Session::get('recyclegood');
@@ -104,6 +132,7 @@ class RecycleController extends CommonController
         $orderinfo['info'] = $info;
         $res = RecycleGoodOrder::create($orderinfo);
         if ($res){
+            $sale = DB::update('update data_recycle_goods set sale=sale+1 where rgid='.$recyclegood['rgid'].';');
             return view('Home\Recycle\success',compact('recycleinfo'));
         } else {
             return back()->with('msg','添加失败');

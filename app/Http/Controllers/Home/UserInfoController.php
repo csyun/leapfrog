@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\Models\Admin_Goods;
 use App\Models\Home_User;
+use App\Models\Order;
+use App\Models\Order_details;
+use App\Models\RecycleGoods;
 use App\Models\RecycleOrders;
 use App\Models\UserInfo;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\RecycleGoodOrder;
 use Session;
+use DB;
 
 class UserInfoController extends CommonController
 {
@@ -17,8 +22,28 @@ class UserInfoController extends CommonController
      */
     public  function  index()
     {
+        $id = Session::get('homeuser.uid');
+        $orders = Order::where('uid',$id)->get();
+//        $oid = [];
+//        foreach ($orders as $k=>$v){
+//            $oid[] = $v->oid;
+//        }
+//        //dd($oid);
+//        $gid = Order_details::whereIn('oid',$oid)->pluck('gid');
+//        $goods = Admin_Goods::whereIn('gid',$gid)->get();
+//        $orders['goods'] = $goods;
+        //dd($orders);
+        //$orders = Order::with('goods')->where('uid',$id)->get();
 
-        return view('Home\UserInfo\index');
+        //dd($orders);
+        return view('Home\UserInfo\index',compact('orders'));
+    }
+    public function orderdeta($id)
+    {
+        $info = Order_details::with('goods')->where('oid',$id)->get();
+        $order = Order::where('oid',$id)->first();
+        //dd($info);
+        return view('\Home\UserInfo\orderdata',compact('info','order'));
     }
     /**
      * 显示个人信息修改页面
@@ -52,9 +77,52 @@ class UserInfoController extends CommonController
     //回收订单页面
     public function recycleorder()
     {
-        $recycleorders = RecycleGoodOrder::orderby('creat_time','desc')->get();
-        dd($recycleorders);
+        $recycleorders = RecycleGoodOrder::orderby('creat_time','desc')->where('uid',Session::get('homeuser.uid'))->get();
+        foreach ($recycleorders as $k=>$v){
+            $good = RecycleGoods::find($v->rgid);
+            $recycleorders[$k]['rgname'] = $good->rgname;
+            $recycleorders[$k]['rgpic'] = $good->rgpic;
+        }
+        //dd($recycleorders);
+        return view('Home\UserInfo\recycleorder',compact('recycleorders'));
+    }
+    //我的发布商品
+    public function myaddgood()
+    {
+        $id = Session::get('homeuser.uid');
+        $goods = Admin_Goods::where('uid',$id)->get();
+      //dd($goods);
+        return view('Home\UserInfo\myaddgood',compact('goods'));
+    }
+    public function  gstatus($gid)
+    {
+        $good = Admin_Goods::find($gid);
+        $status = !$good->status;
+        $res = $good->update(['status'=>$status]);
+        if($res){
+            $data =[
+                'gg'=> 0,
+                'msg'=>'修改成功'
+            ];
+        }else{
+            $data =[
+                'gg'=> 1,
+                'msg'=>'修改失败'
+            ];
+        }
+        return $data;
 
-        return view('Home\UserInfo\recycleorder');
+    }
+    public function goodsDel($id)
+    {
+        $res = Admin_Goods::find($id)->delete();
+        if ($res) {
+            $data['gg'] = 0;
+            $data['msg'] = "删除成功";
+        } else {
+            $data['gg'] = 1;
+            $data['msg'] = "删除失败";
+        }
+        return $data;
     }
 }

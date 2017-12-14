@@ -13,54 +13,39 @@
                                 <li><a href="order.html"><i><img src="../images/comment.png"/></i><span>待评价<em class="m-num">3</em></span></a></li>
                                 <li><a href="change.html"><i><img src="../images/refund.png"/></i><span>退换货</span></a></li>
                             </ul>
+                            @foreach($orders as $k=>$v)
                             <div class="orderContentBox">
                                 <div class="orderContent">
-                                    <div class="orderContentpic">
-                                        <div class="imgBox">
-                                            <a href="orderinfo.html"><img src="../images/youzi.jpg"></a>
-                                        </div>
-                                    </div>
+
                                     <div class="detailContent">
-                                        <a href="orderinfo.html" class="delivery">签收</a>
+
                                         <div class="orderID">
-                                            <span class="time">2016-03-09</span>
-                                            <span class="splitBorder">|</span>
-                                            <span class="time">21:52:47</span>
+                                            <span class="time">下单时间:{{date('Y-m-d H:i:s',$v->creata_time)}}</span>
+                                            <span class="splitBorder"></span>
+
                                         </div>
                                         <div class="orderID">
-                                            <span class="num">共1件商品</span>
+                                            <span class="num">订单号:{{$v->oid}}</span>
+                                            <span class="time"><a href="{{url('/userinfo/orderdeta/'.$v->oid)}}" class="delivery">查看</a></span>
                                         </div>
                                     </div>
-                                    <div class="state">待评价</div>
-                                    <div class="price"><span class="sym">¥</span>23.<span class="sym">80</span></div>
+                                    <div class="state">
+                                        @if($v->status==0)
+                                            待发货
+                                        @elseif($v->status==1)
+                                            已发货
+                                        <a href="{{url('home/order/status/'.$v->oid)}}" class="delivery">签收</a>
+                                        @elseif($v->status==2)
+                                            已收货
+                                            @endif
+                                    </div>
+                                    <div class="price"><span class="sym">¥</span>{{$v->oprice}}<span class="sym"></span></div>
+
+                                    <div class="price"><span class="sym">联系人</span>{{$v->rec}}<span class="sym"></span></div>
 
                                 </div>
-                                <a href="javascript:void(0);" class="btnPay">再次购买</a>
-                            </div>
 
-                            <div class="orderContentBox">
-                                <div class="orderContent">
-                                    <div class="orderContentpic">
-                                        <div class="imgBox">
-                                            <a href="orderinfo.html"><img src="../images/heart.jpg"></a>
-                                        </div>
-                                    </div>
-                                    <div class="detailContent">
-                                        <a href="orderinfo.html" class="delivery">派件</a>
-                                        <div class="orderID">
-                                            <span class="time">2016-03-09</span>
-                                            <span class="splitBorder">|</span>
-                                            <span class="time">21:52:47</span>
-                                        </div>
-                                        <div class="orderID">
-                                            <span class="num">共2件商品</span>
-                                        </div>
-                                    </div>
-                                    <div class="state">已发货</div>
-                                    <div class="price"><span class="sym">¥</span>246.<span class="sym">50</span></div>
-
-                                </div>
-                                <a href="javascript:void(0);" class="btnPay">再次购买</a>
                             </div>
+                          @endforeach
                         </div>
 @endsection

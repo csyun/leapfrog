@@ -194,82 +194,24 @@
 								</div>
 								<a href="# "><img src="http://leapfrog.oss-cn-beijing.aliyuncs.com/{{$v->rpic}}" /></a>
 						</div>
-
+						@foreach($v->goods as $kk=>$vv)
 						<li>
 						<div class="am-u-md-2 am-u-lg-2 text-three">
 							<div class="boxLi"></div>
 							<div class="outer-con ">
 								<div class="title ">
-									小优布丁
+									{{$vv->gname}}
 								</div>
 								<div class="sub-title ">
-									¥4.8
+									¥{{$vv->gprice}}
 								</div>
 
 							</div>
-							<a href="# "><img src="{{asset('/Home/images/1.jpg')}} " /></a>
+							<a href="{{url('/home/goods/details/'.$vv->gid)}}"><img src="{{$vv->gpurl}} " /></a>
 						</div>
 						</li>
-						<li>
-						<div class="am-u-md-2 am-u-lg-2 text-three sug">
-							<div class="boxLi"></div>
-							<div class="outer-con ">
-								<div class="title ">
-									小优布丁
-								</div>
-								<div class="sub-title ">
-									¥4.8
-								</div>
 
-							</div>
-							<a href="# "><img src="{{asset('/Home/images/2.jpg')}} " /></a>
-						</div>
-						</li>
-						<li>
-						<div class="am-u-sm-4 am-u-md-5 am-u-lg-4 text-five">
-							<div class="boxLi"></div>
-							<div class="outer-con ">
-								<div class="title ">
-									小优布丁
-								</div>
-								<div class="sub-title ">
-									¥4.8
-								</div>
-
-							</div>
-							<a href="# "><img src="{{asset('/Home/images/5.jpg')}}" /></a>
-						</div>
-						</li>
-						<li>
-						<div class="am-u-sm-4 am-u-md-2 am-u-lg-2 text-six">
-							<div class="boxLi"></div>
-							<div class="outer-con ">
-								<div class="title ">
-									小优布丁
-								</div>
-								<div class="sub-title ">
-									¥4.8
-								</div>
-
-							</div>
-							<a href="# "><img src="{{asset('/Home/images/3.jpg')}}" /></a>
-						</div>
-						</li>
-						<li>
-						<div class="am-u-sm-4 am-u-md-2 am-u-lg-4 text-six">
-							<div class="boxLi"></div>
-							<div class="outer-con ">
-								<div class="title ">
-									小优布丁
-								</div>
-								<div class="sub-title ">
-									¥4.8
-								</div>
-
-							</div>
-							<a href="# "><img src="{{asset('/Home/images/4.jpg')}}" /></a>
-						</div>
-						</li>
+					@endforeach
 					</div>
 
 					<div class="clear "></div>
