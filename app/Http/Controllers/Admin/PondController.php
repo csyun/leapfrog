@@ -89,7 +89,7 @@ class PondController extends Controller
             })
             ->where('status','=',0)
             ->paginate(4);
-    	return view('Admin/Pond/index',compact('data','request'));
+    	return view('Admin.Pond.index',compact('data','request'));
     }
 
     /**
@@ -112,7 +112,7 @@ class PondController extends Controller
             })
             ->where('status','=',1)
             ->paginate(4);
-    	return view('Admin/Pond/passlist',compact('data','request'));
+    	return view('Admin.Pond.passlist',compact('data','request'));
     }
 
     /**
@@ -135,7 +135,7 @@ class PondController extends Controller
             })
             ->where('status','=',2)
             ->paginate(4);
-    	return view('Admin/Pond/notpasslist',compact('data','request'));
+    	return view('Admin.Pond.notpasslist',compact('data','request'));
     }
 
 

@@ -45,19 +45,20 @@ class OrderController extends Controller
     }
     public function update(Request $request,$id)
     {
-        dd($id);
+
         $input = $request->except('_token');
         $rule = [
             'addr'=>'required',
-            "rec"=>'required|regex:/^[\x{4e00}-\x{9fa5}_]+$/u',
+            "rec"=>'required',
+            "oprice"=>'required',
             'tel'=>'required'
         ];
         $mess = [
             'addr.required'=>'地址必须输入',
-            'rec.required'=>'收货必须输入',
-            'rec.regex'=>'姓名必须是汉字',
+            'rec.required'=>'收货地址必须输入',
             'tel.required'=>'手机号必须输入',
             'tel.numeric'=>'手机号必须是数字',
+            'oprice.required'=>'订单价格必须输入'
         ];
         $validator =  Validator::make($input,$rule,$mess);
         if ($validator->fails()) {
@@ -67,6 +68,7 @@ class OrderController extends Controller
         }
 
         $row =  Order::where('oid',$id)->update($input);
+
        if($row)
        {
            return redirect('admin/order/index');

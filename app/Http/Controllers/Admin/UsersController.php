@@ -57,7 +57,7 @@ class UsersController extends Controller
 
 
 
-        return view('Admin/Users/auth',compact('data','roles','a'));
+        return view('Admin.Users.auth',compact('data','roles','a'));
     }
 
      /**
@@ -123,7 +123,7 @@ class UsersController extends Controller
             })
             ->paginate(6);
 
-        return view('Admin/Users/index',compact('data','request'));
+        return view('Admin.Users.index',compact('data','request'));
 
         
     }
@@ -135,7 +135,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('Admin/Users/add');
+        return view('Admin.Users.add');
     }
 
     /**
@@ -225,7 +225,7 @@ class UsersController extends Controller
         $data = $user->find($id);
         
 
-        return view ('Admin/Users/edit',['data'=>$data]);
+        return view ('Admin.Users.edit',['data'=>$data]);
 
     }
 

@@ -61,6 +61,13 @@
                                     </div>
                                 </div>
                                 <div class="am-form-group">
+                                    <label for="user-name" class="am-u-sm-3 am-form-label">手机号<span class="tpl-form-line-small-title">tel</span></label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" name="tel" class="tpl-form-input" id="user-name" placeholder="请输入手机号" value="{{$order->tel}}">
+                                        <small>请输入手机号。</small>
+                                    </div>
+                                </div>
+                                <div class="am-form-group">
                                     <label for="user-name" class="am-u-sm-3 am-form-label">订单地址<span class="tpl-form-line-small-title">addr</span></label>
                                     <div class="am-u-sm-9">
                                         <textarea name="addr">{!!$order->addr!!}</textarea>
