@@ -148,9 +148,11 @@ class PondController extends CommonController
      */
     public function pondlist(Request $request)
     {   
+
         //蛙塘id
         $input = $request->all();
         $mid = $input['mid'];
+        // dd($input);
         //蛙塘详细信息
         $marketinfo = MarketInfo::where('mid',$mid)->first();
         //蛙塘收藏的人
@@ -188,7 +190,7 @@ class PondController extends CommonController
             $data[] = Admin_Goods::where('gid',$v)->first();
         }
         
-
+        // dd($data);
         return view('Home/Pond/pondlist',compact('marketinfo','count','isinpond','data'));   
     }
 

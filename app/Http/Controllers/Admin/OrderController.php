@@ -6,6 +6,7 @@ use App\Models\Order;
 use App\Models\Order_details;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 use DB;
 
 class OrderController extends Controller
@@ -36,4 +37,43 @@ class OrderController extends Controller
 
        return view("Admin.Order.detail",compact('orders'));
     }
+    public function edit($id)
+    {
+       $order =  Order::where('oid',$id)->first();
+       //dd($order);
+       return view('Admin.Order.edit',compact('order'));
+    }
+    public function update(Request $request,$id)
+    {
+
+        $input = $request->except('_token');
+        $rule = [
+            'addr'=>'required',
+            "rec"=>'required',
+            "oprice"=>'required',
+            'tel'=>'required'
+        ];
+        $mess = [
+            'addr.required'=>'地址必须输入',
+            'rec.required'=>'收货地址必须输入',
+            'tel.required'=>'手机号必须输入',
+            'tel.numeric'=>'手机号必须是数字',
+            'oprice.required'=>'订单价格必须输入'
+        ];
+        $validator =  Validator::make($input,$rule,$mess);
+        if ($validator->fails()) {
+            return redirect('/admin/order/edit/'.$id)
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $row =  Order::where('oid',$id)->update($input);
+
+       if($row)
+       {
+           return redirect('admin/order/index');
+           }else{
+               return redirect('admin/order/edit/'.$id);
+           }
+       }
 }

@@ -18,7 +18,7 @@ class UserInfoAddrController extends CommonController
     {
         $addrs = Addr::where('uid',Session::get('homeuser.uid'))->get();
        //dd($addrs);
-        return view('Home\UserInfo\addr',compact('addrs'));
+        return view('Home.UserInfo.addr',compact('addrs'));
     }
 
     /**
@@ -71,7 +71,7 @@ class UserInfoAddrController extends CommonController
     {
        $addr = Addr::find($id);
        //dd($addr);
-        return view('Home\UserInfo\editaddr',compact('addr'));
+        return view('Home.UserInfo.editaddr',compact('addr'));
     }
 
     /**

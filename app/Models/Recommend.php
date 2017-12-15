@@ -22,4 +22,9 @@ class Recommend extends Model
 
     // 不允许批量修改的字段
     public $guarded = [];
+
+    public function goods()
+    {
+        return $this->hasMany('App\Models\Admin_Goods','rid');
+    }
 }

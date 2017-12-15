@@ -87,7 +87,7 @@ class GoodsController extends CommonController
         $good->gdesc= $data['gdesc'];
         $row = $good->save();
         if($row){
-            return redirect('home/goods/browse')->with('msg','添加成功');
+            return redirect('/userinfo/myaddgoods')->with('msg','添加成功');
         }else{
             return redirect('admin/goods/add');
         }
@@ -140,7 +140,7 @@ class GoodsController extends CommonController
         }
         $res = $good->update($input);
         if($res){
-            return redirect('home/goods/browse')->with('msg','修改成功');
+            return redirect('/userinfo/myaddgoods')->with('msg','修改成功');
         }else{
             return redirect('home/goods/edit/'.$id);
         }

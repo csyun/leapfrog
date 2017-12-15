@@ -20,7 +20,7 @@
      </ul>
      <div class="option">
        <span class="info">您可以</span>
-        <a href="{{url('/home/order/myorder')}}">查看<span>已买到的宝贝</span></a>
+        <a href="{{url('/userinfo')}}">查看<span>已买到的宝贝</span></a>
      </div>
     </div>
   </div>

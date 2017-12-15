@@ -1,4 +1,4 @@
-<?php
+f<?php
 
 
 namespace App\Http\Controllers\Admin;
@@ -241,7 +241,7 @@ class ConfigController extends Controller
         {
 
             $config = Config::find($id);
-            return view ('Admin/config/edit',compact('config'));
+            return view ('Admin.config.edit',compact('config'));
         }
 
         /**

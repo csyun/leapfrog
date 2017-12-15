@@ -1,6 +1,6 @@
 @extends('Admin.head')
 @section('content')
-
+ <script src="{{asset('/layer/layer.js')}}"></script>
     <div class="row" style="margin-left:100px;">
 
         <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">

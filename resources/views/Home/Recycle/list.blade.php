@@ -9,22 +9,18 @@
         <div style="float: left; width: 220px;height: 700px;background-color:#ffffff;border: 1px solid silver ;margin-left: 40px;">
             <div style="font-size: 20px;text-align: center;line-height: 50px;height: 50px;">热门回收</div>
                  <ul>
+                     @foreach($goods as $k=>$v)
                     <li style="margin-top: 20px;">
                         <div style="border: 1px solid #f1f4f5;">
                         <div>
-                            <img style="height: 150px;width: 180px;margin-left: 20px;" src="{{asset('/Home/images/4.jpg')}}" /></a>
+                            <img style="height: 150px;width: 180px;margin-left: 20px;" src="http://leapfrog.oss-cn-beijing.aliyuncs.com/{{$v->rgpic}}" /></a>
                         </div>
-                        <div style="height: 30px;text-align: center;line-height: 30px;">苹果X</div>
-                        <div style="height: 30px;text-align: center;line-height: 30px;">已有38人回收</div>
+                        <div style="height: 30px;text-align: center;line-height: 30px;">{{$v->rgname}}</div>
+                            <div style="height: 30px;text-align: center;line-height: 30px;">平均回收价:{{$v->avgprice}}</div>
+                        <div style="height: 30px;text-align: center;line-height: 30px;">已有{{$v->sale}}人回收</div>
                         </div>
                     </li>
-                    <li>
-                        <div>
-                            <img style="height: 150px;width: 180px;margin-left: 20px;" src="{{asset('/Home/images/4.jpg')}}" /></a>
-                        </div>
-                        <div style="height: 30px;text-align: center;line-height: 30px;">苹果X</div>
-                        <div style="height: 30px;text-align: center;line-height: 30px;">已有38人回收</div>
-                    </li>
+                    @endforeach
                 </ul>
             </div>
             <div style="background-color: #ffffff;width: 900px;height: 700px;float: left;margin-left: 20px;border: 1px solid #f1f4f5;">
@@ -37,7 +33,7 @@
                                 <a href="{{url('/recyclegoods/show/'.$v->rgid)}}"><img style="height: 200px;width:200px;" src="http://leapfrog.oss-cn-beijing.aliyuncs.com//{{$v->rgpic}}" /></a>
                             </div>
                             <div style="height: 30px;text-align: center;line-height: 30px;">{{$v->rgname}}</div>
-                            <div style="height: 30px;text-align: center;line-height: 30px;">平均回收价:38元</div>
+                            <div style="height: 30px;text-align: center;line-height: 30px;">已有{{$v->sale}}人回收</div>
                         </div>
                     </li>
                     @endforeach

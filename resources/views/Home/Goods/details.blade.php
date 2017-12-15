@@ -76,8 +76,7 @@
 
 
 	<ol class="am-breadcrumb am-breadcrumb-slash">
-		<li><a href="#">首页</a></li>
-		<li><a href="#">分类</a></li>
+		<li><a href="{{url('/')}}">首页</a></li>
 		<li class="am-active">内容</li>
 	</ol>
 	<script type="text/javascript">
@@ -215,7 +214,8 @@
 	</div>
 	<li>
 		<div class="clearfix tb-btn tb-btn-buy theme-login">
-			<a id="LikBuy" title="点此按钮到下一步确认购买信息" href="#">立即购买</a>
+			<a id="LikBuy" title="点此按钮到下一步确认购买信息" href="{{url('home/shopcart/cart/buy/'.$goods->gid
+			)}}">立即购买</a>
 		</div>
 	</li>
 	<li>

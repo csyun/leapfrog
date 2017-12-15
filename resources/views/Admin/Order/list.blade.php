@@ -62,7 +62,7 @@
                                         </td>
                                         <td>
                                             <div class="tpl-table-black-operation">
-                                                <a href="">
+                                                <a href="{{url('/admin/order/edit/'.$v->oid)}}">
                                                     <i class="am-icon-pencil"></i> 修改订单
                                                 </a>
 

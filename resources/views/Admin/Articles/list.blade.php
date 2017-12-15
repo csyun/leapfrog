@@ -1,6 +1,7 @@
 @extends('Admin.head')
 @section('content')
 <!-- 内容区域 -->
+ <script src="{{asset('/layer/layer.js')}}"></script>
 <div class="tpl-content-wrapper">
     <div class="row-content am-cf">
         <div class="row">

@@ -39,8 +39,6 @@ Route::get('/home/shopcart/{id}','Home\shopcartController@tocart');
 Route::get('/test','Home\shopcartController@test');
 //购物车列表
 Route::get('/home/shopcart/cart/index','Home\shopcartController@index');
-//支付页
-Route::get('/home/shopcart/cart/pay','Home\shopcartController@pay');
 //购物车删除
 Route::post('/home/shopcart/cart/del/{id}','Home\shopcartController@cartDel');
 //添加订单
@@ -56,6 +54,8 @@ Route::get('/home/goods/browse','Home\GoodsController@browse');
 Route::get('/home/goods/edit/{id}','Home\GoodsController@edit');
 //执行修改
 Route::post('home/goods/doedit/{id}','Home\GoodsController@doedit');
+//收货
+Route::get('home/order/status/{id}','Home\OrderController@upStatus');
 
 
 
@@ -101,11 +101,14 @@ Route::post('/doreset','Home\PasswordController@doreset');
 
 
 //前台个人中心
-// Route::resource('home/lddmyself', 'Home\LddmyselfController');
+//Route::resource('/myself', 'MyselfController');
 
 Route::group(['middleware'=>'homelogin','namespace'=>'Home'],function (){
     //前台退出登录
     Route::get('/loginout','LoginController@loginout');
+
+    Route::get('/home/goods/gstatus/{id}','UserInfoController@gstatus');
+    Route::get('/home/goods/goodsdel/{id}','UserInfoController@goodsDel');
 
 
     //蛙塘
@@ -130,8 +133,12 @@ Route::group(['middleware'=>'homelogin','namespace'=>'Home'],function (){
     Route::post('/recyclegoods/recyclecommit/','RecycleController@recyclecommit');
     //前台个人中心首页
     Route::get('/userinfo','UserInfoController@index');
+    //前台个人中心订单详情
+    Route::get('/userinfo/orderdeta/{id}','UserInfoController@orderdeta');
     //前台个人中心首页
     Route::get('/userinfo/information','UserInfoController@information');
+    //前台个人中心我的发布商品
+    Route::get('/userinfo/myaddgoods/','UserInfoController@myaddgood');
     //修改个人信息
     Route::post('/userinfo/addinformation','UserInfoController@infoadd');
     //个人中心地址管理
@@ -145,6 +152,10 @@ Route::group(['middleware'=>'homelogin','namespace'=>'Home'],function (){
     Route::get('/commentlist','PondController@commentlist');
     //提交评论
     Route::post('/commentstore','PondController@commentstore');
+    //支付页面
+    Route::get('/home/shopcart/cart/pay','shopcartController@pay');
+
+    Route::get('/home/shopcart/cart/buy/{id}','shopcartController@buy');
 
 });
 
@@ -166,7 +177,7 @@ Route::get('/errors/auth',function(){
 });
 
 
-Route::group(['middleware'=>['islogin'],'prefix'=>'admin','namespace'=>'Admin'],function () {
+Route::group(['middleware'=>['islogin','hasrole'],'prefix'=>'admin','namespace'=>'Admin'],function () {
     //后台首页
     Route::get('index', 'IndexController@index');
     //后台用户路由
@@ -221,7 +232,12 @@ Route::group(['middleware'=>['islogin'],'prefix'=>'admin','namespace'=>'Admin'],
     Route::get('goods/gstatus/{id}','GoodsController@gstatus');
     //订单控制器
     Route::get('order/index','OrderController@index');
+    //订单详情
     Route::get('order/details/{id}','OrderController@details');
+    //订单修改
+    Route::get('order/edit/{id}','OrderController@edit');
+    //执行订单修改
+    Route::post('order/update/{id}','OrderController@update');
 
     //首页轮播图管理
     Route::resource('slideshow', 'SlideShowController');
@@ -251,9 +267,7 @@ Route::group(['middleware'=>['islogin'],'prefix'=>'admin','namespace'=>'Admin'],
     //友情链接路由
     Route::resource('link', 'LinkController');
     Route::post('link/changeorder', 'linkController@changeorder');
-    //活动管理路由
-    Route::resource('active', 'ActiveController');
-    Route::post('active/changeorder', 'activeController@changeorder');
+
 
     //等待审核蛙塘列表
     Route::get('pond','PondController@index');
