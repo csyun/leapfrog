@@ -44,7 +44,7 @@ class PermissionController extends Controller
                     $query->where('pname','like','%'.$pname.'%');
                 }
             })
-            ->paginate(6);
+            ->paginate(15);
 
 
 

@@ -172,7 +172,7 @@ class UsersController extends Controller
         // dd($uname);
 
         if ($uname) {
-             return redirect('admin/users/create')->with('errors','添加成功');
+             return redirect('admin/users/create')->with('errors','此用户已存在');
          } 
 
         //密码加密
@@ -197,7 +197,7 @@ class UsersController extends Controller
 
             return  redirect('/admin/users')->with('errors','添加成功');
         }else{
-            return back();
+            return back()->with('errors','添加失败');
         }
     }
 

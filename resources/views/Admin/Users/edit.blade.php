@@ -8,7 +8,7 @@
   -->
   
 @section('content')
-
+<script src="{{asset('/layer/layer.js')}}"></script>
         <!-- 内容区域 -->
         <div class="tpl-content-wrapper">
 
@@ -33,17 +33,31 @@
                                     <div class="page-header-heading"><span class="am-icon-home page-header-heading-icon"></span> 用户编辑: <small>users</small></div>
                                     <p class="page-header-description">编辑后台用户</p>
                                     @if (count($errors) > 0)
-                                        <div class="alert alert-danger" style="display:none">
-                                            <ul>
+                                    <div id="lan" class="alert alert-danger" style="display:none">
+                                        <ul>
                                             @if(is_object($errors))
                                                 @foreach ($errors->all() as $error)
-                                                    <li>{{ $error }}</li>
+                                                <li class="aa" style="display:none">{{ $error }}</li>
+                                                <script type="text/javascript">
+                                                var a = $(".aa").html();
+                                                    layer.alert(a, {
+                                                        icon: 5,
+                                                        skin: 'layer-ext-moon' ,
+                                                    });
+                                                </script>
                                                 @endforeach
-                                            @else
-                                                <li style="color:red">{{ $errors }}</li>
+                                                @else
+                                                <li class="aa" style="display:none">{{ $errors}}</li>
+                                                <script type="text/javascript">
+                                                    var a = $(".aa").html();
+                                                    layer.alert(a, {
+                                                        icon: 5,
+                                                        skin: 'layer-ext-moon' ,
+                                                    });
+                                                </script>                               
                                             @endif
-                                            </ul>
-                                        </div>
+                                        </ul>
+                                    </div>
                                     @endif
                                             
                                 </div>

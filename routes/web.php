@@ -177,7 +177,7 @@ Route::get('/errors/auth',function(){
 });
 
 
-Route::group(['middleware'=>['islogin'],'prefix'=>'admin','namespace'=>'Admin'],function () {
+Route::group(['middleware'=>['islogin','hasrole'],'prefix'=>'admin','namespace'=>'Admin'],function () {
     //后台首页
     Route::get('index', 'IndexController@index');
     //后台用户路由
