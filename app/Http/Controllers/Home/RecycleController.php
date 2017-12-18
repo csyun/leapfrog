@@ -29,7 +29,7 @@ class RecycleController extends CommonController
         //dd($typeid);
         $recyclegoodtype = RecycleGoodType::get();
 
-        $recyclegoods = RecycleGoods::paginate(5);
+        $recyclegoods = RecycleGoods::paginate(8);
         //dd($recyclegoodtype);
         //查出回收数量最多的2个商品,附带回收均价
         $hotrecyclegoods = DB::select('select rgid, AVG(rpice) as rpice, count(*) as sales  from `data_recycle_orders` group by `rgid` order by sales DESC limit 2;');
@@ -54,7 +54,7 @@ class RecycleController extends CommonController
         }
         $isAjax = $request->input('isAjax');
         if($isAjax){
-            $recyclegoods = RecycleGoods::where('type_id',$typeid)->paginate(5);
+            $recyclegoods = RecycleGoods::where('type_id',$typeid)->paginate(8);
             return $recyclegoods;
         }
         //dd($recyclegoods);
