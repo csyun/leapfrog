@@ -45,7 +45,7 @@ class HusersController extends Controller
 
             // dd($data);
 
-        return view('Admin/Husers/index',compact('data','request'));
+        return view('Admin.Husers.index',compact('data','request'));
 
         
     }

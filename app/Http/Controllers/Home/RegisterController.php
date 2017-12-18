@@ -32,7 +32,7 @@ class RegisterController extends CommonController
      */
     public function register()
     {
-    	return view ('Home\register');
+    	return view ('Home.register');
     }
 //=============================================================================================
     /**

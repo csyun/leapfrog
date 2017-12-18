@@ -7,7 +7,7 @@
   -->
 
 @section('content')
-
+ <script src="{{asset('/layer/layer.js')}}"></script>
         <!-- 内容区域 -->
         <div class="tpl-content-wrapper">
 

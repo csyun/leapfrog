@@ -78,7 +78,7 @@ class PasswordController extends CommonController
     //找回密码的页面
     public function forget()
     {
-        return view('Home/forget');
+        return view('Home.forget');
     }
 
 	//发送找回邮箱账号密码的邮件

@@ -41,7 +41,7 @@ class PondController extends CommonController
                             ->paginate(10);
 
 
-        return view('Home/Pond/mypond',compact('data')); 
+        return view('Home.Pond.mypond',compact('data')); 
     }
 
 
@@ -73,7 +73,7 @@ class PondController extends CommonController
         }
         // dd($collect);
 
-        return view('Home/Pond/collectpond',compact('collect'));
+        return view('Home.Pond.collectpond',compact('collect'));
 
     }
 
@@ -148,9 +148,11 @@ class PondController extends CommonController
      */
     public function pondlist(Request $request)
     {   
+
         //蛙塘id
         $input = $request->all();
         $mid = $input['mid'];
+        // dd($input);
         //蛙塘详细信息
         $marketinfo = MarketInfo::where('mid',$mid)->first();
         //蛙塘收藏的人
@@ -188,8 +190,8 @@ class PondController extends CommonController
             $data[] = Admin_Goods::where('gid',$v)->first();
         }
         
-
-        return view('Home/Pond/pondlist',compact('marketinfo','count','isinpond','data'));   
+        // dd($data);
+        return view('Home.Pond.pondlist',compact('marketinfo','count','isinpond','data'));   
     }
 
     /**
@@ -227,7 +229,7 @@ class PondController extends CommonController
         //用户信息
 
         // dd($data);
-        return view('Home/Pond/comment',compact('data','marketinfo','isinpond','count','userinfo'));
+        return view('Home.Pond.comment',compact('data','marketinfo','isinpond','count','userinfo'));
     }
 
     /**
@@ -252,7 +254,7 @@ class PondController extends CommonController
         $uid = $user->uid;
 
 
-        return view('Home/Pond/commentlist',compact('marketinfo','count','uid'));
+        return view('Home.Pond.commentlist',compact('marketinfo','count','uid'));
     }
     /**
      * 提交评论
@@ -330,7 +332,7 @@ class PondController extends CommonController
             $arr = [];
         }
         //dd($arr);
-        return view('Home/Pond/index',compact('data','arr'));
+        return view('Home.Pond.index',compact('data','arr'));
     }
 
 
@@ -365,7 +367,7 @@ class PondController extends CommonController
         $uid = $user->uid;
         $userinfo = UserInfo::where('uid',$uid)->first();   
         // dd($userinfo->avatar);
-        return view('Home/Pond/create',compact('user','userinfo'));
+        return view('Home.Pond.create',compact('user','userinfo'));
     }
 
     /**

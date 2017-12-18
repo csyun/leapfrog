@@ -44,11 +44,11 @@ class PermissionController extends Controller
                     $query->where('pname','like','%'.$pname.'%');
                 }
             })
-            ->paginate(6);
+            ->paginate(15);
 
 
 
-        return view('Admin/Permission/index',compact('data','request'));
+        return view('Admin.Permission.index',compact('data','request'));
     }
 
     /**
@@ -58,7 +58,7 @@ class PermissionController extends Controller
      */
     public function create()
     {
-        return view('admin/Permission/add');
+        return view('admin.Permission.add');
     }
 
     /**
@@ -126,7 +126,7 @@ class PermissionController extends Controller
         $data = $user->find($id);
         
 
-        return view ('Admin/Permission/edit',['data'=>$data]);
+        return view ('Admin.Permission.edit',['data'=>$data]);
     }
 
     /**

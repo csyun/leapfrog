@@ -45,7 +45,7 @@ class RoleController extends Controller
 
 
 
-        return view('Admin/Role/auth',compact('data','permissions','a'));
+        return view('Admin.Role.auth',compact('data','permissions','a'));
     }
 
      /**
@@ -129,7 +129,7 @@ class RoleController extends Controller
 
 
 
-        return view('admin/role/index',compact('data','request'));
+        return view('admin.role.index',compact('data','request'));
     }
 
     /**
@@ -139,7 +139,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('admin/role/add');
+        return view('admin.role.add');
     }
 
     /**
@@ -207,7 +207,7 @@ class RoleController extends Controller
         $data = $user->find($id);
         
 
-        return view ('Admin/Role/edit',['data'=>$data]);
+        return view ('Admin.Role.edit',['data'=>$data]);
     }
 
     /**

@@ -23,7 +23,7 @@ class LoginController extends CommonController
     public function login()
 	{
 
-		return view('Home\login');
+		return view('Home.login');
 	}
 
 	public function dologin(Request $request)

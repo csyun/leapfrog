@@ -1,7 +1,7 @@
 @extends('Admin.head')
 
 @section('content')
-
+ <script src="{{asset('/layer/layer.js')}}"></script>
     <div class="tpl-content-wrapper">
         <div class="row-content am-cf">
             <div class="row">
