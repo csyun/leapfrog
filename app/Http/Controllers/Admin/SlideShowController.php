@@ -46,7 +46,7 @@ class SlideShowController extends Controller
     public function index()
     {
         $slideshows = SlideShow::orderBy('order','asc')->get();
-        return view('Admin\SlideShow\index',compact('slideshows'));
+        return view('Admin.SlideShow.index',compact('slideshows'));
     }
 
     /**
@@ -56,7 +56,7 @@ class SlideShowController extends Controller
      */
     public function create()
     {
-        return view('Admin\SlideShow\add');
+        return view('Admin.SlideShow.add');
     }
 
     /**
@@ -123,7 +123,7 @@ class SlideShowController extends Controller
     public function edit($id)
     {
         $slideshow = SlideShow::find($id);
-        return view ('Admin/slideshow/edit',compact('slideshow'));
+        return view ('Admin.slideshow.edit',compact('slideshow'));
     }
 
     /**

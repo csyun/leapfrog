@@ -23,7 +23,7 @@ class LoginController extends Controller
      */
 	public function login()
 	{
-		return view('Admin\login');
+		return view('Admin.login');
 	}
 
 

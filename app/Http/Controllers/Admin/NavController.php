@@ -41,7 +41,7 @@ class NavController extends Controller
     public function index()
     {
         $nav = Nav::orderBy('nav_order','asc')->get();
-        return view('Admin\Nav\index',compact('nav'));
+        return view('Admin.Nav.index',compact('nav'));
     }
 
     /**
@@ -52,7 +52,7 @@ class NavController extends Controller
      */
     public function create()
     {
-        return view('Admin\Nav\add');
+        return view('Admin.Nav.add');
     }
 
     /**
@@ -124,7 +124,7 @@ class NavController extends Controller
     {
         //
         $nav = Nav::find($id);
-        return view ('Admin/Nav/edit',compact('nav'));
+        return view ('Admin.Nav.edit',compact('nav'));
     }
 
     /**

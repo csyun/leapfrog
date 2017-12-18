@@ -26,3 +26,21 @@ jQuery(document).ready(function() {
 	});
 
 });
+function checkData(num) {
+	if(($(".select-property").find($("dl.selected dt")).size()) < num){
+
+		layer.open({
+            type: 1
+            ,offset: 't' //具体配置参考：offset参数项
+            ,content: '<div style="padding: 20px 80px;font-size: 16px;">请选择全部属性再进行询价</div>'
+            ,btn: '确定'
+            ,btnAlign: 'c' //按钮居中
+            ,shade: 0 //不显示遮罩
+            ,yes: function(){
+                layer.closeAll();
+            }
+        });
+	}else{
+		$("#attrform").submit();
+	}
+}

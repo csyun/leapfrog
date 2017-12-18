@@ -46,7 +46,7 @@ class AdverController extends Controller
     public function index()
     {
         $advers = Adver::orderBy('order','asc')->get();
-        return view('Admin\Adver\index',compact('advers'));
+        return view('Admin.Adver.index',compact('advers'));
     }
 
     /**
@@ -56,7 +56,7 @@ class AdverController extends Controller
      */
     public function create()
     {
-        return view('Admin\Adver\add');
+        return view('Admin.Adver.add');
     }
 
     /**
@@ -91,7 +91,7 @@ class AdverController extends Controller
         $res = Adver::create($input);
         if($res)
         {
-            return  redirect('/admin/adver')->with('msg','添加成功');
+            return  redirect('admin.adver')->with('msg','添加成功');
         }else{
             return back()->with('msg','添加失败');
         }
@@ -118,7 +118,7 @@ class AdverController extends Controller
     public function edit($id)
     {
         $adver = Adver::find($id);
-        return view ('Admin/adver/edit',compact('adver'));
+        return view ('Admin.adver.edit',compact('adver'));
     }
 
     /**

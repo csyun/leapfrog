@@ -17,7 +17,7 @@ class RecycleGoodTypeController extends Controller
     public function index()
     {
         $recyclegoodtype = RecycleGoodType::get();
-        return view('Admin\RecycleGoodType\index',compact('recyclegoodtype'));
+        return view('Admin.RecycleGoodType.index',compact('recyclegoodtype'));
     }
 
     /**
@@ -27,7 +27,7 @@ class RecycleGoodTypeController extends Controller
      */
     public function create()
     {
-        return view('Admin\RecycleGoodType\add');
+        return view('Admin.RecycleGoodType.add');
     }
 
     /**
@@ -75,7 +75,7 @@ class RecycleGoodTypeController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * 编辑回收类型
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -83,13 +83,13 @@ class RecycleGoodTypeController extends Controller
     public function edit($id)
     {
         $recyclegoodtype = RecycleGoodType::find($id);
-        return view ('Admin/recyclegoodtype/edit',compact('recyclegoodtype'));
+        return view ('Admin.recyclegoodtype.edit',compact('recyclegoodtype'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  更新回收商品类型
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -120,7 +120,7 @@ class RecycleGoodTypeController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * 删除一条回收商品的类型
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

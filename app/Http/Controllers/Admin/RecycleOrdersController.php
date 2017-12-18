@@ -12,7 +12,7 @@ use App\Http\Controllers\Controller;
 class RecycleOrdersController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * 展示回收订单列表页面
      *
      * @return \Illuminate\Http\Response
      */
@@ -20,7 +20,7 @@ class RecycleOrdersController extends Controller
     {
         $recycleorders = RecycleGoodOrder::orderby('creat_time','desc')->paginate(10);
 
-        return view('Admin\RecycleOrder\index',compact('recycleorders'));
+        return view('Admin.RecycleOrder.index',compact('recycleorders'));
     }
 
     /**
@@ -45,7 +45,7 @@ class RecycleOrdersController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * 回收订单详情页面
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -61,7 +61,7 @@ class RecycleOrdersController extends Controller
             $attr_value[$k]['attr_type'] = RecycleGoodAttribute::find($v->attr_id)->attr_name;
         }
         //dd($attr_value);
-        return view('Admin\RecycleOrder\info',compact('attr_value','recycleorder','goodname'));
+        return view('Admin.RecycleOrder.info',compact('attr_value','recycleorder','goodname'));
     }
 
     /**
@@ -76,7 +76,7 @@ class RecycleOrdersController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * 更新回收订单信息内容.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id

@@ -20,7 +20,19 @@
 
 
                     <div class="am-modal am-modal-no-btn" id="doc-modal-1">
-
+                        @if (count($errors) > 0)
+                            <div style="margin-left: 60px;">
+                                <ul>
+                                    @if(is_object($errors))
+                                        @foreach ($errors->all() as $error)
+                                            <li style="color:red">{{ $error }}</li>
+                                        @endforeach
+                                    @else
+                                        <li style="color:red">{{ $errors }}</li>
+                                    @endif
+                                </ul>
+                            </div>
+                        @endif
                         <div class="add-dress" style="width: 700px;">
 
                             <!--标题 -->
@@ -75,6 +87,20 @@
 
 
                 <script type="text/javascript">
+                    var str = "{{session('msg')}}";
+                    if(str!=''){
+                        layer.open({
+                            type: 1
+                            ,offset: 't' //具体配置参考：offset参数项
+                            ,content: '<div style="padding: 20px 80px;font-size: 16px;">'+str+'</div>'
+                            ,btn: '确定'
+                            ,btnAlign: 'c' //按钮居中
+                            ,shade: 0 //不显示遮罩
+                            ,yes: function(){
+                                layer.closeAll();
+                            }
+                        });
+                    }
                     $(document).ready(function() {
                         $(".new-option-r").click(function() {
                             $(this).parent('.user-addresslist').addClass("defaultAddr").siblings().removeClass("defaultAddr");

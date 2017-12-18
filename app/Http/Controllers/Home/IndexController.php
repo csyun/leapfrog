@@ -30,7 +30,7 @@ class IndexController extends CommonController
         $recommends = Recommend::with('goods')->get();
         //dd($recommends);
        $cate = (new Cate())->relation();
-        return view('Home\index',compact('slideshows','recommend','articles','advers','recommends','cate'));
+        return view('Home.index',compact('slideshows','recommend','articles','advers','recommends','cate'));
     }
     /**
      * 展示文章页面
@@ -43,7 +43,7 @@ class IndexController extends CommonController
     {
         $articleinfo = Articles::find($id);
         $articles = Articles::orderBy('number','asc')->paginate(10);
-        return view('Home\Articles\article', compact('articles', 'articleinfo'));
+        return view('Home.Articles.article', compact('articles', 'articleinfo'));
 
     }
 

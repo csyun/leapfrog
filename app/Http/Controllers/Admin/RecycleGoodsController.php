@@ -22,7 +22,7 @@ class RecycleGoodsController extends Controller
     {
         $recyclegoods = RecycleGoods::with('type')->paginate(4);
         //dd($recyclegoods);
-        return view('Admin\RecycleGoods\index',compact('recyclegoods'));
+        return view('Admin.RecycleGoods.index',compact('recyclegoods'));
     }
 
     /**
@@ -33,13 +33,15 @@ class RecycleGoodsController extends Controller
      */
     public function create()
     {
+        //获取回收商品的类型
         $recyclegoodtype = RecycleGoodType::get();
+        //获取回收商品的属性值
         $recycleattr = RecycleGoodAttribute::get();
      //   $type_id=$recycleattr->first();
         $types = $recycleattr->map(function ($user) {
             return $user->type_id;
         });
-
+        //处理数据
         $type_id = $types[0];
         $recycleattr = RecycleGoodAttribute::where('type_id',$type_id)->get();
         foreach ($recycleattr as $key=>$value){
@@ -48,7 +50,7 @@ class RecycleGoodsController extends Controller
                 $recycleattr[$key]['attr_values'] = $attr_values;
             }
         }
-        return view('Admin\RecycleGoods\add',compact('recyclegoodtype','recycleattr'));
+        return view('Admin.RecycleGoods.add',compact('recyclegoodtype','recycleattr'));
     }
 
     /**
@@ -146,7 +148,7 @@ class RecycleGoodsController extends Controller
                 }
             }
         }
-        return view('Admin\RecycleGoods\edit',compact('recyclegood','recyclegoodtype','recycleattr'));
+        return view('Admin.RecycleGoods.edit',compact('recyclegood','recyclegoodtype','recycleattr'));
     }
 
     /**

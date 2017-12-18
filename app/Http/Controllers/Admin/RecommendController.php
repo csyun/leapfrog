@@ -18,7 +18,7 @@ class RecommendController extends Controller
     public function index()
     {
         $recommends = Recommend::get();
-        return view('Admin\Recommend\index',compact('recommends'));
+        return view('Admin.Recommend.index',compact('recommends'));
     }
 
     /**
@@ -29,7 +29,7 @@ class RecommendController extends Controller
      */
     public function create()
     {
-        return view('Admin\Recommend\add');
+        return view('Admin.Recommend.add');
     }
 
     /**
@@ -88,7 +88,7 @@ class RecommendController extends Controller
     public function edit($id)
     {
         $recommend = Recommend::find($id);
-        return view ('Admin/recommend/edit',compact('recommend'));
+        return view ('Admin.recommend.edit',compact('recommend'));
     }
 
     /**

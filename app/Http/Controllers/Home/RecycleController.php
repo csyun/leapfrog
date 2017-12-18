@@ -5,11 +5,13 @@ namespace App\Http\Controllers\Home;
 use App\Models\RecycleGoodAttribute;
 use App\Models\RecycleGoodOrder;
 use App\Models\RecycleGoodsAttrValue;
-
+use Illuminate\Support\Facades\Validator;
+use App\Models\RecycleGoodType;
 use App\Models\RecycleOrders;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\RecycleGoods;
+use Illuminate\Support\Facades\Input;
 use Session;
 use DB;
 
@@ -21,11 +23,15 @@ class RecycleController extends CommonController
      * @auth 曹守云
      * @return  前台回收商品列表视图页面,携带需要的变量 recyclegoods可以回收的商品  $hotrecyclegoods 热门回收商品
      */
-    public function index()
+    public function index(Request $request)
     {
-        $recyclegoods = RecycleGoods::paginate(4);
-        //dd($recyclegoods);
-        //查出回收数量最多的2个商品
+        $typeid = $request->input('typeid');
+        //dd($typeid);
+        $recyclegoodtype = RecycleGoodType::get();
+
+        $recyclegoods = RecycleGoods::paginate(5);
+        //dd($recyclegoodtype);
+        //查出回收数量最多的2个商品,附带回收均价
         $hotrecyclegoods = DB::select('select rgid, AVG(rpice) as rpice, count(*) as sales  from `data_recycle_orders` group by `rgid` order by sales DESC limit 2;');
         //dd($hotrecyclegoods);
         $gid = [];
@@ -33,7 +39,7 @@ class RecycleController extends CommonController
         //遍历数组取出商品id数组和平均价格数据
         foreach ($hotrecyclegoods as $k=>$v){
             $gid[] = $v->rgid;
-            $price[] = $v->rpice;
+            $price[] = number_format($v->rpice,2);
             //$sale[] = $v->sale;
          }
         //根据查出的2个id查询出商品信息
@@ -46,8 +52,13 @@ class RecycleController extends CommonController
                 $goods[$k]['avgprice'] = $vv;
             }
         }
-        //dd($goods);
-        return view('Home\Recycle\list',compact('recyclegoods','goods'));
+        $isAjax = $request->input('isAjax');
+        if($isAjax){
+            $recyclegoods = RecycleGoods::where('type_id',$typeid)->paginate(5);
+            return $recyclegoods;
+        }
+        //dd($recyclegoods);
+        return view('Home.Recycle.list',compact('recyclegoods','goods','recyclegoodtype'));
     }
     /**
      * 展示前台回收商品列表
@@ -83,10 +94,16 @@ class RecycleController extends CommonController
                 }
             }
         }
-        ($recycleattr);
-        return view('Home\Recycle\info',compact('recyclegood','recycleattr'));
+
+        return view('Home.Recycle.info',compact('recyclegood','recycleattr'));
 
     }
+    /**
+     *询价显示页面,选择商品的属性进行计算价格
+     * @auth 曹守云
+     * @param 询价提交的属性值
+     * 返回询价页面,带着响应的计算出的价格 选择的属性 要回收的商品
+     */
     public function count(Request $request)
     {
         $recyclegood = $request->except('_token');
@@ -101,14 +118,19 @@ class RecycleController extends CommonController
         }
         $count = $request->rgprice - $sum;
         $recyclegood['rprice'] = $count;
+        //把回收的商品信息放到session里面
         Session::put('recyclegood',$recyclegood);
-        return view('Home\Recycle\count',compact('count','attrarr','recyclegood'));
+        return view('Home.Recycle.count',compact('count','attrarr','recyclegood'));
     }
+    /**
+     * 提交回收订单
+    */
     public function recycleorder(Request $request)
     {
+        //获取session里面存放的回收商品信息
         $recyclegood = Session::get('recyclegood');
 
-        return view('Home\Recycle\order',compact('recyclegood'));
+        return view('Home.Recycle.order',compact('recyclegood'));
     }
     /**
      * 订单提交存到数据库中
@@ -120,6 +142,24 @@ class RecycleController extends CommonController
         $info = implode(',',$recyclegood['goods_attr_id']);
 
         $recycleinfo =  $request->except('_token');
+        $rule = [
+            'rcname'=>'required',
+            "rctel"=>'required',
+            "addr"=>'required',
+
+        ];
+        $mess = [
+            'rcname.required'=>'回收联系人名称必须输入',
+            'rctel.required'=>'回收联系人电话必须输入',
+            'addr.required'=>'回收联系人地址必须输入',
+        ];
+
+        $validator =  Validator::make($recycleinfo,$rule,$mess);
+        if ($validator->fails()) {
+            return redirect('recyclegoods/order')
+                ->withErrors($validator)
+                ->withInput();
+        }
         $orderinfo['roid'] = time().rand(1000,9999);
         $orderinfo['uid'] = Session::get('homeuser')->uid;
         $orderinfo['creat_time'] = time();
@@ -130,10 +170,12 @@ class RecycleController extends CommonController
         $orderinfo['rctel'] = $recycleinfo['rctel'];
         $orderinfo['status'] = 0;
         $orderinfo['info'] = $info;
+        //dd($orderinfo);
         $res = RecycleGoodOrder::create($orderinfo);
         if ($res){
+            //提交订单成功,在回收商品所在的库sale字段(回收次数)加1
             $sale = DB::update('update data_recycle_goods set sale=sale+1 where rgid='.$recyclegood['rgid'].';');
-            return view('Home\Recycle\success',compact('recycleinfo'));
+            return view('Home.Recycle.success',compact('recycleinfo'));
         } else {
             return back()->with('msg','添加失败');
         }

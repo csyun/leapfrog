@@ -58,7 +58,7 @@ class ArticlesController extends Controller
                 }
             })
             ->paginate(5);
-        return view('Admin\Articles\list',compact('articles','request'));
+        return view('Admin.Articles.list',compact('articles','request'));
     }
 
     /**
@@ -69,7 +69,7 @@ class ArticlesController extends Controller
      */
     public function create()
     {
-        return view('Admin\Articles\add');
+        return view('Admin.Articles.add');
     }
 
     /**
@@ -138,7 +138,7 @@ class ArticlesController extends Controller
     public function edit($id)
     {
         $article = Articles::find($id);
-        return view ('Admin/articles/edit',['data'=>$article]);
+        return view ('Admin.articles.edit',['data'=>$article]);
     }
 
     /**
@@ -187,7 +187,7 @@ class ArticlesController extends Controller
         {
             return redirect('/admin/articles')->with('msg','修改成功');;
         }else{
-            return back()->with('msg','修改失败');;
+            return back()->with('msg','修改失败');
         }
 
         //return redirect('/admin/articles',compact('data'));

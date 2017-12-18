@@ -70,7 +70,7 @@
                     <input type="hidden" name="rgpic" value="{{$recyclegood->rgpic}}">
                 <div class="footer clearfix">
                     <div style="background-color: #FF5400;height: 40px;line-height:40px;width: 100px;text-align: center;margin-left:600px;">
-                    <button type="submit" style="font-size: 20px;color: #ffffff">免费询价</button>
+                    <button type="button" style="font-size: 20px;color: #ffffff" onclick="checkData('{{count($recycleattr)}}')">免费询价</button>
                     </div>
                 </div>
                 </form>

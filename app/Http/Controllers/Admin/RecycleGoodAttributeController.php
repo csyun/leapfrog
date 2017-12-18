@@ -6,11 +6,12 @@ use App\Models\RecycleGoodAttribute;
 use App\Models\RecycleGoodType;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class RecycleGoodAttributeController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * 展示回收商品属性值列表
      *
      * @return \Illuminate\Http\Response
      */
@@ -19,22 +20,22 @@ class RecycleGoodAttributeController extends Controller
         //$recyclegoodtype = RecycleGoodType::get();
         $recyclegoodattribute = RecycleGoodAttribute::with('type')->get();
         //dd($recyclegoodattribute);
-        return view('Admin\RecycleGoodsAttribute\index',compact('recyclegoodattribute'));
+        return view('Admin.RecycleGoodsAttribute.index',compact('recyclegoodattribute'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * 展示添加一个回收商品属性值页面
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
         $recyclegoodtype = RecycleGoodType::get();
-        return view('Admin\RecycleGoodsAttribute\add',compact('recyclegoodtype'));
+        return view('Admin.RecycleGoodsAttribute.add',compact('recyclegoodtype'));
     }
 
     /**
-     * Store a newly created resource in storage.
+     * 添加一个回收商品属性值到数据库中.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -44,19 +45,21 @@ class RecycleGoodAttributeController extends Controller
         $input = $request->except('_token');
         //dd($input);
         //表单验证规则
-//        $rule = [
-//            'type_name'=>'required'
-//        ];
-//        $mess = [
-//            'type_name.required'=>'名称必须输入'
-//        ];
-//
-//        $validator =  Validator::make($input,$rule,$mess);
-//        if ($validator->fails()) {
-//            return redirect('admin/recyclegoodtype/create')
-//                ->withErrors($validator)
-//                ->withInput();
-//        }
+        $rule = [
+            'type_name'=>'required',
+            'attr_values'=>'required'
+        ];
+        $mess = [
+            'type_name.required'=>'属性名称必须输入',
+            'attr_values.required'=>'参数值必须输入'
+        ];
+
+        $validator =  Validator::make($input,$rule,$mess);
+        if ($validator->fails()) {
+            return redirect('admin/recyclegoodattribute/create')
+                ->withErrors($validator)
+                ->withInput();
+        }
         $res = RecycleGoodAttribute::create($input);
         if($res)
         {
@@ -78,7 +81,7 @@ class RecycleGoodAttributeController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * 编辑一个回收商品属性值
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -89,11 +92,11 @@ class RecycleGoodAttributeController extends Controller
         $recyclegoodattribute = RecycleGoodAttribute::with('type')->find($id);
 
         //dd($recyclegoodattribute);
-        return view('Admin\RecycleGoodsAttribute\edit',compact('recyclegoodattribute','recyclegoodtype'));
+        return view('Admin.RecycleGoodsAttribute.edit',compact('recyclegoodattribute','recyclegoodtype'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * 更新一个回收商品属性值
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -113,7 +116,7 @@ class RecycleGoodAttributeController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * 删除一个回收商品属性值
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

@@ -43,7 +43,7 @@ class UserInfoController extends CommonController
         $info = Order_details::with('goods')->where('oid',$id)->get();
         $order = Order::where('oid',$id)->first();
         //dd($info);
-        return view('\Home\UserInfo\orderdata',compact('info','order'));
+        return view('Home.UserInfo.orderdata',compact('info','order'));
     }
     /**
      * 显示个人信息修改页面
@@ -54,7 +54,7 @@ class UserInfoController extends CommonController
         $username = Session::get('homeuser.uname');
         $userinfo = UserInfo::where('uid',$id)->first();
         //dd($userinfo);
-        return view('Home\UserInfo\information',compact('userinfo','username'));
+        return view('Home.UserInfo.information',compact('userinfo','username'));
     }
     /**
      * 把修改的个人信息存到数据库
@@ -69,7 +69,7 @@ class UserInfoController extends CommonController
             $username = Session::get('homeuser.uname');
             $userinfo = UserInfo::where('uid',$id)->first();
             //dd($userinfo);
-            return view('Home\UserInfo\information',compact('userinfo','username'));
+            return view('Home.UserInfo.information',compact('userinfo','username'));
         }else{
             return back()->with('msg','修改失败');
         }
@@ -84,7 +84,7 @@ class UserInfoController extends CommonController
             $recycleorders[$k]['rgpic'] = $good->rgpic;
         }
         //dd($recycleorders);
-        return view('Home\UserInfo\recycleorder',compact('recycleorders'));
+        return view('Home.UserInfo.recycleorder',compact('recycleorders'));
     }
     //我的发布商品
     public function myaddgood()
@@ -92,7 +92,7 @@ class UserInfoController extends CommonController
         $id = Session::get('homeuser.uid');
         $goods = Admin_Goods::where('uid',$id)->get();
       //dd($goods);
-        return view('Home\UserInfo\myaddgood',compact('goods'));
+        return view('Home.UserInfo.myaddgood',compact('goods'));
     }
     public function  gstatus($gid)
     {
