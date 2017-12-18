@@ -18,7 +18,7 @@ class IdeaController extends Controller
         $idea = Idea::orderBy('create_time','desc')->paginate(3);
 
         
-        return view('Admin\Idea\index', compact('idea','request') );
+        return view('Admin.Idea.index', compact('idea','request') );
     }
 
 
@@ -30,7 +30,7 @@ class IdeaController extends Controller
     public function create()
     {
 
-        return view('Admin\Idea\add');
+        return view('Admin.Idea.add');
     
     }
 

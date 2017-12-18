@@ -34,6 +34,6 @@ class IndexController extends Controller
 		$good = count($goods);
 		// dd($good);
 		
-    	return view('Admin/Index/index',compact('user','user1','good'));
+    	return view('Admin.Index.index',compact('user','user1','good'));
     }
 }

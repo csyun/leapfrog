@@ -40,7 +40,7 @@ class LinkController extends Controller
 
 
         $link = link::orderBy('order','asc')->get();
-        return view('Admin\Link\index',compact('link'));
+        return view('Admin.Link.index',compact('link'));
     }
 
 
@@ -53,7 +53,7 @@ class LinkController extends Controller
     public function create()
     {
 
-        return view('Admin\Link\add');
+        return view('Admin.Link.add');
     }
     /**
      * Store a newly created resource in storage.
@@ -119,7 +119,7 @@ class LinkController extends Controller
     public function edit($id)
     {
         $link = Link::find($id);
-        return view ('Admin/Link/edit',compact('link'));
+        return view ('Admin.Link.edit',compact('link'));
     }
 
     /**
